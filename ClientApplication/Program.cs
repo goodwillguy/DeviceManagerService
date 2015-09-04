@@ -6,6 +6,8 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using TZ.API.DeviceManagement;
+using System.ServiceModel.Channels;
+using System.Net.WebSockets;
 
 namespace ClientApplication
 {
@@ -14,16 +16,32 @@ namespace ClientApplication
         static void Main(string[] args)
         {
             var fact = new ChannelFactory<IDeviceManagerService>("deviceEndpoint");
+
+            InstanceContext callback = new InstanceContext(new ServiceCallback());
+
+            var dup = new DuplexChannelFactory<ICardReaderEventsSubscribe>(callback, "dupSocket");
+
+
+            var cardReaderSub = dup.CreateChannel();
+
+
             var cha = fact.CreateChannel();
 
             using (fact)
             {
                 var devices = cha.GetAllDevices();
+                cha.Open(devices[0].FullSerialNumber );
+
+
             }
             Console.WriteLine("try a new");
             Console.ReadKey();
 
+            Console.WriteLine("REading duplex");
 
+            cardReaderSub.SubscribeToCardSwipe(CreateMessage("local"));
+
+            Console.ReadKey();
 
             var fact1 = new ChannelFactory<IDeviceManagerService>("deviceEndpoint");
             var cha1 = fact1.CreateChannel();
@@ -33,5 +51,28 @@ namespace ClientApplication
                 var devices = cha1.GetAllDevices();
             }
         }
+
+        private static Message CreateMessage(string content)
+        {
+            Message message = ByteStreamMessage.CreateMessage(
+                new ArraySegment<byte>(
+                    Encoding.UTF8.GetBytes(content)));
+            message.Properties["WebSocketMessageProperty"] =
+                new WebSocketMessageProperty
+                { MessageType = WebSocketMessageType.Text };
+
+            return message;
+        }
     }
+
+
+    public class ServiceCallback : ICardReaderEventsCallBack
+    {
+        public void SendCardSwipe(Message message)
+        {
+            Console.WriteLine("received message");
+        }
+    }
+
+
 }

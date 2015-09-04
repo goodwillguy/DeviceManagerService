@@ -44,7 +44,15 @@ namespace DeviceManagerService.App_Start
 
             container.Register<IDeviceManagerService, DeviceManagerServiceHost>(Lifestyle.Singleton);
 
-            container.RegisterWcfServices(Assembly.GetExecutingAssembly());
+            container.Register<ICardReaderService, DeviceManager>(Lifestyle.Singleton);
+
+            var deviceManager=container.GetInstance<IDeviceManager>();
+
+
+            container.Register<ICardReaderEventsSubscribe, CardReaderService>(Lifestyle.Singleton);
+
+
+            //Initialising the device manger so that discovery can happen when the service loads.
 
         }
     }

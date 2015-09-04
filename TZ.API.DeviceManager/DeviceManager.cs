@@ -374,7 +374,7 @@ namespace TZ.API.DeviceManagement
                 foreach (var offlineDevice in offlineDevices)
                 {
                     string serialNumber = offlineDevice.GetFullSerialNumber();
-                    var device = _devices.Find(d => d.SerialNumber == serialNumber);
+                    var device = _devices.Find(d => d.FullSerialNumber == serialNumber);
 
                     var currDeviceStatus = GetDeviceStatus(offlineDevice.GetLockState());
 

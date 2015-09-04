@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonInterface;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace TZ.API.DeviceManagement
 
         private string[] _cardreaders = new String[0];
 
-        protected virtual void OnSwipe(SwipeEventArgs e)
+        protected virtual void OnSwipe(CommonInterface.SwipeEventArgs e)
         {
             if (this.Swipe != null)
             {
@@ -48,7 +49,7 @@ namespace TZ.API.DeviceManagement
             }
         }
 
-        public event EventHandler<SwipeEventArgs> Swipe;
+        public event EventHandler<CommonInterface.SwipeEventArgs> Swipe;
 
         #region ICardReadMockUpService Members
 
@@ -64,7 +65,7 @@ namespace TZ.API.DeviceManagement
                 rfid = cardReaderConversionService.EncodeToCardMockup(rfid);
             }
            
-            this.OnSwipe(new SwipeEventArgs() { RFID = rfid, SerialNumber = reader });
+            this.OnSwipe(new CommonInterface.SwipeEventArgs() { RFID = rfid, SerialNumber = reader });
         }
 
         string[] ICardReadMockUpService.GetReaders()

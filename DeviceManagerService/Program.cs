@@ -12,7 +12,7 @@ using TZ.API.DeviceManagement;
 using CommonInterface;
 namespace DeviceManagerService
 {
-    
+
     class Program
     {
         static void Main(string[] args)
@@ -23,23 +23,28 @@ namespace DeviceManagerService
 
 
             //  var deviceMgr = Bootstrapper.Container.GetInstance<IDeviceManager>();
-            using (var host = new SimpleInjectorServiceHost(cont, typeof(DeviceManagerServiceHost)))
-            {
-                host.Open();
-                Console.ReadKey();
+            var deviceManagerHost = new SimpleInjectorServiceHost(cont, typeof(DeviceManagerServiceHost));
 
-            }
+            deviceManagerHost.Open();
 
-            //using (var host = new SimpleInjectorServiceHost(Bootstrapper.Container, typeof(DeviceManager)))
-            //{
-            //    host.Open();
-            //    Console.ReadKey();
+            var cardReader = new SimpleInjectorServiceHost(cont, typeof(CardReaderService));
 
-            //}
+            cardReader.Open();
 
-            var a = new WcfServiceFactory();
-            a.CreateServiceHost(string.Empty, null);
+            Console.ReadKey();
+
+
+            deviceManagerHost.Close();
+            cardReader.Close();
 
         }
+
+        //using (var host = new SimpleInjectorServiceHost(Bootstrapper.Container, typeof(DeviceManager)))
+        //{
+        //    host.Open();
+        //    Console.ReadKey();
+
+        //}
+
     }
 }

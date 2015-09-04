@@ -20,7 +20,7 @@ namespace CommonInterface
         [OperationContract]
         bool Open(string serialNumber);
 
-        [OperationContract(Name ="OpenDevicesCollection")]
+        [OperationContract(Name = "OpenDevicesCollection")]
         void Open(string[] serialNumbers);
 
         [OperationContract]
@@ -31,6 +31,6 @@ namespace CommonInterface
 
         event EventHandler<DeviceChangedEventArg> DeviceChanged;
         event EventHandler DeviceInitialized;
-
     }
+
 }

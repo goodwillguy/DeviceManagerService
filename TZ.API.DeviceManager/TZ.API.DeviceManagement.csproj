@@ -113,7 +113,6 @@
     <Compile Include="DeviceManager.cs" />
     <Compile Include="DeviceManagerFactory.cs" />
     <Compile Include="DeviceManagerMockup.cs" />
-    <Compile Include="ICardReaderService.cs" />
     <Compile Include="ICardReadMockUpService.cs" />
     <Compile Include="IDeviceManagerFactory.cs" />
     <Compile Include="IMockUpCardReaderProvider.cs" />
@@ -124,7 +123,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="SwipeEventArgs.cs" />
     <Compile Include="WCFDeviceManager.cs" />
   </ItemGroup>
   <ItemGroup>

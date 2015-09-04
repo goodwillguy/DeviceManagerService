@@ -14,7 +14,7 @@ namespace DeviceManagerService
         {
             get
             {
-                return "COM4";
+                return "COM11";
             }
         }
     }
