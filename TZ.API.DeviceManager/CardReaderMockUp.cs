@@ -73,6 +73,11 @@ namespace TZ.API.DeviceManagement
             return this._cardreaders;
         }
 
+        void ICardReaderService.OnSwipe(CommonInterface.SwipeEventArgs args)
+        {
+            throw new NotImplementedException();
+        }
+
         //private const long wpSerialNumber = 959447040;
         //private string ConvertStringToHex(string asciiString)
         //{

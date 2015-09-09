@@ -44,12 +44,14 @@ namespace DeviceManagerService.App_Start
 
             container.Register<IDeviceManagerService, DeviceManagerServiceHost>(Lifestyle.Singleton);
 
-            container.Register<ICardReaderService, DeviceManager>(Lifestyle.Singleton);
-
-            var deviceManager=container.GetInstance<IDeviceManager>();
-
+            container.Register<ICardReaderService, CardReaderListner>(Lifestyle.Singleton);
 
             container.Register<ICardReaderEventsSubscribe, CardReaderService>(Lifestyle.Singleton);
+
+
+            var deviceManager =container.GetInstance<IDeviceManager>();
+
+
 
 
             //Initialising the device manger so that discovery can happen when the service loads.

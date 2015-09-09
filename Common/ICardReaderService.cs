@@ -8,6 +8,8 @@ namespace CommonInterface
 {
     public interface ICardReaderService
     {
+        void OnSwipe(SwipeEventArgs args);
+
         event EventHandler<SwipeEventArgs> Swipe;
     }
 }

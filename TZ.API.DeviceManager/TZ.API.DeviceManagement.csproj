@@ -12,10 +12,14 @@
     <AssemblyName>TZ.API.DeviceManagement</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -108,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionQueue.cs" />
+    <Compile Include="CardReader.cs" />
     <Compile Include="CardReaderMockUp.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="DeviceManager.cs" />
@@ -123,7 +128,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="WCFDeviceManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

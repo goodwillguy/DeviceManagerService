@@ -20,7 +20,7 @@ using CommonInterface;
 
 namespace TZ.API.DeviceManagement
 {
-    public class DeviceManager : ServiceBase, IDeviceManager, ICardReaderService
+    public class DeviceManager : ServiceBase, IDeviceManager
     {
        
         public event EventHandler<EventArgs> DiscoveryComplete;
@@ -34,10 +34,11 @@ namespace TZ.API.DeviceManagement
         private readonly MemoryCache _cache = new MemoryCache("error entry");
         private readonly CacheItemPolicy _cacheItemPolicy = new CacheItemPolicy() { SlidingExpiration = TimeSpan.FromSeconds(30) };
 
-        public DeviceManager(ILogger logger, IComPortProvider comPortProvider)
+        public DeviceManager(ILogger logger, IComPortProvider comPortProvider, ICardReaderService cardReaderListner)
         {
             _logger = logger;
             _comPortProvider = comPortProvider;
+            _cardReaderListner = cardReaderListner;
             InitializeService();
         }
 
@@ -168,7 +169,7 @@ namespace TZ.API.DeviceManagement
                             var device = _devices.FirstOrDefault(d => d.SerialNumber.Trim() == serialNumber.Trim());
                             if (device != null)
                             {
-                                this.OnSwipe(new SwipeEventArgs() { SerialNumber = device.FullSerialNumber, RFID = RFID });
+                                _cardReaderListner.OnSwipe(new SwipeEventArgs() { SerialNumber = device.FullSerialNumber, RFID = RFID });
                             }
                         }
                     }
@@ -444,6 +445,7 @@ namespace TZ.API.DeviceManagement
         private readonly ILogger _logger;
         private readonly IComPortProvider _comPortProvider;
         private bool _discovered;
+        private readonly ICardReaderService _cardReaderListner;
 
         public bool IsReady()
         {
