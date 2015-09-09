@@ -39,7 +39,7 @@ namespace ClientApplication
 
             Console.WriteLine("REading duplex");
 
-            cardReaderSub.SubscribeToCardSwipe(CreateMessage("local"));
+            cardReaderSub.SubscribeToCardSwipeByhost("Local");
 
             Console.ReadKey();
 
@@ -71,6 +71,11 @@ namespace ClientApplication
         public void SendCardSwipe(Message message)
         {
             Console.WriteLine("received message");
+        }
+
+        public void SendCardSwipeByName(string message)
+        {
+            Console.WriteLine(string.Format("received message : {0}",message));
         }
     }
 

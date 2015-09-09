@@ -1,6 +1,7 @@
-﻿using CommonInterface;
-using SimpleInjector;
-using SimpleInjector.Integration.Wcf;
+﻿using Autofac;
+using Autofac.Core;
+using Autofac.Integration.Wcf;
+using CommonInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,48 +15,37 @@ namespace DeviceManagerService.App_Start
 {
     public static class Bootstrapper
     {
-        public static readonly Container Container;
+        public static readonly IContainer Container;
 
         static Bootstrapper()
         {
-            var con = new Container();
-            con.Options.DefaultScopedLifestyle = new WcfOperationLifestyle();
+            var builder = new ContainerBuilder();
 
-            // register all your components with the container here:
-            // container.Register<IService1, Service1>()
-            // container.Register<IDataContext, DataContext>(Lifestyle.Scoped);
+            Register(builder);
 
-            Register(con);
+            var container = builder.Build();
 
-           // container.Verify();
+            var device = container.Resolve<IDeviceManager>();
 
-            Container = con;
+            Container = container;
 
-            SimpleInjectorServiceHostFactory.SetContainer(Container);
         }
 
-        static void Register(Container container)
+        private static void Register(ContainerBuilder containerBuilder)
         {
-            container.Register<ILogger, LogService>(Lifestyle.Singleton);
 
-            container.Register<IComPortProvider, ComPortProvider>(Lifestyle.Singleton);
+            containerBuilder.RegisterType<LogService>().As<ILogger>().SingleInstance();// .Register<ILogger, LogService>(Lifestyle.Singleton);
 
-            container.Register<IDeviceManager, DeviceManager>(Lifestyle.Singleton);
+            containerBuilder.RegisterType<ComPortProvider>().As<IComPortProvider>().SingleInstance();
+            containerBuilder.RegisterType<DeviceManager>().As<IDeviceManager>().SingleInstance();
 
-            container.Register<IDeviceManagerService, DeviceManagerServiceHost>(Lifestyle.Singleton);
-
-            container.Register<ICardReaderService, CardReaderListner>(Lifestyle.Singleton);
-
-            container.Register<ICardReaderEventsSubscribe, CardReaderService>(Lifestyle.Singleton);
-
-
-            var deviceManager =container.GetInstance<IDeviceManager>();
+            containerBuilder.RegisterType<DeviceManagerServiceHost>().As<IDeviceManagerService>();
+            containerBuilder.RegisterType<CardReaderListner>().As<ICardReaderService>().SingleInstance();
+            containerBuilder.RegisterType<CardReaderService>().As<ICardReaderEventsSubscribe>().SingleInstance();
+            containerBuilder.RegisterType<CardReaderService>().As<IWebCardReaderEventsSubscribe>().SingleInstance();
 
 
-
-
-            //Initialising the device manger so that discovery can happen when the service loads.
-
+            //var deviceManager =container.GetInstance<IDeviceManager>();
         }
     }
 }

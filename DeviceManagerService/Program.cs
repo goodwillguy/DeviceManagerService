@@ -1,5 +1,4 @@
 ﻿using DeviceManagerService.App_Start;
-using SimpleInjector.Integration.Wcf;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,41 +9,32 @@ using System.Text;
 using System.Threading.Tasks;
 using TZ.API.DeviceManagement;
 using CommonInterface;
+using Autofac.Integration.Wcf;
+using Autofac;
+using System.ServiceModel.Description;
+
 namespace DeviceManagerService
 {
-
     class Program
     {
         static void Main(string[] args)
         {
             var cont = Bootstrapper.Container;
 
-            //a.CreateServiceHost(string.Empty,)
+            ServiceHost host = new ServiceHost(typeof(DeviceManagerServiceHost));
+
+            host.AddDependencyInjectionBehavior<IDeviceManagerService>(Bootstrapper.Container);
+
+            host.Open();
 
 
-            //  var deviceMgr = Bootstrapper.Container.GetInstance<IDeviceManager>();
-            var deviceManagerHost = new SimpleInjectorServiceHost(cont, typeof(DeviceManagerServiceHost));
+            ServiceHost host1 = new ServiceHost(typeof(CardReaderService));
 
-            deviceManagerHost.Open();
+            host1.AddDependencyInjectionBehavior<IWebCardReaderEventsSubscribe>(Bootstrapper.Container);
 
-            var cardReader = new SimpleInjectorServiceHost(cont, typeof(CardReaderService));
-
-            cardReader.Open();
+            host1.Open();
 
             Console.ReadKey();
-
-
-            deviceManagerHost.Close();
-            cardReader.Close();
-
         }
-
-        //using (var host = new SimpleInjectorServiceHost(Bootstrapper.Container, typeof(DeviceManager)))
-        //{
-        //    host.Open();
-        //    Console.ReadKey();
-
-        //}
-
     }
 }
