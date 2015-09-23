@@ -399,10 +399,7 @@ namespace TZ.API.DeviceManagement
 
         public Device[] GetAllDevices()
         {
-           while(!_discovered)
-            {
-                Thread.Sleep(1000);
-            }
+            _waitHandler.Wait();
 
             return _devices.ToArray();
         }
@@ -415,6 +412,7 @@ namespace TZ.API.DeviceManagement
 
         public bool Open(string serialNumber)
         {
+            _waitHandler.Wait();
             _logger.SafeLogMessage("TZDeviceManager", "Received command to open lock {0}.", serialNumber);
             var device = _devices.FirstOrDefault(d => d.FullSerialNumber == serialNumber);
             if (device == null) return false;
