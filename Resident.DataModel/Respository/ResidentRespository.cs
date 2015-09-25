@@ -1,13 +1,13 @@
-﻿using Resident.Common.Interface;
+﻿using Tz.Resident.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Resident.Common.Dto;
+using Tz.Resident.Common.Dto;
 using Common.Modules.DataModel.Interface;
 
-namespace Resident.DataModel.Respository
+namespace Tz.Resident.DataModel.Respository
 {
     public class ResidentRespository : IResidentRepository
     {

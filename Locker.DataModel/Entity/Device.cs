@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locker.DataModel
+namespace Tz.Locker.DataModel
 {
     public class Device:Base,IAuditable
     {

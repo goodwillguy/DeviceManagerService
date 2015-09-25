@@ -1,4 +1,4 @@
-﻿namespace Locker.Common.Dto
+﻿namespace Tz.Locker.Common.Dto
 {
     public class LockerAndDeviceDto
     {

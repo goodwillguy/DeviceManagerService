@@ -47,7 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{3D8C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ParcelModule", "ParcelModule", "{4C0BE352-72C2-45DD-9B95-79169430E215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parcel.DataModel", "ParcelDb\Parcel.DataModel.csproj", "{47AA85EB-BCAA-4E33-8F4E-1E7143BD0337}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Parcel.DataModel", "ParcelDb\Tz.Parcel.DataModel.csproj", "{47AA85EB-BCAA-4E33-8F4E-1E7143BD0337}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AgentModule", "AgentModule", "{145359ED-967F-4B58-9D48-A5199CC00133}"
 EndProject
@@ -55,9 +55,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LockerBankModule", "LockerB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ResidentModule", "ResidentModule", "{B632D213-0953-4C18-87F0-307FB8028976}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resident.DataModel", "Resident.DataModel\Resident.DataModel.csproj", "{B14DFFFB-840E-4FE0-80EE-FCAAA572AE99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Resident.DataModel", "Resident.DataModel\Tz.Resident.DataModel.csproj", "{B14DFFFB-840E-4FE0-80EE-FCAAA572AE99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locker.DataModel", "Locker.DataModel\Locker.DataModel.csproj", "{8FAFE10A-9532-48E9-8BEF-873F8EFD8CFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Locker.DataModel", "Locker.DataModel\Tz.Locker.DataModel.csproj", "{8FAFE10A-9532-48E9-8BEF-873F8EFD8CFC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Agent.DataModel", "Agent.DataModel\Tz.Agent.DataModel.csproj", "{9A53F769-5D03-43DD-BAC0-B165B840F563}"
 EndProject
@@ -67,21 +67,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common.Modules\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Values", "Common.Values\Common.Values.csproj", "{84EE0288-D093-4F5F-AAF9-E2CD64C04A8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parcel.ApplicationService", "Parcel.ApplicationService\Parcel.ApplicationService.csproj", "{00A6AB0F-6680-4EC3-B13C-69E2791A3D0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Parcel.ApplicationService", "Parcel.ApplicationService\Tz.Parcel.ApplicationService.csproj", "{00A6AB0F-6680-4EC3-B13C-69E2791A3D0F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DependencyInjection", "DependencyInjection", "{27569611-9D3A-4785-93AE-F595F31DEFAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyContainer", "DependencyContainer\DependencyContainer.csproj", "{38B68574-41AD-4C07-A1E3-077409257983}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locker.ApplicationService", "Locker.ApplicationService\Locker.ApplicationService.csproj", "{C77EAC46-9B4E-424A-B2E5-9725AB3C3B2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Locker.ApplicationService", "Locker.ApplicationService\Tz.Locker.ApplicationService.csproj", "{C77EAC46-9B4E-424A-B2E5-9725AB3C3B2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parcel.Common", "Parcel.Common\Parcel.Common.csproj", "{2EBEE0D0-F5B0-45CD-8A9D-0E1755B8BEFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Parcel.Common", "Parcel.Common\Tz.Parcel.Common.csproj", "{2EBEE0D0-F5B0-45CD-8A9D-0E1755B8BEFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locker.Common", "Locker.Common\Locker.Common.csproj", "{6FAC72A2-7D8D-453F-9D49-ABEBD741A0C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Locker.Common", "Locker.Common\Tz.Locker.Common.csproj", "{6FAC72A2-7D8D-453F-9D49-ABEBD741A0C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resident.Common", "Resident.Common\Resident.Common.csproj", "{EDEA211A-2504-4519-B4ED-FCEA55907E67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Resident.Common", "Resident.Common\Tz.Resident.Common.csproj", "{EDEA211A-2504-4519-B4ED-FCEA55907E67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resident.ApplicationServices", "Resident.ApplicationServices\Resident.ApplicationServices.csproj", "{D944A59D-B074-456D-B8A2-647CCE53FDFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Resident.ApplicationServices", "Resident.ApplicationServices\Tz.Resident.ApplicationServices.csproj", "{D944A59D-B074-456D-B8A2-647CCE53FDFE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Agent.Common", "Agent.Common\Tz.Agent.Common.csproj", "{0983A550-1287-4965-929C-C6EE7106A7BC}"
 EndProject

@@ -1,14 +1,14 @@
-﻿using Locker.Common.Interface;
+﻿using Tz.Locker.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Locker.Common.Dto;
+using Tz.Locker.Common.Dto;
 using Common.Modules.DataModel.Interface;
 using Common.Values.Enums;
 
-namespace Locker.DataModel.Repository
+namespace Tz.Locker.DataModel.Repository
 {
     public class LockerRepository : ILockerRepository
     {

@@ -1,11 +1,11 @@
-﻿using Locker.Common.Dto;
+﻿using Tz.Locker.Common.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locker.Common.Interface
+namespace Tz.Locker.Common.Interface
 {
     public interface ILockerRepository
     {

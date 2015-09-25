@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Resident.DataModel
+namespace Tz.Resident.DataModel
 {
     [ReadonlyTable]
     public class ParcelView 

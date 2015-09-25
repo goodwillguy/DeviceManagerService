@@ -3,7 +3,7 @@ using Common.Values;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Tz.Parcel.DataModel.ParcelEnitities
+namespace Tz.Tz.Parcel.DataModel.ParcelEnitities
 {
     public class ParcelTransaction :Base,IAuditable
     {

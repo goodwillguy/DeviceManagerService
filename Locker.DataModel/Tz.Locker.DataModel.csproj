@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C77EAC46-9B4E-424A-B2E5-9725AB3C3B2F}</ProjectGuid>
+    <ProjectGuid>{8FAFE10A-9532-48E9-8BEF-873F8EFD8CFC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Locker.ApplicationService</RootNamespace>
-    <AssemblyName>Locker.ApplicationService</AssemblyName>
+    <RootNamespace>Tz.Locker.DataModel</RootNamespace>
+    <AssemblyName>Tz.Locker.DataModel</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -42,7 +42,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,35 +50,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LockerApplicationService.cs" />
-    <Compile Include="LockerDeviceManagerApplicationService.cs" />
+    <Compile Include="Entity\Device.cs" />
+    <Compile Include="Entity\LockerOfflineReason.cs" />
+    <Compile Include="Entity\Locker.cs" />
+    <Compile Include="Entity\LockerBank.cs" />
+    <Compile Include="Entity\LockerToDevice.cs" />
+    <Compile Include="Entity\ParcelView.cs" />
+    <Compile Include="LockerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common.Modules\Common.csproj">
-      <Project>{1e87f5dc-5bd6-45ca-979e-e4f728f554a5}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common.Values\Common.Values.csproj">
-      <Project>{84ee0288-d093-4f5f-aaf9-e2cd64c04a8d}</Project>
-      <Name>Common.Values</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common\Tz.LockerBank.Common.Interface.csproj">
-      <Project>{b545b3c6-5431-4004-b803-94c0775174c0}</Project>
-      <Name>Tz.LockerBank.Common.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Locker.Common\Locker.Common.csproj">
-      <Project>{6fac72a2-7d8d-453f-9d49-abebd741a0c6}</Project>
-      <Name>Locker.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Locker.DataModel\Locker.DataModel.csproj">
-      <Project>{8fafe10a-9532-48e9-8bef-873f8efd8cfc}</Project>
-      <Name>Locker.DataModel</Name>
-    </ProjectReference>
+    <Compile Include="Entity\PropertyView.cs" />
+    <Compile Include="Repository\LockerRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Values\Common.Values.csproj">
+      <Project>{84ee0288-d093-4f5f-aaf9-e2cd64c04a8d}</Project>
+      <Name>Common.Values</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataModel.Common\Common.DataModel.csproj">
+      <Project>{485f14ad-3dd0-4274-b590-945fc929d589}</Project>
+      <Name>Common.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Locker.Common\Tz.Locker.Common.csproj">
+      <Project>{6fac72a2-7d8d-453f-9d49-abebd741a0c6}</Project>
+      <Name>Tz.Locker.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

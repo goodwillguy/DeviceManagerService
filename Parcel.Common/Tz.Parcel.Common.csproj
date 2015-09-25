@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6FAC72A2-7D8D-453F-9D49-ABEBD741A0C6}</ProjectGuid>
+    <ProjectGuid>{2EBEE0D0-F5B0-45CD-8A9D-0E1755B8BEFD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Locker.Common</RootNamespace>
-    <AssemblyName>Locker.Common</AssemblyName>
+    <RootNamespace>Tz.Parcel.Common</RootNamespace>
+    <AssemblyName>Tz.Parcel.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -41,14 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dto\LockerAndDeviceDto.cs" />
-    <Compile Include="Dto\LockerBankDto.cs" />
-    <Compile Include="Dto\LockerDto.cs" />
-    <Compile Include="Interface\ILockerApplicationService.cs" />
-    <Compile Include="Interface\ILockerDeviceManagerApplicationServices.cs" />
-    <Compile Include="Interface\ILockerRepository.cs" />
+    <Compile Include="Dto\ParcelDto.cs" />
+    <Compile Include="Dto\ParcelTransactionDto.cs" />
+    <Compile Include="Interface\IDropOffParcel.cs" />
+    <Compile Include="Interface\IParcelRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Common.Values\Common.Values.csproj">
       <Project>{84ee0288-d093-4f5f-aaf9-e2cd64c04a8d}</Project>

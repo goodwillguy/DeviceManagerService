@@ -2,7 +2,7 @@
 using Common.Values.Enums;
 using System;
 
-namespace Locker.Common.Dto
+namespace Tz.Locker.Common.Dto
 {
     public class LockerDto:Base
     {

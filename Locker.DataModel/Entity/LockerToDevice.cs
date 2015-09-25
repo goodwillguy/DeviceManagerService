@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locker.DataModel.Entity
+namespace Tz.Locker.DataModel.Entity
 {
     public class LockerToDevice
     {

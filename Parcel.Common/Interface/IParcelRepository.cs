@@ -1,7 +1,7 @@
-﻿using Parcel.Common.Dto;
+﻿using Tz.Parcel.Common.Dto;
 using System;
 
-namespace Parcel.Common.Interface
+namespace Tz.Parcel.Common.Interface
 {
     public interface IParcelRepository
     {

@@ -6,9 +6,9 @@ using System.Data.Entity.Migrations.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tz.Parcel.DataModel.Entity;
-using Tz.Parcel.DataModel.ParcelEnitities;
-namespace Tz.Parcel.DataModel
+using Tz.Tz.Parcel.DataModel.Entity;
+using Tz.Tz.Parcel.DataModel.ParcelEnitities;
+namespace Tz.Tz.Parcel.DataModel
 {
     public class ParcelDbContext : CustomDbContext
     {

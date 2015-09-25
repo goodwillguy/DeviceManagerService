@@ -3,7 +3,7 @@ using Common.Values.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Tz.Parcel.DataModel.ParcelEnitities
+namespace Tz.Tz.Parcel.DataModel.ParcelEnitities
 {
     [ReadonlyTable]
     public class LockerView

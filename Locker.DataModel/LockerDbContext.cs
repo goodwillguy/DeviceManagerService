@@ -1,5 +1,5 @@
 ﻿using Common.DataModel;
-using Locker.DataModel.Entity;
+using Tz.Locker.DataModel.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locker.DataModel
+namespace Tz.Locker.DataModel
 {
     public class LockerDbContext:CustomDbContext
     {

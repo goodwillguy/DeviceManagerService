@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Values.Enums;
-using Locker.DataModel;
-using Locker.Common.Interface;
+using Tz.Locker.DataModel;
+using Tz.Locker.Common.Interface;
 
-namespace Locker.ApplicationService
+namespace Tz.Locker.ApplicationService
 {
     public class LockerApplicationService : ILockerApplicationService
     {

@@ -1,7 +1,7 @@
 ﻿using Common.Values.Enums;
 using System;
 
-namespace Locker.Common.Interface
+namespace Tz.Locker.Common.Interface
 {
     public interface ILockerApplicationService
     {

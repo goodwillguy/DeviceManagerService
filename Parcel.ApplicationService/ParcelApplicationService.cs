@@ -1,13 +1,13 @@
 ﻿using Common.Modules.Interface;
 using Common.Values;
 using Common.Values.Enums;
-using Locker.Common.Interface;
-using Parcel.Common.Dto;
-using Parcel.Common.Interface;
+using Tz.Locker.Common.Interface;
+using Tz.Parcel.Common.Dto;
+using Tz.Parcel.Common.Interface;
 using System;
 using System.Collections.Generic;
 
-namespace Parcel.ApplicationService
+namespace Tz.Parcel.ApplicationService
 {
     public class ParcelApplicationService : IDropOffParcel
     {

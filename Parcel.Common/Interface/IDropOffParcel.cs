@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Parcel.Common.Interface
+namespace Tz.Parcel.Common.Interface
 {
     public interface IDropOffParcel
     {

@@ -1,7 +1,7 @@
 ﻿using Common.DataModel;
 using Common.Values;
 using Common.Values.Enums;
-using Locker.DataModel.Entity;
+using Tz.Locker.DataModel.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locker.DataModel
+namespace Tz.Locker.DataModel
 {
     public class Locker : Base, IAuditable
     {

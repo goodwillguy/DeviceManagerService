@@ -1,7 +1,7 @@
 ﻿using Common.Values;
 using System;
 
-namespace Parcel.Common.Dto
+namespace Tz.Parcel.Common.Dto
 {
     public class ParcelTransactionDto:Base
     {

@@ -1,7 +1,7 @@
 ﻿using Common.DataModel;
 using System;
 
-namespace Tz.Parcel.DataModel.Entity
+namespace Tz.Tz.Parcel.DataModel.Entity
 {
     [ReadonlyTable]
     public class AgentView

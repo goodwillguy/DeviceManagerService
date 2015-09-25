@@ -72,41 +72,41 @@
       <Project>{485f14ad-3dd0-4274-b590-945fc929d589}</Project>
       <Name>Common.DataModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Locker.ApplicationService\Locker.ApplicationService.csproj">
+    <ProjectReference Include="..\Locker.ApplicationService\Tz.Locker.ApplicationService.csproj">
       <Project>{c77eac46-9b4e-424a-b2e5-9725ab3c3b2f}</Project>
-      <Name>Locker.ApplicationService</Name>
+      <Name>Tz.Locker.ApplicationService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Locker.Common\Locker.Common.csproj">
+    <ProjectReference Include="..\Locker.Common\Tz.Locker.Common.csproj">
       <Project>{6fac72a2-7d8d-453f-9d49-abebd741a0c6}</Project>
-      <Name>Locker.Common</Name>
+      <Name>Tz.Locker.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Locker.DataModel\Locker.DataModel.csproj">
+    <ProjectReference Include="..\Locker.DataModel\Tz.Locker.DataModel.csproj">
       <Project>{8fafe10a-9532-48e9-8bef-873f8efd8cfc}</Project>
-      <Name>Locker.DataModel</Name>
+      <Name>Tz.Locker.DataModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Parcel.ApplicationService\Parcel.ApplicationService.csproj">
+    <ProjectReference Include="..\Parcel.ApplicationService\Tz.Parcel.ApplicationService.csproj">
       <Project>{00a6ab0f-6680-4ec3-b13c-69e2791a3d0f}</Project>
-      <Name>Parcel.ApplicationService</Name>
+      <Name>Tz.Parcel.ApplicationService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Parcel.Common\Parcel.Common.csproj">
+    <ProjectReference Include="..\Parcel.Common\Tz.Parcel.Common.csproj">
       <Project>{2ebee0d0-f5b0-45cd-8a9d-0e1755b8befd}</Project>
-      <Name>Parcel.Common</Name>
+      <Name>Tz.Parcel.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ParcelDb\Parcel.DataModel.csproj">
+    <ProjectReference Include="..\ParcelDb\Tz.Parcel.DataModel.csproj">
       <Project>{47aa85eb-bcaa-4e33-8f4e-1e7143bd0337}</Project>
-      <Name>Parcel.DataModel</Name>
+      <Name>Tz.Parcel.DataModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Resident.ApplicationServices\Resident.ApplicationServices.csproj">
+    <ProjectReference Include="..\Resident.ApplicationServices\Tz.Resident.ApplicationServices.csproj">
       <Project>{d944a59d-b074-456d-b8a2-647cce53fdfe}</Project>
-      <Name>Resident.ApplicationServices</Name>
+      <Name>Tz.Resident.ApplicationServices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Resident.Common\Resident.Common.csproj">
+    <ProjectReference Include="..\Resident.Common\Tz.Resident.Common.csproj">
       <Project>{edea211a-2504-4519-b4ed-fcea55907e67}</Project>
-      <Name>Resident.Common</Name>
+      <Name>Tz.Resident.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Resident.DataModel\Resident.DataModel.csproj">
+    <ProjectReference Include="..\Resident.DataModel\Tz.Resident.DataModel.csproj">
       <Project>{b14dfffb-840e-4fe0-80ee-fcaaa572ae99}</Project>
-      <Name>Resident.DataModel</Name>
+      <Name>Tz.Resident.DataModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

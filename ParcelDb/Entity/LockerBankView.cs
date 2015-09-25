@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tz.Parcel.DataModel.ParcelEnitities
+namespace Tz.Tz.Parcel.DataModel.ParcelEnitities
 {
     [ReadonlyTable]
     public class LockerBankView

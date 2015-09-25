@@ -1,11 +1,11 @@
-﻿using Resident.Common.Dto;
+﻿using Tz.Resident.Common.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Resident.Common.Interface
+namespace Tz.Resident.Common.Interface
 {
     public interface IResidentApplicationService
     {

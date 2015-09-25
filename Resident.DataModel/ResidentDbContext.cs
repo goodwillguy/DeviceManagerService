@@ -1,5 +1,5 @@
 ﻿using Common.DataModel;
-using Resident.DataModel.Entitty;
+using Tz.Resident.DataModel.Entitty;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Resident.DataModel
+namespace Tz.Resident.DataModel
 {
     public class ResidentDbContext : CustomDbContext
     {

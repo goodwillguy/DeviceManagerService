@@ -1,13 +1,13 @@
-﻿using Parcel.Common.Interface;
+﻿using Tz.Parcel.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Parcel.Common.Dto;
+using Tz.Parcel.Common.Dto;
 using Common.Modules.DataModel.Interface;
 
-namespace Tz.Parcel.DataModel.Repository
+namespace Tz.Tz.Parcel.DataModel.Repository
 {
     public class ParcelRepository : IParcelRepository
     {

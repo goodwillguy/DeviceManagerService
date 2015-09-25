@@ -3,21 +3,21 @@ using Tz.Agent.Common.Interface;
 using Tz.Agent.DataModel.Repository;
 using Common.Modules.DataModel;
 using Common.Modules.DataModel.Interface;
-using Locker.ApplicationService;
-using Locker.Common.Interface;
-using Locker.DataModel.Repository;
-using Parcel.ApplicationService;
-using Parcel.Common.Interface;
-using Resident.ApplicationServices;
-using Resident.Common.Interface;
-using Resident.DataModel.Respository;
+using Tz.Locker.ApplicationService;
+using Tz.Locker.Common.Interface;
+using Tz.Locker.DataModel.Repository;
+using Tz.Parcel.ApplicationService;
+using Tz.Parcel.Common.Interface;
+using Tz.Resident.ApplicationServices;
+using Tz.Resident.Common.Interface;
+using Tz.Resident.DataModel.Respository;
 using SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tz.Parcel.DataModel.Repository;
+using Tz.Tz.Parcel.DataModel.Repository;
 
 namespace DependencyContainer
 {

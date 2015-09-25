@@ -1,4 +1,4 @@
-﻿using Locker.Common.Interface;
+﻿using Tz.Locker.Common.Interface;
 using Tz.LockerBank.Common.Interface;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locker.ApplicationService
+namespace Tz.Locker.ApplicationService
 {
     public class LockerDeviceManagerApplicationService : ILockerDeviceManagerApplicationServices
     {

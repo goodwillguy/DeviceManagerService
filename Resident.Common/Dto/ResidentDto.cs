@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Resident.Common.Dto
+namespace Tz.Resident.Common.Dto
 {
     public class ResidentDto
     {

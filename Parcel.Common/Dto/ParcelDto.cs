@@ -3,7 +3,7 @@ using Common.Values.Enums;
 using System;
 using System.Collections.Generic;
 
-namespace Parcel.Common.Dto
+namespace Tz.Parcel.Common.Dto
 {
     public class ParcelDto: Base
     {

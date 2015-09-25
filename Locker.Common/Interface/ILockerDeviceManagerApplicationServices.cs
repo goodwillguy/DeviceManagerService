@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locker.Common.Interface
+namespace Tz.Locker.Common.Interface
 {
     public interface ILockerDeviceManagerApplicationServices
     {
