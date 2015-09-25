@@ -53,6 +53,7 @@
     <Compile Include="Entity\LockerOfflineReason.cs" />
     <Compile Include="Entity\Locker.cs" />
     <Compile Include="Entity\LockerBank.cs" />
+    <Compile Include="Entity\LockerToDevice.cs" />
     <Compile Include="Entity\ParcelView.cs" />
     <Compile Include="LockerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,15 +1,11 @@
-﻿using Common.Modules;
+﻿using Common.Modules.Interface;
 using Common.Values;
 using Common.Values.Enums;
 using Locker.Common.Interface;
-using Parcel.Common;
 using Parcel.Common.Dto;
 using Parcel.Common.Interface;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Parcel.ApplicationService
 {

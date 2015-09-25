@@ -28,5 +28,6 @@ namespace Locker.DataModel
         [Required]
         public Guid PropertyId { get; set; }
 
+        
     }
 }

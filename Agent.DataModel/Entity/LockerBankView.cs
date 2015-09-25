@@ -2,6 +2,7 @@
 using Common.Values;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,8 @@ namespace Agent.DataModel
 
         public Guid PropertyId { get; set; }
 
-        public string LockerBankCode { get; set; }
-
+        [ForeignKey("PropertyId")]
+        public virtual PropertyView Property { get; set; }
 
     }
 }

@@ -6,7 +6,7 @@ using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommonInterface
+namespace LockerBank.Common.Interface
 {
     [ServiceContract]
     public interface ICardReaderEventsCallBack

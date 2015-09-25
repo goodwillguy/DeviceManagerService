@@ -17,5 +17,7 @@ namespace Locker.Common.Interface
 
         List<LockerDto> GetAllLockers(Guid lockerBankId);
 
+        LockerAndDeviceDto GetDeviceSerialNumberForLocker(Guid lockerBankId, Guid lockerId);
+
     }
 }

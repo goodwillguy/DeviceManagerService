@@ -17,5 +17,7 @@ namespace Agent.DataModel
         public virtual DbSet<Agent> Agents { get; set; }
 
         public virtual DbSet<LockerBankView> LockerBank { get; set; }
+
+
     }
 }

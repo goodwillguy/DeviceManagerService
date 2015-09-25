@@ -8,7 +8,7 @@ using System.ServiceModel.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using TZ.API.DeviceManagement;
-using CommonInterface;
+using LockerBank.Common.Interface;
 using Autofac.Integration.Wcf;
 using Autofac;
 using System.ServiceModel.Description;

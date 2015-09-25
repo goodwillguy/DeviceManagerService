@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using TZ.ServiceModel;
     using TZ.Common;
-    using CommonInterface;
+    using LockerBank.Common.Interface;
 
     public class DeviceManagerMockup : ServiceBase, IDeviceManager
     {

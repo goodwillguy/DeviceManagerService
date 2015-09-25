@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Base.cs" />
     <Compile Include="Enums\LockerState.cs" />
+    <Compile Include="IDateTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionState.cs" />
   </ItemGroup>

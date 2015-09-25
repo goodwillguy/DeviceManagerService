@@ -1,4 +1,5 @@
-﻿using Common.DataModel;
+﻿using Agent.DataModel.Entity;
+using Common.DataModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +16,6 @@ namespace Agent.DataModel
 
         public string SignInPin { get; set; }
 
-        public string CardId { get; set; }
-
         public string Username { get; set; }
 
         public string FirstName { get; set; }
@@ -28,6 +27,9 @@ namespace Agent.DataModel
 
         public Guid OrganisationId { get; set; }
 
+        public virtual List<AgentToCard> AgentCards { get; set; }
 
+        public virtual List<AgentToProperty> Properties { get; set; }
+        public bool IsDisabled { get; internal set; }
     }
 }

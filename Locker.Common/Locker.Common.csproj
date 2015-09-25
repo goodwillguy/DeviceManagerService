@@ -40,9 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\LockerAndDeviceDto.cs" />
     <Compile Include="Dto\LockerBankDto.cs" />
     <Compile Include="Dto\LockerDto.cs" />
     <Compile Include="Interface\ILockerApplicationService.cs" />
+    <Compile Include="Interface\ILockerDeviceManagerApplicationServices.cs" />
     <Compile Include="Interface\ILockerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

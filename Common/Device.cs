@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CommonInterface
+namespace LockerBank.Common.Interface
 {
     
     public class Device

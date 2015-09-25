@@ -24,5 +24,7 @@ namespace Locker.DataModel
         public virtual DbSet<PropertyView> Properties { get; set; }
 
         public virtual DbSet<ParcelView> Parcels { get; set; }
+
+        public virtual DbSet<LockerToDevice> LockerToDevices { get; set; }
     }
 }

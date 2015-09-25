@@ -36,6 +36,32 @@ namespace Locker.DataModel.Repository
             return lockersList;
         }
 
+        public LockerAndDeviceDto GetDeviceSerialNumberForLocker(Guid lockerBankId, Guid lockerId)
+        {
+            LockerDbContext context = new LockerDbContext(_connectionStringFactory.GetConnectionString());
+
+            var lockerBank = context.LockerBanks
+                                    .Where(bank => bank.LockerBankId == lockerBankId)
+                                    .FirstOrDefault();
+
+            var deviceAddress = context.LockerToDevices
+                                        .Where(loc => loc.LockerId == lockerId)
+                                        .Select(loc => loc.DeviceData.SerialNumber)
+                                        .FirstOrDefault();
+
+
+            var dto = new LockerAndDeviceDto
+            {
+                LockerBankId = lockerBank.LockerBankId,
+                LockerBankCode = lockerBank.LockerBankCode,
+                LockerBankIpAddress = lockerBank.IpAddress,
+                DeviceSerialNumber = deviceAddress
+
+            };
+
+            return dto;
+        }
+
         public Guid? GetLockerBankByCode(string lockerBankCode)
         {
             LockerDbContext context = new LockerDbContext(_connectionStringFactory.GetConnectionString());

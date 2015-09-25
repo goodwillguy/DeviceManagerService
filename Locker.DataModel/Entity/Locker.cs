@@ -1,6 +1,7 @@
 ﻿using Common.DataModel;
 using Common.Values;
 using Common.Values.Enums;
+using Locker.DataModel.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -27,6 +28,8 @@ namespace Locker.DataModel
 
         [ForeignKey("LockerBankId")]
         public virtual LockerBank LockerBanks { get; set; }
+
+        public virtual List<LockerToDevice> DevicesInLocker { get; set; }
 
     }
 }

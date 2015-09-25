@@ -53,9 +53,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
+    <ProjectReference Include="..\Common\LockerBank.Common.Interface.csproj">
       <Project>{b545b3c6-5431-4004-b803-94c0775174c0}</Project>
-      <Name>Common</Name>
+      <Name>LockerBank.Common.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\TZ.API.DeviceManager\TZ.API.DeviceManagement.csproj">
       <Project>{273c64ad-7fc9-476b-b8b0-267bf1750c51}</Project>

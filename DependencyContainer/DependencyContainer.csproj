@@ -51,9 +51,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Modules\Common.Modules.csproj">
+    <ProjectReference Include="..\Agent.ApplicationServices\Agent.ApplicationServices.csproj">
+      <Project>{df502f70-77af-49c9-9dc0-a74ff34241cf}</Project>
+      <Name>Agent.ApplicationServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agent.Common\Agent.Common.csproj">
+      <Project>{0983a550-1287-4965-929c-c6ee7106a7bc}</Project>
+      <Name>Agent.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agent.DataModel\Agent.DataModel.csproj">
+      <Project>{9a53f769-5d03-43dd-bac0-b165b840f563}</Project>
+      <Name>Agent.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Modules\Common.csproj">
       <Project>{1e87f5dc-5bd6-45ca-979e-e4f728f554a5}</Project>
-      <Name>Common.Modules</Name>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataModel.Common\Common.DataModel.csproj">
       <Project>{485f14ad-3dd0-4274-b590-945fc929d589}</Project>
@@ -82,6 +94,18 @@
     <ProjectReference Include="..\ParcelDb\Parcel.DataModel.csproj">
       <Project>{47aa85eb-bcaa-4e33-8f4e-1e7143bd0337}</Project>
       <Name>Parcel.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resident.ApplicationServices\Resident.ApplicationServices.csproj">
+      <Project>{d944a59d-b074-456d-b8a2-647cce53fdfe}</Project>
+      <Name>Resident.ApplicationServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resident.Common\Resident.Common.csproj">
+      <Project>{edea211a-2504-4519-b4ed-fcea55907e67}</Project>
+      <Name>Resident.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resident.DataModel\Resident.DataModel.csproj">
+      <Project>{b14dfffb-840e-4fe0-80ee-fcaaa572ae99}</Project>
+      <Name>Resident.DataModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

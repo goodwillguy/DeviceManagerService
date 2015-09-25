@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CommonInterface
+namespace LockerBank.Common.Interface
 {
     public enum DeviceType
     {

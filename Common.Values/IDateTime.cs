@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Modules
+namespace Common
 {
     public class IDateTime
     {

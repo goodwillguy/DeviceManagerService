@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Autofac.Core;
 using Autofac.Integration.Wcf;
-using CommonInterface;
+using LockerBank.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -9,7 +9,7 @@ namespace Resident.Common.Interface
 {
     public interface IResidentApplicationService
     {
-        IEnumerable<ResidentDto> GetAllResidents(string lockerBankCode);
+        IEnumerable<ResidentDto> GetAllResidents(Guid lockerBankId);
 
     }
 }
