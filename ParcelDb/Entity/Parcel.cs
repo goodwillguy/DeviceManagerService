@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tz.Tz.Parcel.DataModel.ParcelEnitities
+namespace Tz.Parcel.DataModel.ParcelEnitities
 {
     public class Parcel : Base, IAuditable
     {

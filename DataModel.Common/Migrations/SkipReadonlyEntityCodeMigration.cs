@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tz.Common.DataModel;
 
-namespace Tz.Tz.Common.DataModel.Migrations
+namespace Tz.Common.DataModel.Migrations
 {
     public class SkipReadonlyEntityCodeMigration : CSharpMigrationCodeGenerator
     {

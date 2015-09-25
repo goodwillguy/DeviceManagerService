@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Tz.Tz.Parcel.DataModel.Entity
+namespace Tz.Parcel.DataModel.Entity
 {
     [ReadonlyTable]
     [Table("Agent")]

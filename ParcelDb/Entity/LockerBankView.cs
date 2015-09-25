@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Tz.Tz.Parcel.DataModel.ParcelEnitities
+namespace Tz.Parcel.DataModel.ParcelEnitities
 {
     [ReadonlyTable]
     [Table("LockerBank")]

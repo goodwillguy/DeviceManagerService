@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Tz.Parcel.Common.Dto;
 using Common.Modules.DataModel.Interface;
 
-namespace Tz.Tz.Parcel.DataModel.Repository
+namespace Tz.Parcel.DataModel.Repository
 {
     public class ParcelRepository : IParcelRepository
     {
