@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Agent.DataModel.Entity
+namespace Tz.Agent.DataModel.Entity
 {
     public class AgentToCard :Base
     {

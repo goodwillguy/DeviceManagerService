@@ -5,7 +5,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LockerBank.Common.Interface
+namespace Tz.LockerBank.Common.Interface
 {
     [ServiceContract]
     public interface IDeviceManager

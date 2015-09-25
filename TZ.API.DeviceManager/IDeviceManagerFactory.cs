@@ -1,4 +1,4 @@
-﻿using LockerBank.Common.Interface;
+﻿using Tz.LockerBank.Common.Interface;
 
 namespace TZ.API.DeviceManagement
 {

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Locker.ApplicationService</RootNamespace>
     <AssemblyName>Locker.ApplicationService</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,9 +64,9 @@
       <Project>{84ee0288-d093-4f5f-aaf9-e2cd64c04a8d}</Project>
       <Name>Common.Values</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common\LockerBank.Common.Interface.csproj">
+    <ProjectReference Include="..\Common\Tz.LockerBank.Common.Interface.csproj">
       <Project>{b545b3c6-5431-4004-b803-94c0775174c0}</Project>
-      <Name>LockerBank.Common.Interface</Name>
+      <Name>Tz.LockerBank.Common.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Locker.Common\Locker.Common.csproj">
       <Project>{6fac72a2-7d8d-453f-9d49-abebd741a0c6}</Project>

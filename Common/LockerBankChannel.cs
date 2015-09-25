@@ -7,7 +7,7 @@ using System.ServiceModel.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LockerBank.Common.Interface
+namespace Tz.LockerBank.Common.Interface
 {
     public class LockerBankChannelFactory : ILockerBankChannelFactory
     {

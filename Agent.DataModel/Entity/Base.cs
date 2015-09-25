@@ -1,4 +1,4 @@
-﻿namespace Agent.DataModel
+﻿namespace Tz.Agent.DataModel
 {
     public class Base
     {

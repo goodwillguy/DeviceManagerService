@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DependencyContainer</RootNamespace>
     <AssemblyName>DependencyContainer</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,17 +52,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Agent.ApplicationServices\Agent.ApplicationServices.csproj">
+    <ProjectReference Include="..\Agent.ApplicationServices\Tz.Agent.ApplicationServices.csproj">
       <Project>{df502f70-77af-49c9-9dc0-a74ff34241cf}</Project>
-      <Name>Agent.ApplicationServices</Name>
+      <Name>Tz.Agent.ApplicationServices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Agent.Common\Agent.Common.csproj">
+    <ProjectReference Include="..\Agent.Common\Tz.Agent.Common.csproj">
       <Project>{0983a550-1287-4965-929c-c6ee7106a7bc}</Project>
-      <Name>Agent.Common</Name>
+      <Name>Tz.Agent.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Agent.DataModel\Agent.DataModel.csproj">
+    <ProjectReference Include="..\Agent.DataModel\Tz.Agent.DataModel.csproj">
       <Project>{9a53f769-5d03-43dd-bac0-b165b840f563}</Project>
-      <Name>Agent.DataModel</Name>
+      <Name>Tz.Agent.DataModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common.Modules\Common.csproj">
       <Project>{1e87f5dc-5bd6-45ca-979e-e4f728f554a5}</Project>

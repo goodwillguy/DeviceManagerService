@@ -1,4 +1,4 @@
-﻿using LockerBank.Common.Interface;
+﻿using Tz.LockerBank.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -41,7 +41,7 @@ namespace TZ.API.DeviceManagement
 
         private string[] _cardreaders = new String[0];
 
-        protected virtual void OnSwipe(LockerBank.Common.Interface.SwipeEventArgs e)
+        protected virtual void OnSwipe(Tz.LockerBank.Common.Interface.SwipeEventArgs e)
         {
             if (this.Swipe != null)
             {
@@ -49,7 +49,7 @@ namespace TZ.API.DeviceManagement
             }
         }
 
-        public event EventHandler<LockerBank.Common.Interface.SwipeEventArgs> Swipe;
+        public event EventHandler<Tz.LockerBank.Common.Interface.SwipeEventArgs> Swipe;
 
         #region ICardReadMockUpService Members
 
@@ -65,7 +65,7 @@ namespace TZ.API.DeviceManagement
                 rfid = cardReaderConversionService.EncodeToCardMockup(rfid);
             }
            
-            this.OnSwipe(new LockerBank.Common.Interface.SwipeEventArgs() { RFID = rfid, SerialNumber = reader });
+            this.OnSwipe(new Tz.LockerBank.Common.Interface.SwipeEventArgs() { RFID = rfid, SerialNumber = reader });
         }
 
         string[] ICardReadMockUpService.GetReaders()
@@ -73,7 +73,7 @@ namespace TZ.API.DeviceManagement
             return this._cardreaders;
         }
 
-        void ICardReaderService.OnSwipe(LockerBank.Common.Interface.SwipeEventArgs args)
+        void ICardReaderService.OnSwipe(Tz.LockerBank.Common.Interface.SwipeEventArgs args)
         {
             throw new NotImplementedException();
         }

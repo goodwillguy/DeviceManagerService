@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0983A550-1287-4965-929C-C6EE7106A7BC}</ProjectGuid>
+    <ProjectGuid>{B545B3C6-5431-4004-B803-94C0775174C0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Agent.Common</RootNamespace>
-    <AssemblyName>Agent.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>Tz.LockerBank.Common.Interface</RootNamespace>
+    <AssemblyName>Tz.LockerBank.Common.Interface</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,7 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Channels" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,16 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dto\AgentDto.cs" />
-    <Compile Include="Interface\IAgentApplicationServices.cs" />
-    <Compile Include="Interface\IAgentRepository.cs" />
+    <Compile Include="Device.cs" />
+    <Compile Include="DeviceChangedEventArg.cs" />
+    <Compile Include="DeviceStatus.cs" />
+    <Compile Include="DeviceType.cs" />
+    <Compile Include="ICardReaderService.cs" />
+    <Compile Include="IComPortProvider.cs" />
+    <Compile Include="IDeviceEventsSubscribe.cs" />
+    <Compile Include="IDeviceManager.cs" />
+    <Compile Include="IDeviceManagerService.cs" />
+    <Compile Include="ILockerBankChannel.cs" />
+    <Compile Include="LockerBankChannel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common.Values\Common.Values.csproj">
-      <Project>{84ee0288-d093-4f5f-aaf9-e2cd64c04a8d}</Project>
-      <Name>Common.Values</Name>
-    </ProjectReference>
+    <Compile Include="SwipeEventArgs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

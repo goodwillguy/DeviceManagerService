@@ -1,5 +1,5 @@
 ﻿using Locker.Common.Interface;
-using LockerBank.Common.Interface;
+using Tz.LockerBank.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;

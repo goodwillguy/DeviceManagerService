@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TZ.API.DeviceManagement</RootNamespace>
     <AssemblyName>TZ.API.DeviceManagement</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -143,9 +143,9 @@
     <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\LockerBank.Common.Interface.csproj">
+    <ProjectReference Include="..\Common\Tz.LockerBank.Common.Interface.csproj">
       <Project>{b545b3c6-5431-4004-b803-94c0775174c0}</Project>
-      <Name>LockerBank.Common.Interface</Name>
+      <Name>Tz.LockerBank.Common.Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

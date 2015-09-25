@@ -1,12 +1,12 @@
-﻿using Agent.Common.Interface;
+﻿using Tz.Agent.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Agent.Common.Dto;
+using Tz.Agent.Common.Dto;
 
-namespace Agent.ApplicationServices
+namespace Tz.Agent.ApplicationServices
 {
     public class AgentApplicationService : IAgentApplicationServices
     {

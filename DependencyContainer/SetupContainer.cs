@@ -1,6 +1,6 @@
-﻿using Agent.ApplicationServices;
-using Agent.Common.Interface;
-using Agent.DataModel.Repository;
+﻿using Tz.Agent.ApplicationServices;
+using Tz.Agent.Common.Interface;
+using Tz.Agent.DataModel.Repository;
 using Common.Modules.DataModel;
 using Common.Modules.DataModel.Interface;
 using Locker.ApplicationService;

@@ -1,4 +1,4 @@
-﻿using LockerBank.Common.Interface;
+﻿using Tz.LockerBank.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace DeviceManagerService
+namespace Tz.DeviceManagerService
 {
     public class CardReaderService : ICardReaderEventsSubscribe,IWebCardReaderEventsSubscribe,IDisposable
     {

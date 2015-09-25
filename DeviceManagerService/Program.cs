@@ -1,4 +1,4 @@
-﻿using DeviceManagerService.App_Start;
+﻿using Tz.DeviceManagerService.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,12 +8,12 @@ using System.ServiceModel.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using TZ.API.DeviceManagement;
-using LockerBank.Common.Interface;
+using Tz.LockerBank.Common.Interface;
 using Autofac.Integration.Wcf;
 using Autofac;
 using System.ServiceModel.Description;
 
-namespace DeviceManagerService
+namespace Tz.DeviceManagerService
 {
     class Program
     {

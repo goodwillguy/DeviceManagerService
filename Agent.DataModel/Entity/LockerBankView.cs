@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Agent.DataModel
+namespace Tz.Agent.DataModel
 {
     [ReadonlyTable]
     public class LockerBankView

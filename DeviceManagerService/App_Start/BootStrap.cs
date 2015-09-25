@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Autofac.Core;
 using Autofac.Integration.Wcf;
-using LockerBank.Common.Interface;
+using Tz.LockerBank.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using TZ.API.DeviceManagement;
 using TZ.ServiceModel;
 
-namespace DeviceManagerService.App_Start
+namespace Tz.DeviceManagerService.App_Start
 {
     public static class Bootstrapper
     {

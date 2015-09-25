@@ -1,4 +1,4 @@
-﻿namespace LockerBank.Common.Interface
+﻿namespace Tz.LockerBank.Common.Interface
 {
     public interface ILockerBankChannelFactory
     {

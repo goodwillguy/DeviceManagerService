@@ -1,4 +1,4 @@
-﻿using LockerBank.Common.Interface;
+﻿using Tz.LockerBank.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using TZ.API.DeviceManagement;
 using TZ.ServiceModel;
 
-namespace DeviceManagerService
+namespace Tz.DeviceManagerService
 {
    
     public class DeviceManagerServiceHost : IDeviceManagerService
@@ -16,7 +16,7 @@ namespace DeviceManagerService
         private readonly IDeviceManager _deviceManager;
 
 
-        //public DeviceManagerService()
+        //public Tz.DeviceManagerService()
         //{
 
         //}
@@ -26,7 +26,7 @@ namespace DeviceManagerService
             _deviceManager = deviceManager;
         }
 
-        //public DeviceManagerServiceHost(ILogger deviceManager)
+        //public Tz.DeviceManagerServiceHost(ILogger deviceManager)
         //{
            
         //}

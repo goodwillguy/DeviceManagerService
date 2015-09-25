@@ -1,7 +1,7 @@
 ﻿using Common.Values;
 using System;
 
-namespace Agent.Common.Dto
+namespace Tz.Agent.Common.Dto
 {
     public class AgentDto:Base
     {

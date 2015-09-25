@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManagerService", "DeviceManagerService\DeviceManagerService.csproj", "{ED8D5982-53EA-4AD9-B363-55BC5098C896}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.DeviceManagerService", "DeviceManagerService\Tz.DeviceManagerService.csproj", "{ED8D5982-53EA-4AD9-B363-55BC5098C896}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TZ.API.DeviceManagement", "TZ.API.DeviceManager\TZ.API.DeviceManagement.csproj", "{273C64AD-7FC9-476B-B8B0-267BF1750C51}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApplication", "ClientApplication\ClientApplication.csproj", "{7E434D04-E5E3-446F-91EC-7F35180C6C78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockerBank.Common.Interface", "Common\LockerBank.Common.Interface.csproj", "{B545B3C6-5431-4004-B803-94C0775174C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.LockerBank.Common.Interface", "Common\Tz.LockerBank.Common.Interface.csproj", "{B545B3C6-5431-4004-B803-94C0775174C0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kiosk", "Kiosk", "{5860EE1F-C748-469E-B3C9-918B958E5910}"
 EndProject
@@ -59,7 +59,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resident.DataModel", "Resid
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locker.DataModel", "Locker.DataModel\Locker.DataModel.csproj", "{8FAFE10A-9532-48E9-8BEF-873F8EFD8CFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agent.DataModel", "Agent.DataModel\Agent.DataModel.csproj", "{9A53F769-5D03-43DD-BAC0-B165B840F563}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Agent.DataModel", "Agent.DataModel\Tz.Agent.DataModel.csproj", "{9A53F769-5D03-43DD-BAC0-B165B840F563}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.DataModel", "DataModel.Common\Common.DataModel.csproj", "{485F14AD-3DD0-4274-B590-945FC929D589}"
 EndProject
@@ -83,9 +83,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resident.Common", "Resident
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resident.ApplicationServices", "Resident.ApplicationServices\Resident.ApplicationServices.csproj", "{D944A59D-B074-456D-B8A2-647CCE53FDFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agent.Common", "Agent.Common\Agent.Common.csproj", "{0983A550-1287-4965-929C-C6EE7106A7BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Agent.Common", "Agent.Common\Tz.Agent.Common.csproj", "{0983A550-1287-4965-929C-C6EE7106A7BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agent.ApplicationServices", "Agent.ApplicationServices\Agent.ApplicationServices.csproj", "{DF502F70-77AF-49C9-9DC0-A74FF34241CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Agent.ApplicationServices", "Agent.ApplicationServices\Tz.Agent.ApplicationServices.csproj", "{DF502F70-77AF-49C9-9DC0-A74FF34241CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Features", "Features", "{354531DE-1B52-4B38-9B29-768F0D01EB83}"
 EndProject

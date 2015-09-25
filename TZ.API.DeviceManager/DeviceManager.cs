@@ -16,7 +16,7 @@ using TZLogger = TZ.DeviceManagement.DeviceContract.Logging.TZEventLog;
 using TZ.DeviceManagement.Enums;
 using System.ServiceModel;
 using System.Diagnostics;
-using LockerBank.Common.Interface;
+using Tz.LockerBank.Common.Interface;
 
 namespace TZ.API.DeviceManagement
 {

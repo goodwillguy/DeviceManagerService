@@ -1,4 +1,4 @@
-﻿using LockerBank.Common.Interface;
+﻿using Tz.LockerBank.Common.Interface;
 using System;
 using System.Linq;
 using System.ServiceModel;

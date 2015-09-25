@@ -1,14 +1,14 @@
-﻿using Agent.Common.Interface;
+﻿using Tz.Agent.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Agent.Common.Dto;
+using Tz.Agent.Common.Dto;
 using Common.Modules.DataModel.Interface;
 using Common;
 
-namespace Agent.DataModel.Repository
+namespace Tz.Agent.DataModel.Repository
 {
     public class AgentRepository : IAgentRepository
     {
