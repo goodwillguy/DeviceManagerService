@@ -1,5 +1,5 @@
-﻿using Common.Values;
-using Common.Values.Enums;
+﻿using Tz.Common.Values;
+using Tz.Common.Values.Enums;
 using System;
 
 namespace Tz.Locker.Common.Dto

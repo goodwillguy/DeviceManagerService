@@ -1,5 +1,5 @@
 ﻿using Common.DataModel;
-using Common.Values;
+using Tz.Common.Values;
 using System;
 using System.ComponentModel.DataAnnotations;
 

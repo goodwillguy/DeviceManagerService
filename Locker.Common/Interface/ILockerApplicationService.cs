@@ -1,4 +1,4 @@
-﻿using Common.Values.Enums;
+﻿using Tz.Common.Values.Enums;
 using System;
 
 namespace Tz.Locker.Common.Interface

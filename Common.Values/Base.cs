@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Values
+namespace Tz.Common.Values
 {
     public class Base
     {

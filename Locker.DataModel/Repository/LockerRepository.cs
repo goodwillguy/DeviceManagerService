@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tz.Locker.Common.Dto;
 using Common.Modules.DataModel.Interface;
-using Common.Values.Enums;
+using Tz.Common.Values.Enums;
 
 namespace Tz.Locker.DataModel.Repository
 {

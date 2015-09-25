@@ -63,9 +63,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Values\Common.Values.csproj">
+    <ProjectReference Include="..\Common.Values\Tz.Common.Values.csproj">
       <Project>{84ee0288-d093-4f5f-aaf9-e2cd64c04a8d}</Project>
-      <Name>Common.Values</Name>
+      <Name>Tz.Common.Values</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataModel.Common\Common.DataModel.csproj">
       <Project>{485f14ad-3dd0-4274-b590-945fc929d589}</Project>

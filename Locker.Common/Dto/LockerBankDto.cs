@@ -1,4 +1,4 @@
-﻿using Common.Values;
+﻿using Tz.Common.Values;
 
 namespace Tz.Locker.Common.Dto
 {

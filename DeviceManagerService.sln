@@ -65,7 +65,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.DataModel", "DataMod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common.Modules\Common.csproj", "{1E87F5DC-5BD6-45CA-979E-E4F728F554A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Values", "Common.Values\Common.Values.csproj", "{84EE0288-D093-4F5F-AAF9-E2CD64C04A8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Common.Values", "Common.Values\Tz.Common.Values.csproj", "{84EE0288-D093-4F5F-AAF9-E2CD64C04A8D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tz.Parcel.ApplicationService", "Parcel.ApplicationService\Tz.Parcel.ApplicationService.csproj", "{00A6AB0F-6680-4EC3-B13C-69E2791A3D0F}"
 EndProject

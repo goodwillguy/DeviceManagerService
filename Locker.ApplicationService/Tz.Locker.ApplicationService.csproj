@@ -60,9 +60,9 @@
       <Project>{1e87f5dc-5bd6-45ca-979e-e4f728f554a5}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common.Values\Common.Values.csproj">
+    <ProjectReference Include="..\Common.Values\Tz.Common.Values.csproj">
       <Project>{84ee0288-d093-4f5f-aaf9-e2cd64c04a8d}</Project>
-      <Name>Common.Values</Name>
+      <Name>Tz.Common.Values</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\Tz.LockerBank.Common.Interface.csproj">
       <Project>{b545b3c6-5431-4004-b803-94c0775174c0}</Project>

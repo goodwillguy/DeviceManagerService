@@ -1,6 +1,6 @@
 ﻿using Common.Modules.Interface;
-using Common.Values;
-using Common.Values.Enums;
+using Tz.Common.Values;
+using Tz.Common.Values.Enums;
 using Tz.Locker.Common.Interface;
 using Tz.Parcel.Common.Dto;
 using Tz.Parcel.Common.Interface;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Values.Enums;
+using Tz.Common.Values.Enums;
 using Tz.Locker.DataModel;
 using Tz.Locker.Common.Interface;
 

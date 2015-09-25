@@ -1,4 +1,4 @@
-﻿using Common.Values;
+﻿using Tz.Common.Values;
 using System;
 
 namespace Tz.Agent.Common.Dto

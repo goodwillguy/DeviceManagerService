@@ -1,4 +1,4 @@
-﻿namespace Common.Values
+﻿namespace Tz.Common.Values
 {
     public enum TransactionState
     {
