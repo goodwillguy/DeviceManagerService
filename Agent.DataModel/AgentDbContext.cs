@@ -1,4 +1,4 @@
-﻿using Common.DataModel;
+﻿using Tz.Common.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

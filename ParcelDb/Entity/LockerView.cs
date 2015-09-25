@@ -1,4 +1,4 @@
-﻿using Common.DataModel;
+﻿using Tz.Common.DataModel;
 using Tz.Common.Values.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;

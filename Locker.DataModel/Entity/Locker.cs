@@ -1,4 +1,4 @@
-﻿using Common.DataModel;
+﻿using Tz.Common.DataModel;
 using Tz.Common.Values;
 using Tz.Common.Values.Enums;
 using Tz.Locker.DataModel.Entity;

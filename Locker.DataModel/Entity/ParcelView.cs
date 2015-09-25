@@ -1,8 +1,7 @@
-﻿using Common.DataModel;
-using Tz.Common.Values;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Tz.Common.DataModel;
 
 namespace Tz.Locker.DataModel.Entity
 {
