@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,9 @@ namespace Tz.Agent.DataModel
 {
     public class AgentToProperty
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid AgentToPropertyId { get; set; }
         public Guid AgentId { get; set; }
 
         public Guid PropertyId { get; set; }

@@ -15,6 +15,10 @@ namespace Tz.Locker.DataModel
         {
         }
 
+        public LockerDbContext()
+        {
+        }
+
         public virtual DbSet<Locker> Lockers { get; set; }
 
         public virtual DbSet<Device> Devices { get; set; }

@@ -15,6 +15,10 @@ namespace Tz.Resident.DataModel
         {
         }
 
+        public ResidentDbContext()
+        {
+        }
+
         public virtual DbSet<Resident> Residents { get; set; }
         public virtual DbSet<PropertyView> Properties { get; set; }
 

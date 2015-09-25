@@ -4,9 +4,7 @@ using System.Data.Entity.Migrations.Design;
 using System.Data.Entity.Migrations.Model;
 using System.Data.Entity.Migrations.Utilities;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tz.Common.DataModel;
+
 
 namespace Tz.Common.DataModel.Migrations
 {

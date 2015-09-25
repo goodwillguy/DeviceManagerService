@@ -17,6 +17,10 @@ namespace Tz.Parcel.DataModel
 
         }
 
+        public ParcelDbContext()
+        {
+        }
+
         public virtual DbSet<ParcelEnitities.Parcel> Parcels { get; set; }
 
         public virtual DbSet<ParcelTransaction> ParcelTransactions { get; set; }

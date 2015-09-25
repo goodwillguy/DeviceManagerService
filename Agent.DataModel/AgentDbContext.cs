@@ -10,6 +10,10 @@ namespace Tz.Agent.DataModel
 {
     public class AgentDbContext : CustomDbContext
     {
+        public AgentDbContext()
+        {
+        }
+
         public AgentDbContext(string connectionString) : base(connectionString)
         {
         }

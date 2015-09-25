@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Tz.Agent.DataModel
 {
@@ -13,7 +14,7 @@ namespace Tz.Agent.DataModel
     [Table("LockerBank")]
     public class LockerBankView
     {
-
+        [Key]
         public Guid LockerBankId { get; set; }
 
         public Guid PropertyId { get; set; }

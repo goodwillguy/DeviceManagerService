@@ -4,12 +4,14 @@ namespace Tz.Agent.DataModel.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Tz.Common.DataModel.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Tz.Agent.DataModel.AgentDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            CodeGenerator = new SkipReadonlyEntityCodeMigration();
         }
 
         protected override void Seed(Tz.Agent.DataModel.AgentDbContext context)
