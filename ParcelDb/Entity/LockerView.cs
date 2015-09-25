@@ -1,15 +1,17 @@
 ﻿using Common.DataModel;
+using Common.Values.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Tz.Parcel.DataModel.ParcelEnitities
 {
-    public class LockerView:IReadonlyEntity
+    [ReadonlyTable]
+    public class LockerView
     {
         [Key]
         public Guid LockerId { get; set; }
 
-        public int LockerState { get; set; }
+        public LockerState LockerState { get; set; }
 
         public string Number { get; set; }
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.DataModel.Enums
+namespace Common.Values.Enums
 {
     public enum LockerState
     {
@@ -16,10 +16,12 @@ namespace Common.DataModel.Enums
 
 
         Deleted = 2,
+
+        Occupied = 3
     }
 
 
-    public enum LockerSize
+    public enum Size
     {
         Undefined = 0,
 

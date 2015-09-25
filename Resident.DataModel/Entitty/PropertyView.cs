@@ -1,4 +1,5 @@
 ﻿using Common.DataModel;
+using Resident.DataModel.Entitty;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace Resident.DataModel
 {
-    public class PropertyView:IReadonlyEntity
+    [ReadonlyTable]
+    public class PropertyView
     {
         [Key]
         public Guid PropertyId { get; set; }

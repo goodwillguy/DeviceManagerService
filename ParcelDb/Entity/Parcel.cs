@@ -1,4 +1,6 @@
 ﻿using Common.DataModel;
+using Common.Values;
+using Common.Values.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Tz.Parcel.DataModel.ParcelEnitities
 {
-    public class Parcel : Base,IAuditable
+    public class Parcel : Base, IAuditable
     {
         [Key]
         public Guid ParcelId { get; set; }
@@ -21,12 +23,18 @@ namespace Tz.Parcel.DataModel.ParcelEnitities
 
         public Guid RecipientId { get; set; }
 
-        public int Size { get; set; }
+        public Size Size { get; set; }
 
         public bool IsExpired { get; set; }
 
         public DateTime ExpiryTime { get; set; }
 
         public Guid LockerBankId { get; set; }
+
+        public Guid? LockerId { get; set; }
+
+        public virtual List<ParcelTransaction> ParcelTransactions { get; set; }
+
+
     }
 }

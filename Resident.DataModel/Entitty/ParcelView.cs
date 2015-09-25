@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Resident.DataModel
 {
-    
-    public class ParcelView : IReadonlyEntity
+    [ReadonlyTable]
+    public class ParcelView 
     {
         public Guid ParcelId { get; set; }
 

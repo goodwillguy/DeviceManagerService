@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.DataModel
+namespace Common.Values
 {
     public class Base
     {

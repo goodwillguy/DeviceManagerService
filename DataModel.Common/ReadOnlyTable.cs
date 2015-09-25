@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Common.DataModel
 {
-    public interface IReadonlyEntity
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Class, AllowMultiple = false)]
+    public class ReadonlyTableAttribute : Attribute
     {
     }
 }

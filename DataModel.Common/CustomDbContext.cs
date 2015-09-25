@@ -12,5 +12,10 @@ namespace Common.DataModel
         public CustomDbContext(string connectionString) : base(connectionString)
         {
         }
+
+        public override int SaveChanges()
+        {
+            return base.SaveChanges();
+        }
     }
 }

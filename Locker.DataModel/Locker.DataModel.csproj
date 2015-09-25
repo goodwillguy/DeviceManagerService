@@ -53,18 +53,28 @@
     <Compile Include="Entity\LockerOfflineReason.cs" />
     <Compile Include="Entity\Locker.cs" />
     <Compile Include="Entity\LockerBank.cs" />
+    <Compile Include="Entity\ParcelView.cs" />
     <Compile Include="LockerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\PropertyView.cs" />
+    <Compile Include="Repository\LockerRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common.Values\Common.Values.csproj">
+      <Project>{84ee0288-d093-4f5f-aaf9-e2cd64c04a8d}</Project>
+      <Name>Common.Values</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataModel.Common\Common.DataModel.csproj">
       <Project>{485f14ad-3dd0-4274-b590-945fc929d589}</Project>
       <Name>Common.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Locker.Common\Locker.Common.csproj">
+      <Project>{6fac72a2-7d8d-453f-9d49-abebd741a0c6}</Project>
+      <Name>Locker.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

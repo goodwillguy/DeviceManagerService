@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,16 +50,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base.cs" />
+    <Compile Include="ConnectionStringFactory.cs" />
     <Compile Include="CustomDbContext.cs" />
-    <Compile Include="Enums\LockerState.cs" />
     <Compile Include="IAuditable.cs" />
-    <Compile Include="IReadonlyEntity.cs" />
+    <Compile Include="Interface\IConnectionStringFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadOnlyTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Values\Common.Values.csproj">
+      <Project>{84ee0288-d093-4f5f-aaf9-e2cd64c04a8d}</Project>
+      <Name>Common.Values</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

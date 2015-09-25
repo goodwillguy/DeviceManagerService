@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Locker.DataModel
 {
-    public class PropertyView:IReadonlyEntity
+    [ReadonlyTable]
+    public class PropertyView
     {
         [Key]
         public Guid PropertyId { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Common.DataModel;
+using Common.Values;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Agent.DataModel
 {
-    public class LockerBankView:IReadonlyEntity
+    [ReadonlyTable]
+    public class LockerBankView
     {
 
         public Guid LockerBankId { get; set; }

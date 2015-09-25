@@ -1,4 +1,5 @@
 ﻿using Common.DataModel;
+using Locker.DataModel.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -21,5 +22,7 @@ namespace Locker.DataModel
         public virtual DbSet<LockerBank> LockerBanks { get; set; }
         public virtual DbSet<LockerOfflineReason> LockersOfflineReasons { get; set; }
         public virtual DbSet<PropertyView> Properties { get; set; }
+
+        public virtual DbSet<ParcelView> Parcels { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Common.DataModel;
+using Resident.DataModel.Entitty;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,5 +17,7 @@ namespace Resident.DataModel
 
         public virtual DbSet<Resident> Residents { get; set; }
         public virtual DbSet<PropertyView> Properties { get; set; }
+
+        public virtual DbSet<LockerBankView> LockerBanks { get; set; }
     }
 }

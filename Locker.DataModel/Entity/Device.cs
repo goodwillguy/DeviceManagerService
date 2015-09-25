@@ -1,5 +1,6 @@
 ﻿using Common.DataModel;
-using Common.DataModel.Enums;
+using Common.Values;
+using Common.Values.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

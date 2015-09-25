@@ -1,4 +1,5 @@
 ﻿using Common.DataModel;
+using Common.Values;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -13,7 +14,7 @@ namespace Tz.Parcel.DataModel.ParcelEnitities
 
         public Guid ParcelId { get; set; }
 
-        public int TransactionState { get; set; }
+        public TransactionState TransactionState { get; set; }
 
         public Guid DropOffAgentId { get; set; }
 

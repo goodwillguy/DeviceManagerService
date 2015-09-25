@@ -1,4 +1,5 @@
 ﻿using Common.DataModel;
+using Common.Values;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Resident.DataModel
 {
-    public class Resident:Base
+    public class Resident : Base
     {
         [Key]
         public Guid ResidentId { get; set; }
@@ -26,7 +27,11 @@ namespace Resident.DataModel
 
         public string MobileNumber { get; set; }
 
+        public bool IsResidentDisabled { get; set; }
+
         public Guid PropertyId { get; set; }
+
+        public virtual PropertyView Property { get; set; }
 
     }
 }
