@@ -17,7 +17,7 @@ namespace Tz.Parcel.DataModel
 
         }
 
-        public ParcelDbContext()
+        public ParcelDbContext():base()
         {
         }
 

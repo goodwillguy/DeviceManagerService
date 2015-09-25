@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Entitty\LockerBankView.cs" />
     <Compile Include="Entitty\ParcelView.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entitty\PropertyView.cs" />
     <Compile Include="Entitty\Resident.cs" />

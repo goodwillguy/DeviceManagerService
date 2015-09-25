@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,9 @@ namespace Tz.Locker.DataModel.Entity
 {
     public class LockerToDevice
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid LockerToDeviceId { get; set; }
         public Guid LockerId { get; set; }
         public Guid DeviceId { get; set; }
 

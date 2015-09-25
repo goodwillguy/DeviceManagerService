@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Tz.Parcel.DataModel.ParcelEnitities
 {
@@ -12,6 +13,7 @@ namespace Tz.Parcel.DataModel.ParcelEnitities
     [Table("LockerBank")]
     public class LockerBankView
     {
+        [Key]
 
         public Guid LockerBankId { get; set; }
 

@@ -15,7 +15,7 @@ namespace Tz.Resident.DataModel
         {
         }
 
-        public ResidentDbContext()
+        public ResidentDbContext():base()
         {
         }
 
