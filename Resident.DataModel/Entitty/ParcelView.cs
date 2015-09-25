@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace Tz.Resident.DataModel
 {
     [ReadonlyTable]
+    [Table("Parcel")]
     public class ParcelView 
     {
         public Guid ParcelId { get; set; }

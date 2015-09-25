@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace Tz.Agent.DataModel
 {
     [ReadonlyTable]
+    [Table("LockerBank")]
     public class LockerBankView
     {
 

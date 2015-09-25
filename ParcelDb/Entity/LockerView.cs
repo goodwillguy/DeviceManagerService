@@ -2,10 +2,12 @@
 using Tz.Common.Values.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tz.Tz.Parcel.DataModel.ParcelEnitities
 {
     [ReadonlyTable]
+    [Table("Locker")]
     public class LockerView
     {
         [Key]

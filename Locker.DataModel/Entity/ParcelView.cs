@@ -6,6 +6,7 @@ using Tz.Common.DataModel;
 namespace Tz.Locker.DataModel.Entity
 {
     [ReadonlyTable]
+    [Table("Parcel")]
     public class ParcelView
     {
         [Key]
