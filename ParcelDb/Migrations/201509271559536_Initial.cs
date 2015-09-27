@@ -10,7 +10,7 @@ namespace Tz.Parcel.DataModel.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Parcels",
+                "dbo.Parcel",
                 c => new
                     {
                         ParcelId = c.Guid(nullable: false),
@@ -23,15 +23,15 @@ namespace Tz.Parcel.DataModel.Migrations
                         ExpiryTime = c.DateTime(nullable: false),
                         LockerBankId = c.Guid(nullable: false),
                         LockerId = c.Guid(),
-                        CreateUserId = c.Guid(nullable: false),
-                        UpdateUserId = c.Guid(nullable: false),
-                        CreationTime = c.DateTime(nullable: false),
-                        LastUpdateTime = c.DateTime(nullable: false),
+                        CreateUserId = c.Guid(),
+                        UpdateUserId = c.Guid(),
+                        CreationTime = c.DateTime(),
+                        LastUpdateTime = c.DateTime(),
                     })
                 .PrimaryKey(t => t.ParcelId);
             
             CreateTable(
-                "dbo.ParcelTransactions",
+                "dbo.ParcelTransaction",
                 c => new
                     {
                         ParcelTransactionId = c.Guid(nullable: false),
@@ -41,24 +41,28 @@ namespace Tz.Parcel.DataModel.Migrations
                         DropOffAgentId = c.Guid(nullable: false),
                         AgentType = c.Int(nullable: false),
                         DropoffTime = c.DateTime(nullable: false),
-                        CreateUserId = c.Guid(nullable: false),
-                        UpdateUserId = c.Guid(nullable: false),
-                        CreationTime = c.DateTime(nullable: false),
-                        LastUpdateTime = c.DateTime(nullable: false),
+                        CreateUserId = c.Guid(),
+                        UpdateUserId = c.Guid(),
+                        CreationTime = c.DateTime(),
+                        LastUpdateTime = c.DateTime(),
                     })
-                .PrimaryKey(t => t.ParcelTransactionId)//foreging key parent table dbo.Parcels dependent table dbo.ParcelTransactions
+                .PrimaryKey(t => t.ParcelTransactionId)//foreging key parent table dbo.Agent dependent table dbo.ParcelTransaction
                 
-                .ForeignKey("dbo.Parcels", t => t.ParcelId, cascadeDelete: true)
-                .Index(t => t.ParcelId);
+                .ForeignKey("dbo.Agent", t => t.DropOffAgentId, cascadeDelete: true)//foreging key parent table dbo.Parcel dependent table dbo.ParcelTransaction
+                
+                .ForeignKey("dbo.Parcel", t => t.ParcelId, cascadeDelete: true)
+                .Index(t => t.ParcelId)
+                .Index(t => t.DropOffAgentId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.ParcelTransactions", "ParcelId", "dbo.Parcels");
-            DropIndex("dbo.ParcelTransactions", new[] { "ParcelId" });
-            DropTable("dbo.ParcelTransactions");
-            DropTable("dbo.Parcels");
+            DropForeignKey("dbo.ParcelTransaction", "ParcelId", "dbo.Parcel");
+            DropIndex("dbo.ParcelTransaction", new[] { "DropOffAgentId" });
+            DropIndex("dbo.ParcelTransaction", new[] { "ParcelId" });
+            DropTable("dbo.ParcelTransaction");
+            DropTable("dbo.Parcel");
         }
     }
 }

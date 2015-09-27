@@ -13,7 +13,7 @@ namespace Tz.Parcel.DataModel.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201509251352206_Initial"; }
+            get { return "201509271559536_Initial"; }
         }
         
         string IMigrationMetadata.Source

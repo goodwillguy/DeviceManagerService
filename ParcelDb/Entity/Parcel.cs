@@ -7,9 +7,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tz.Parcel.DataModel.ParcelEnitities
 {
+    [Table("Parcel")]
     public class Parcel : Base, IAuditable
     {
         [Key]
