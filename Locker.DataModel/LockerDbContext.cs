@@ -16,7 +16,7 @@ namespace Tz.Locker.DataModel
         {
         }
 
-        public LockerDbContext()
+        public LockerDbContext():base("name=Default")
         {
         }
 

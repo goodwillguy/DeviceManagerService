@@ -6,9 +6,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tz.Locker.DataModel
 {
+    [Table("LockerBank")]
     public class LockerBank:Base,IAuditable
     {
         [Key]
@@ -28,6 +30,8 @@ namespace Tz.Locker.DataModel
         [Required]
         public Guid BuildingPropertyId { get; set; }
 
+        [ForeignKey("BuildingPropertyId")]
+        public virtual BuildingPropertyView BuildingProperty { get; set; }
         
     }
 }

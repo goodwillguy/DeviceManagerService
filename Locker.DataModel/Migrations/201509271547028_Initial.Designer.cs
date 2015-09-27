@@ -13,7 +13,7 @@ namespace Tz.Locker.DataModel.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201509251339174_Initial"; }
+            get { return "201509271547028_Initial"; }
         }
         
         string IMigrationMetadata.Source

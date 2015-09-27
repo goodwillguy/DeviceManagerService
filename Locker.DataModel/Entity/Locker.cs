@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Tz.Locker.DataModel
 {
+    [Table("Locker")]
     public class Locker : Base, IAuditable
     {
         [Key]
@@ -30,6 +31,8 @@ namespace Tz.Locker.DataModel
         public virtual LockerBank LockerBanks { get; set; }
 
         public virtual List<LockerToDevice> DevicesInLocker { get; set; }
+
+        public string LockerNumber { get; set; }
 
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Tz.Locker.DataModel.Entity
 {
+    [Table("LockerToDevice")]
     public class LockerToDevice
     {
         [Key]
@@ -18,6 +19,8 @@ namespace Tz.Locker.DataModel.Entity
 
         [ForeignKey("DeviceId")]
         public virtual Device DeviceData { get; set; }
+        [ForeignKey("LockerId")]
+        public virtual Locker Locker { get; set; }
 
     }
 }
