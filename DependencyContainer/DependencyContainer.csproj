@@ -74,13 +74,25 @@
       <Project>{9a53f769-5d03-43dd-bac0-b165b840f563}</Project>
       <Name>Tz.Agent.DataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ApplicationServices.Common\Tz.ApplicationServices.Common.csproj">
+      <Project>{69d0b635-95c9-4be7-a7bb-8e0ff6641574}</Project>
+      <Name>Tz.ApplicationServices.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common.Modules\Common.csproj">
       <Project>{1e87f5dc-5bd6-45ca-979e-e4f728f554a5}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Tz.LockerBank.Common.Interface.csproj">
+      <Project>{b545b3c6-5431-4004-b803-94c0775174c0}</Project>
+      <Name>Tz.LockerBank.Common.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataModel.Common\Common.DataModel.csproj">
       <Project>{485f14ad-3dd0-4274-b590-945fc929d589}</Project>
       <Name>Common.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DropOffApplication service\DropOffApplication service.csproj">
+      <Project>{d51ad383-a198-4424-ad1d-b825415036ad}</Project>
+      <Name>DropOffApplication service</Name>
     </ProjectReference>
     <ProjectReference Include="..\Locker.ApplicationService\Tz.Locker.ApplicationService.csproj">
       <Project>{c77eac46-9b4e-424a-b2e5-9725ab3c3b2f}</Project>

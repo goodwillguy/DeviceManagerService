@@ -48,6 +48,7 @@ namespace Tz.Parcel.ApplicationService
                 DropoffTime = DateTime.Now,
                 TransactionState = TransactionState.Dropoff,
                 CreateUserId=operatorId,
+                LockerId=availableLocker.Value,
                 CreationTime=_dateTime.GetCurrentDate(),
 
             };

@@ -28,6 +28,9 @@ using Tz.Property.DataModel;
 using Tz.Resident.DataModel;
 using System.Data.Entity.Migrations;
 using Tz.Property.DataModel.Migrations;
+using Tz.ApplicationServices.Common.Interface;
+using DropOffApplication_service;
+using Tz.LockerBank.Common.Interface;
 
 namespace DependencyContainer
 {
@@ -53,8 +56,22 @@ namespace DependencyContainer
 
             PropertyModuleRegister(container);
 
+            ApplicationServiceRegister(container);
+
+            LockerBankChannel(container);
+
             container.Verify();
             //SetupDb();
+        }
+
+        private static void LockerBankChannel(Container container)
+        {
+            container.Register<ILockerBankChannelFactory, LockerBankChannelFactory>();
+        }
+
+        private static void ApplicationServiceRegister(Container container)
+        {
+            container.Register<IDropOffEvent, DropOffHandler>();
         }
 
         private static void PropertyModuleRegister(Container container)
@@ -124,6 +141,8 @@ namespace DependencyContainer
             container.Register<ILockerRepository, LockerRepository>();
 
             container.Register<ILockerApplicationService, LockerApplicationService>();
+
+            container.Register<ILockerDeviceManagerApplicationServices, LockerDeviceManagerApplicationService>();
         }
     }
 }

@@ -43,6 +43,10 @@ namespace Tz.Parcel.DataModel.Repository
 
             foreach(var transaction in newParcel.ParcelTransactions)
             {
+                if(parcel.ParcelTransactions==null)
+                {
+                    parcel.ParcelTransactions = new List<ParcelEnitities.ParcelTransaction>();
+                }
                 parcel.ParcelTransactions.Add(new ParcelEnitities.ParcelTransaction
                 {
                     CreateUserId = transaction.CreateUserId,
@@ -58,6 +62,7 @@ namespace Tz.Parcel.DataModel.Repository
                 });
             }
 
+            context.Parcels.Add(parcel);
 
             context.SaveChanges();
         }

@@ -74,6 +74,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ApplicationServices.Common\Tz.ApplicationServices.Common.csproj">
+      <Project>{69d0b635-95c9-4be7-a7bb-8e0ff6641574}</Project>
+      <Name>Tz.ApplicationServices.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Values\Tz.Common.Values.csproj">
+      <Project>{84ee0288-d093-4f5f-aaf9-e2cd64c04a8d}</Project>
+      <Name>Tz.Common.Values</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DependencyContainer\DependencyContainer.csproj">
       <Project>{38b68574-41ad-4c07-a1e3-077409257983}</Project>
       <Name>DependencyContainer</Name>

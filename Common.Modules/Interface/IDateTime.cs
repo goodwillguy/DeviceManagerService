@@ -6,7 +6,7 @@ namespace Common.Modules.Interface
     {
         public DateTime GetCurrentDate()
         {
-            throw new NotImplementedException();
+            return DateTime.Now;
         }
     }
 }
