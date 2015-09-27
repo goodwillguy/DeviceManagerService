@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApplicationServices.Tz.Common.Interface
+namespace Tz.ApplicationServices.Common.Interface
 {
     public interface IDropOffEvent
     {

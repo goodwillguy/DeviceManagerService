@@ -53,7 +53,8 @@ namespace DependencyContainer
 
             PropertyModuleRegister(container);
 
-            SetupDb();
+            container.Verify();
+            //SetupDb();
         }
 
         private static void PropertyModuleRegister(Container container)

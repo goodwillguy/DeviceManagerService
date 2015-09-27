@@ -45,5 +45,10 @@ namespace Tz.Locker.ApplicationService
             return GetAvailableLocker(lockerBankId.Value, lockerSize);
 
         }
+
+        public Guid? GetLockerBankForLockerBankCode(string lockerBankCode)
+        {
+            return _lockerRepository.GetLockerBankByCode(lockerBankCode);
+        }
     }
 }

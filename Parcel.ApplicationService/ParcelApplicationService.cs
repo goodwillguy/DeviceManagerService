@@ -72,5 +72,9 @@ namespace Tz.Parcel.ApplicationService
             return isDropoffSuccess;
         }
 
+        public ParcelDto GetParcelInformation(Guid lockerBankId, string consignmentNumber)
+        {
+            return _parcelRepository.GetParcelByConsignmentNumber(lockerBankId, consignmentNumber);
+        }
     }
 }

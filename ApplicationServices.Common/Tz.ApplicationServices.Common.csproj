@@ -7,8 +7,8 @@
     <ProjectGuid>{69D0B635-95C9-4BE7-A7BB-8E0FF6641574}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ApplicationServices.Common</RootNamespace>
-    <AssemblyName>ApplicationServices.Common</AssemblyName>
+    <RootNamespace>Tz.ApplicationServices.Common</RootNamespace>
+    <AssemblyName>Tz.ApplicationServices.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -45,9 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Values\Common.Values.csproj">
+    <ProjectReference Include="..\Common.Values\Tz.Common.Values.csproj">
       <Project>{84ee0288-d093-4f5f-aaf9-e2cd64c04a8d}</Project>
-      <Name>Common.Values</Name>
+      <Name>Tz.Common.Values</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

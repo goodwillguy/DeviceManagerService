@@ -7,6 +7,9 @@ namespace Tz.Locker.Common.Interface
     {
         Guid? GetAvailableLocker(Guid lockerBankId, Size lockerSize);
 
+        Guid? GetAvailableLocker(string lockerBankCode, Size lockerSize);
+
+        Guid? GetLockerBankForLockerBankCode(string lockerBankCode);
         //Locker GetAvailableLocker(string lockerBankId, Size lockerSize);
     }
 
