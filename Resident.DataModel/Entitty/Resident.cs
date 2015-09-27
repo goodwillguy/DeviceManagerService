@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tz.Resident.DataModel
 {
@@ -16,7 +17,7 @@ namespace Tz.Resident.DataModel
 
         public string SignInPin { get; set; }
 
-        public string CardId { get; set; }
+        public string ResidentCode { get; set; }
 
         public string Username { get; set; }
 
@@ -29,9 +30,10 @@ namespace Tz.Resident.DataModel
 
         public bool IsResidentDisabled { get; set; }
 
-        public Guid PropertyId { get; set; }
+        public Guid BuildingPropertyId { get; set; }
 
-        public virtual PropertyView Property { get; set; }
+        [ForeignKey("BuildingPropertyId")]
+        public virtual BuildingPropertyView Property { get; set; }
 
     }
 }

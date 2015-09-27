@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Tz.Resident.DataModel
 {
@@ -12,6 +13,7 @@ namespace Tz.Resident.DataModel
     [Table("Parcel")]
     public class ParcelView 
     {
+        [Key]
         public Guid ParcelId { get; set; }
 
         public string ConsignmentNumber { get; set; }

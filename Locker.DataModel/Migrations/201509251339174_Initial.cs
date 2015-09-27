@@ -35,7 +35,7 @@ namespace Tz.Locker.DataModel.Migrations
                         Description = c.String(),
                         IpAddress = c.String(),
                         IsEnabled = c.Boolean(nullable: false),
-                        PropertyId = c.Guid(nullable: false),
+                        BuildingPropertyId = c.Guid(nullable: false),
                         CreateUserId = c.Guid(nullable: false),
                         UpdateUserId = c.Guid(nullable: false),
                         CreationTime = c.DateTime(nullable: false),

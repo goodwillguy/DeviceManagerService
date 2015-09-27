@@ -26,7 +26,7 @@ namespace Tz.Locker.DataModel
         public bool IsEnabled { get; set; }
 
         [Required]
-        public Guid PropertyId { get; set; }
+        public Guid BuildingPropertyId { get; set; }
 
         
     }

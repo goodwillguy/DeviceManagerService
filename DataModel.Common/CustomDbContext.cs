@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Tz.Common.DataModel
 {
-    public class CustomDbContext : DbContext
+    public abstract class CustomDbContext : DbContext
     {
         public CustomDbContext()
         {
@@ -16,7 +16,19 @@ namespace Tz.Common.DataModel
         }
         public CustomDbContext(string connectionString) : base(connectionString)
         {
+           // Database.SetInitializer<CustomDbContext>(null);
+            //Type MyType = this.GetType();
+
+            //var typeOfContext = typeof(Database);
+
+            //var method = typeOfContext.GetMethod("SetInitializer");
+
+            //var genericMethod = method.MakeGenericMethod(MyType);
+
+            //method.Invoke(genericMethod, null);
         }
+
+        public abstract void InitializeDb();
 
         public override int SaveChanges()
         {

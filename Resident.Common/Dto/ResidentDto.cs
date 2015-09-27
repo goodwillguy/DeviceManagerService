@@ -8,7 +8,7 @@ namespace Tz.Resident.Common.Dto
 
         public string SignInPin { get; set; }
 
-        public string CardId { get; set; }
+        public string ResidentCode { get; set; }
 
         public string Username { get; set; }
 
@@ -19,7 +19,7 @@ namespace Tz.Resident.Common.Dto
 
         public string MobileNumber { get; set; }
 
-        public Guid PropertyId { get; set; }
+        public Guid BuildingPropertyId { get; set; }
 
         public bool IsResidentDisabled { get; set; }
 

@@ -16,18 +16,53 @@ namespace Tz.Resident.DataModel.Migrations
 
         protected override void Seed(Tz.Resident.DataModel.ResidentDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            var residentSenthil = Guid.NewGuid();
+            var residentLeon = Guid.NewGuid();
+            var residentSam = Guid.NewGuid();
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            var propertyPromentusSydney = Guid.Parse("1D4B448B-4E69-4ECA-A06E-E7F85256C920");
+
+            var propertyTzSydney = Guid.Parse("0ABAA1CF-C482-4E89-A0E9-BF232F7D97C3");
+
+
+            context.Residents.AddOrUpdate(res => res.ResidentId, new Resident
+            {
+                ResidentId = residentSenthil,
+                EmailAddress = "goodwillguy@gmail.com",
+                FirstName = "senthil kumar",
+                IsResidentDisabled = false,
+                LastName = "Devadas",
+                BuildingPropertyId = propertyPromentusSydney,
+                SignInPin = "password",
+                Username = "goodwillguy",
+                ResidentCode="Pro001"
+            });
+
+            context.Residents.AddOrUpdate(res => res.ResidentId, new Resident
+            {
+                ResidentId = residentLeon,
+                EmailAddress = "Leon@gmail.com",
+                FirstName = "Leon",
+                IsResidentDisabled = false,
+                LastName = "vedanta",
+                BuildingPropertyId = propertyTzSydney,
+                SignInPin = "password",
+                Username = "leon",
+                ResidentCode = "Tz001"
+            });
+
+            context.Residents.AddOrUpdate(res => res.ResidentId, new Resident
+            {
+                ResidentId = residentSam,
+                EmailAddress = "sam@gmail.com",
+                FirstName = "Sam",
+                IsResidentDisabled = false,
+                LastName = "Alavi",
+                BuildingPropertyId = propertyTzSydney,
+                SignInPin = "password",
+                Username = "Sam",
+                ResidentCode = "Tz002"
+            });
         }
     }
 }

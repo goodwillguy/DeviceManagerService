@@ -10,11 +10,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Tz.Locker.DataModel
 {
     [ReadonlyTable]
-    [Table("Property")]
-    public class PropertyView
+    [Table("BuildingProperty")]
+    public class BuildingPropertyView
     {
         [Key]
-        public Guid PropertyId { get; set; }
+        public Guid BuildingPropertyId { get; set; }
 
         public string Code { get; set; }
 

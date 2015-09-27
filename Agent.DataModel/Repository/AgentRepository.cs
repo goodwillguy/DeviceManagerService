@@ -28,7 +28,7 @@ namespace Tz.Agent.DataModel.Repository
 
 
             var agentDto = context.Agents
-                   .Where(ag => ag.Properties.Any(prop => prop.PropertyId == lockerBank.PropertyId))
+                   .Where(ag => ag.Properties.Any(prop => prop.BuildingPropertyId == lockerBank.BuildingPropertyId))
                    .Where(ag => ag.IsDisabled == false)
                    .Where(ag => ag.AgentCards.Any(agCard => agCard.AgentId == ag.AgentId &&
                                                   agCard.CardNumber.ToLower() == cardNumber.ToLower() && !agCard.IsLocked &&
@@ -56,7 +56,7 @@ namespace Tz.Agent.DataModel.Repository
 
 
             var agentDto = context.Agents
-                   .Where(ag => ag.Properties.Any(prop => prop.PropertyId == lockerBank.PropertyId))
+                   .Where(ag => ag.Properties.Any(prop => prop.BuildingPropertyId == lockerBank.BuildingPropertyId))
                    .Where(ag => ag.IsDisabled == false && ag.AgentId == agentId)
                    .Select(agent => new AgentDto
                    {
@@ -79,7 +79,7 @@ namespace Tz.Agent.DataModel.Repository
 
 
             var agentDto = context.Agents
-                   .Where(ag => ag.Properties.Any(prop => prop.PropertyId == lockerBank.PropertyId))
+                   .Where(ag => ag.Properties.Any(prop => prop.BuildingPropertyId == lockerBank.BuildingPropertyId))
                    .Where(ag => ag.IsDisabled == false && ag.Username.ToLower() == agentUserName.ToLower())
                    .Select(agent => new AgentDto
                    {
@@ -103,7 +103,7 @@ namespace Tz.Agent.DataModel.Repository
 
 
             var isAgentAuthorised = context.Agents
-                   .Any(ag => ag.Properties.Any(prop => prop.PropertyId == lockerBank.PropertyId) &&
+                   .Any(ag => ag.Properties.Any(prop => prop.BuildingPropertyId == lockerBank.BuildingPropertyId) &&
                               ag.IsDisabled == false &&
                                ag.AgentCards.Any(agCard => agCard.AgentId == ag.AgentId &&
                                                   agCard.CardNumber.ToLower() == cardNumber.ToLower() && !agCard.IsLocked &&
@@ -121,7 +121,7 @@ namespace Tz.Agent.DataModel.Repository
 
 
             var isAgentAuthorised = context.Agents
-                   .Any(ag => ag.Properties.Any(prop => prop.PropertyId == lockerBank.PropertyId) &&
+                   .Any(ag => ag.Properties.Any(prop => prop.BuildingPropertyId == lockerBank.BuildingPropertyId) &&
                               ag.IsDisabled == false && ag.Username.ToLower() == agentUserName.ToLower() && ag.SignInPin == agentPassword);
 
             return isAgentAuthorised;

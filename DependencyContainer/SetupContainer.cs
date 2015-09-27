@@ -18,18 +18,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tz.Parcel.DataModel.Repository;
+using System.Reflection;
+using Tz.Common.DataModel;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity;
+using Tz.Property.Common.Interface;
+using Tz.Property.DataModel.Repository;
+using Tz.Property.DataModel;
+using Tz.Resident.DataModel;
+using System.Data.Entity.Migrations;
+using Tz.Property.DataModel.Migrations;
 
 namespace DependencyContainer
 {
     public class SetupContainer
     {
+        static Container _container = null;
         public static void SetupDependency(Container container)
         {
             if (container == null)
             {
                 container = new Container();
             }
-
+            _container = container;
             container.Register<IConnectionStringFactory, ConnectionStringFactory>(Lifestyle.Singleton);
 
 
@@ -40,7 +51,51 @@ namespace DependencyContainer
 
             AgentModuleRegister(container);
 
-            
+            PropertyModuleRegister(container);
+
+            SetupDb();
+        }
+
+        private static void PropertyModuleRegister(Container container)
+        {
+            container.Register<IPropertyRepository, PropertyRepository>();
+        }
+
+        private static void SetupDb()
+        {
+            var connectionString = _container.GetInstance<IConnectionStringFactory>();
+
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<PropertyDbContext, Tz.Property.DataModel.Migrations.Configuration>());
+
+            foreach (var assemblyName in Assembly.GetExecutingAssembly().GetReferencedAssemblies().Where(ass => ass.Name.StartsWith("Tz")))
+            {
+                Assembly assembly = Assembly.Load(assemblyName);
+                foreach (var type in assembly.GetTypes())
+                {
+                    if (typeof(CustomDbContext).IsAssignableFrom(type) && typeof(CustomDbContext) != type)
+                    {
+                        if (type == typeof(PropertyDbContext))
+                        {
+                            Database.SetInitializer(
+       new MigrateDatabaseToLatestVersion<PropertyDbContext, Configuration>());
+                            var migrator = new DbMigrator(new Configuration());
+                            migrator.Update();
+                        }
+                        var context = Activator.CreateInstance(type, connectionString.GetConnectionString()) as CustomDbContext;
+
+                        //context.InitializeDb();
+                        context.Database.Initialize(true);
+
+                        context.Dispose();
+                    }
+                }
+            }
+
+            //using (var con = new PropertyDbContext(connectionString.GetConnectionString()))
+            //{
+            //    con.Properties.ToList();
+            //}
+
         }
 
         private static void AgentModuleRegister(Container container)
@@ -53,7 +108,7 @@ namespace DependencyContainer
         {
             container.Register<IResidentRepository, ResidentRespository>();
             container.Register<IResidentApplicationService, ResidentApplicationServices>();
-                
+
         }
 
         static void ParcelModuleRegister(Container container)

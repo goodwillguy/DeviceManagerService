@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Tz.Parcel.DataModel.Entity;
 using Tz.Parcel.DataModel.ParcelEnitities;
+using Tz.Parcel.DataModel.Migrations;
+
 namespace Tz.Parcel.DataModel
 {
     public class ParcelDbContext : CustomDbContext
     {
         public ParcelDbContext(string connectionString) : base(connectionString)
         {
-
         }
 
         public ParcelDbContext():base()
@@ -31,5 +32,9 @@ namespace Tz.Parcel.DataModel
 
         public virtual DbSet<AgentView> Agents { get; set; }
 
+        public override void InitializeDb()
+        {
+            Parcels.ToList();
+        }
     }
 }

@@ -1,22 +1,22 @@
-﻿using Tz.Common.Values;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
+using Tz.Common.Values;
 
 namespace Tz.Property.DataModel.Entity
 {
-    [Table("BuildingProperty")]
-    public class BuildingProperty:Base
+    [Table("Organisation")]
+    public class Organisation:Base
     {
         [Key]
-        public Guid BuildingPropertyId { get; set; }
+        public Guid OrganisationId { get; set; }
+
         public string Code { get; set; }
 
         public string Description { get; set; }
-
     }
 }

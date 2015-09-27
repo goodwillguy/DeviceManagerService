@@ -49,7 +49,7 @@ namespace Tz.Common.DataModel.Migrations
         protected override void Generate(AddForeignKeyOperation addForeignKeyOperation, IndentedTextWriter writer)
         {
             var isReadonly = ReadonlyEntities.Contains(addForeignKeyOperation.PrincipalTable) || ReadonlyEntities.Contains(addForeignKeyOperation.DependentTable); ;
-            if (!isReadonly)
+            //if (!isReadonly)
             {
                 base.Generate(addForeignKeyOperation, writer);
             }
@@ -61,7 +61,7 @@ namespace Tz.Common.DataModel.Migrations
             writer.WriteLine("//foreging key parent table {0} dependent table {1}", addForeignKeyOperation.PrincipalTable, addForeignKeyOperation.DependentTable);
 
             var isReadonly = ReadonlyEntities.Contains(addForeignKeyOperation.PrincipalTable) || ReadonlyEntities.Contains(addForeignKeyOperation.DependentTable);
-            if (!isReadonly)
+           // if (!isReadonly)
             {
                 base.GenerateInline(addForeignKeyOperation, writer);
             }
@@ -70,7 +70,7 @@ namespace Tz.Common.DataModel.Migrations
         protected override void GenerateInline(CreateIndexOperation createIndexOperation, IndentedTextWriter writer)
         {
             var isReadonly = ReadonlyEntities.Contains(createIndexOperation.Table);
-            if (!isReadonly)
+          //  if (!isReadonly)
             {
                 base.GenerateInline(createIndexOperation, writer);
             }

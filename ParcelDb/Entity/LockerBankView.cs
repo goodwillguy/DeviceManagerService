@@ -17,7 +17,7 @@ namespace Tz.Parcel.DataModel.ParcelEnitities
 
         public Guid LockerBankId { get; set; }
 
-        public Guid PropertyId { get; set; }
+        public Guid BuildingPropertyId { get; set; }
 
         public string LockerBankCode { get; set; }
 

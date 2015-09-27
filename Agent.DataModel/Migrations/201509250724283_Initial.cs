@@ -47,14 +47,14 @@ namespace Tz.Agent.DataModel.Migrations
                     {
                         AgentToPropertyId = c.Guid(nullable: false, identity: true),
                         AgentId = c.Guid(nullable: false),
-                        PropertyId = c.Guid(nullable: false),
+                        BuildingPropertyId = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.AgentToPropertyId)//foreging key parent table dbo.Property dependent table dbo.AgentToProperties
                 //foreging key parent table dbo.Agents dependent table dbo.AgentToProperties
                 
                 .ForeignKey("dbo.Agents", t => t.AgentId, cascadeDelete: true)
                 .Index(t => t.AgentId)
-                .Index(t => t.PropertyId);
+                .Index(t => t.BuildingPropertyId);
             
         }
         
@@ -62,7 +62,7 @@ namespace Tz.Agent.DataModel.Migrations
         {
             DropForeignKey("dbo.AgentToProperties", "AgentId", "dbo.Agents");
             DropForeignKey("dbo.AgentToCards", "AgentId", "dbo.Agents");
-            DropIndex("dbo.AgentToProperties", new[] { "PropertyId" });
+            DropIndex("dbo.AgentToProperties", new[] { "BuildingPropertyId" });
             DropIndex("dbo.AgentToProperties", new[] { "AgentId" });
             DropIndex("dbo.AgentToCards", new[] { "AgentId" });
             DropTable("dbo.AgentToProperties");

@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tz.Locker.DataModel.Migrations;
 
 namespace Tz.Locker.DataModel
 {
@@ -25,10 +26,15 @@ namespace Tz.Locker.DataModel
 
         public virtual DbSet<LockerBank> LockerBanks { get; set; }
         public virtual DbSet<LockerOfflineReason> LockersOfflineReasons { get; set; }
-        public virtual DbSet<PropertyView> Properties { get; set; }
+        public virtual DbSet<BuildingPropertyView> Properties { get; set; }
 
         public virtual DbSet<ParcelView> Parcels { get; set; }
 
         public virtual DbSet<LockerToDevice> LockerToDevices { get; set; }
+
+        public override void InitializeDb()
+        {
+            Lockers.ToList();
+        }
     }
 }

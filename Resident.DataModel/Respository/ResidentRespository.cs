@@ -26,7 +26,7 @@ namespace Tz.Resident.DataModel.Respository
 
 
             var query = context.Residents
-                        .Where(res => res.PropertyId == lockerBank.PropertyId);
+                        .Where(res => res.BuildingPropertyId == lockerBank.BuildingPropertyId);
 
             if (!string.IsNullOrWhiteSpace(name))
             {
@@ -35,7 +35,7 @@ namespace Tz.Resident.DataModel.Respository
 
             var residents = query.Select(res => new ResidentDto
             {
-                CardId = res.CardId,
+                ResidentCode = res.ResidentCode,
                 EmailAddress = res.EmailAddress,
                 FirstName = res.FirstName,
                 IsResidentDisabled = res.IsResidentDisabled,

@@ -17,10 +17,10 @@ namespace Tz.Agent.DataModel
         [Key]
         public Guid LockerBankId { get; set; }
 
-        public Guid PropertyId { get; set; }
+        public Guid BuildingPropertyId { get; set; }
 
-        [ForeignKey("PropertyId")]
-        public virtual PropertyView Property { get; set; }
+        [ForeignKey("BuildingPropertyId")]
+        public virtual BuildingPropertyView BuildingProperty { get; set; }
 
     }
 }

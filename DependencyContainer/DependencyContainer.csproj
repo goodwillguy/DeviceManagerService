@@ -31,11 +31,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SimpleInjector, Version=3.0.5.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.3.0.5\lib\net45\SimpleInjector.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +58,7 @@
     <Compile Include="SetupContainer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +106,10 @@
       <Project>{47aa85eb-bcaa-4e33-8f4e-1e7143bd0337}</Project>
       <Name>Tz.Parcel.DataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Property.DataModel\Tz.Property.DataModel.csproj">
+      <Project>{d841b6a8-c0d4-4fea-a15e-5a7af38af7d9}</Project>
+      <Name>Tz.Property.DataModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Resident.ApplicationServices\Tz.Resident.ApplicationServices.csproj">
       <Project>{d944a59d-b074-456d-b8a2-647cce53fdfe}</Project>
       <Name>Tz.Resident.ApplicationServices</Name>
@@ -107,6 +121,10 @@
     <ProjectReference Include="..\Resident.DataModel\Tz.Resident.DataModel.csproj">
       <Project>{b14dfffb-840e-4fe0-80ee-fcaaa572ae99}</Project>
       <Name>Tz.Resident.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tz.Property.Common\Tz.Property.Common.csproj">
+      <Project>{8ad9041a-94e5-4e43-b3c3-dfffa67f25cf}</Project>
+      <Name>Tz.Property.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

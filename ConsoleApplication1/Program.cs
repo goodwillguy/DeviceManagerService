@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.Wcf;
+using SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,31 +15,36 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            ContainerBuilder builder = new ContainerBuilder();
-            builder.RegisterType<Logger>().As<ILogger>();
-            builder.RegisterType<EchoService>();
-
-            using (IContainer container = builder.Build())
-            {
-                Uri address = new Uri("http://localhost:8080/EchoService");
-                ServiceHost host = new ServiceHost(typeof(EchoService), address);
-
-                var basicHttpBinding = new BasicHttpBinding();
-                host.AddServiceEndpoint(typeof(IEchoService), basicHttpBinding, string.Empty);
-                host.AddServiceEndpoint(typeof(IEchoService2), basicHttpBinding, string.Empty);
-
-                host.AddDependencyInjectionBehavior<EchoService>(container);
-
-                host.Description.Behaviors.Add(new ServiceMetadataBehavior { HttpGetEnabled = true, HttpGetUrl = address });
-                host.Open();
-
-                Console.WriteLine("The host has been opened.");
-                Console.ReadLine();
-
-                host.Close();
-                Environment.Exit(0);
-            }
+            Container cont = new Container();
+            DependencyContainer.SetupContainer.SetupDependency(cont);
         }
+        //static void Main(string[] args)
+        //{
+        //    ContainerBuilder builder = new ContainerBuilder();
+        //    builder.RegisterType<Logger>().As<ILogger>();
+        //    builder.RegisterType<EchoService>();
+
+        //    using (IContainer container = builder.Build())
+        //    {
+        //        Uri address = new Uri("http://localhost:8080/EchoService");
+        //        ServiceHost host = new ServiceHost(typeof(EchoService), address);
+
+        //        var basicHttpBinding = new BasicHttpBinding();
+        //        host.AddServiceEndpoint(typeof(IEchoService), basicHttpBinding, string.Empty);
+        //        host.AddServiceEndpoint(typeof(IEchoService2), basicHttpBinding, string.Empty);
+
+        //        host.AddDependencyInjectionBehavior<EchoService>(container);
+
+        //        host.Description.Behaviors.Add(new ServiceMetadataBehavior { HttpGetEnabled = true, HttpGetUrl = address });
+        //        host.Open();
+
+        //        Console.WriteLine("The host has been opened.");
+        //        Console.ReadLine();
+
+        //        host.Close();
+        //        Environment.Exit(0);
+        //    }
+        //}
     }
 
 
