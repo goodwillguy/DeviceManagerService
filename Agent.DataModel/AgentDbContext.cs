@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tz.Agent.DataModel.Migrations;
+using Tz.Agent.DataModel.Entity;
 
 namespace Tz.Agent.DataModel
 {
     public class AgentDbContext : CustomDbContext
     {
-        public AgentDbContext()
+        public AgentDbContext():base("name=Default")
         {
         }
 
@@ -20,7 +21,9 @@ namespace Tz.Agent.DataModel
 
         }
 
-        public virtual DbSet<Agent> Agents { get; set; }
+        public virtual DbSet<Entity.Agent> Agents { get; set; }
+        public virtual DbSet<AgentToProperty> AgentToProperties { get; set; }
+        public virtual DbSet<AgentToCard> AgentToCards { get; set; }
 
         public virtual DbSet<LockerBankView> LockerBank { get; set; }
 

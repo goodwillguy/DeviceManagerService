@@ -10,7 +10,7 @@ namespace Tz.Agent.DataModel.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Agents",
+                "dbo.Agent",
                 c => new
                     {
                         AgentId = c.Guid(nullable: false),
@@ -22,11 +22,15 @@ namespace Tz.Agent.DataModel.Migrations
                         MobileNumber = c.String(),
                         OrganisationId = c.Guid(nullable: false),
                         IsDisabled = c.Boolean(nullable: false),
+                        CreateUserId = c.Guid(),
+                        UpdateUserId = c.Guid(),
+                        CreationTime = c.DateTime(),
+                        LastUpdateTime = c.DateTime(),
                     })
                 .PrimaryKey(t => t.AgentId);
             
             CreateTable(
-                "dbo.AgentToCards",
+                "dbo.AgentToCard",
                 c => new
                     {
                         AgentToCardId = c.Guid(nullable: false, identity: true),
@@ -35,24 +39,29 @@ namespace Tz.Agent.DataModel.Migrations
                         EffectiveFrom = c.DateTime(nullable: false),
                         EffectiveTo = c.DateTime(),
                         IsLocked = c.Boolean(nullable: false),
+                        CreateUserId = c.Guid(),
+                        UpdateUserId = c.Guid(),
+                        CreationTime = c.DateTime(),
+                        LastUpdateTime = c.DateTime(),
                     })
-                .PrimaryKey(t => t.AgentToCardId)//foreging key parent table dbo.Agents dependent table dbo.AgentToCards
+                .PrimaryKey(t => t.AgentToCardId)//foreging key parent table dbo.Agent dependent table dbo.AgentToCard
                 
-                .ForeignKey("dbo.Agents", t => t.AgentId, cascadeDelete: true)
+                .ForeignKey("dbo.Agent", t => t.AgentId, cascadeDelete: true)
                 .Index(t => t.AgentId);
             
             CreateTable(
-                "dbo.AgentToProperties",
+                "dbo.AgentToProperty",
                 c => new
                     {
                         AgentToPropertyId = c.Guid(nullable: false, identity: true),
                         AgentId = c.Guid(nullable: false),
                         BuildingPropertyId = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => t.AgentToPropertyId)//foreging key parent table dbo.Property dependent table dbo.AgentToProperties
-                //foreging key parent table dbo.Agents dependent table dbo.AgentToProperties
+                .PrimaryKey(t => t.AgentToPropertyId)//foreging key parent table dbo.Agent dependent table dbo.AgentToProperty
                 
-                .ForeignKey("dbo.Agents", t => t.AgentId, cascadeDelete: true)
+                .ForeignKey("dbo.Agent", t => t.AgentId, cascadeDelete: true)//foreging key parent table dbo.BuildingProperty dependent table dbo.AgentToProperty
+                
+                .ForeignKey("dbo.BuildingProperty", t => t.BuildingPropertyId, cascadeDelete: true)
                 .Index(t => t.AgentId)
                 .Index(t => t.BuildingPropertyId);
             
@@ -60,14 +69,14 @@ namespace Tz.Agent.DataModel.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.AgentToProperties", "AgentId", "dbo.Agents");
-            DropForeignKey("dbo.AgentToCards", "AgentId", "dbo.Agents");
-            DropIndex("dbo.AgentToProperties", new[] { "BuildingPropertyId" });
-            DropIndex("dbo.AgentToProperties", new[] { "AgentId" });
-            DropIndex("dbo.AgentToCards", new[] { "AgentId" });
-            DropTable("dbo.AgentToProperties");
-            DropTable("dbo.AgentToCards");
-            DropTable("dbo.Agents");
+            DropForeignKey("dbo.AgentToProperty", "AgentId", "dbo.Agent");
+            DropForeignKey("dbo.AgentToCard", "AgentId", "dbo.Agent");
+            DropIndex("dbo.AgentToProperty", new[] { "BuildingPropertyId" });
+            DropIndex("dbo.AgentToProperty", new[] { "AgentId" });
+            DropIndex("dbo.AgentToCard", new[] { "AgentId" });
+            DropTable("dbo.AgentToProperty");
+            DropTable("dbo.AgentToCard");
+            DropTable("dbo.Agent");
         }
     }
 }

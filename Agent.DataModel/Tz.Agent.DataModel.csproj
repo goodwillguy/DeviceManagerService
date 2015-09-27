@@ -54,11 +54,10 @@
     <Compile Include="AgentDbContext.cs" />
     <Compile Include="Entity\AgentToCard.cs" />
     <Compile Include="Entity\AgentToProperty.cs" />
-    <Compile Include="Entity\Base.cs" />
     <Compile Include="Entity\LockerBankView.cs" />
-    <Compile Include="Migrations\201509250724283_Initial.cs" />
-    <Compile Include="Migrations\201509250724283_Initial.Designer.cs">
-      <DependentUpon>201509250724283_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201509271516346_Initial.cs" />
+    <Compile Include="Migrations\201509271516346_Initial.Designer.cs">
+      <DependentUpon>201509271516346_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,8 +83,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509250724283_Initial.resx">
-      <DependentUpon>201509250724283_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509271516346_Initial.resx">
+      <DependentUpon>201509271516346_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,9 +6,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tz.Common.Values;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Tz.Agent.DataModel
+namespace Tz.Agent.DataModel.Entity
 {
+    [Table("Agent")]
     public class Agent : Base, IAuditable
     {
         [Key]

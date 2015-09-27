@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace Tz.Agent.DataModel
+namespace Tz.Agent.DataModel.Entity
 {
     [ReadonlyTable]
     [Table("LockerBank")]

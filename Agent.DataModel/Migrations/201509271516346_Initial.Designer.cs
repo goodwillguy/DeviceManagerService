@@ -13,7 +13,7 @@ namespace Tz.Agent.DataModel.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201509250724283_Initial"; }
+            get { return "201509271516346_Initial"; }
         }
         
         string IMigrationMetadata.Source

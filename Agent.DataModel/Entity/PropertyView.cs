@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Tz.Agent.DataModel
+namespace Tz.Agent.DataModel.Entity
 {
     [ReadonlyTable]
     [Table("BuildingProperty")]

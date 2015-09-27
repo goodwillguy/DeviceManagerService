@@ -5,9 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tz.Common.Values;
 
 namespace Tz.Agent.DataModel.Entity
 {
+    [Table("AgentToCard")]
     public class AgentToCard :Base
     {
         [Key]
@@ -23,5 +25,8 @@ namespace Tz.Agent.DataModel.Entity
         public DateTime? EffectiveTo { get; set; }
 
         public bool IsLocked { get; set; }
+
+        [ForeignKey("AgentId")]
+        public virtual Agent Agent { get; set; }
     }
 }

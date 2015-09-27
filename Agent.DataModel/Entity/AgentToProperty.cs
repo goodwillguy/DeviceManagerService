@@ -6,8 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tz.Agent.DataModel
+namespace Tz.Agent.DataModel.Entity
 {
+    [Table("AgentToProperty")]
     public class AgentToProperty
     {
         [Key]
@@ -20,5 +21,8 @@ namespace Tz.Agent.DataModel
 
         [ForeignKey("BuildingPropertyId")]
         public virtual BuildingPropertyView BuildingProperty { get; set; }
+
+        [ForeignKey("AgentId")]
+        public virtual Agent Agent { get; set; }
     }
 }
