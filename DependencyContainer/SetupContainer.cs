@@ -20,17 +20,15 @@ using System.Threading.Tasks;
 using Tz.Parcel.DataModel.Repository;
 using System.Reflection;
 using Tz.Common.DataModel;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity;
 using Tz.Property.Common.Interface;
 using Tz.Property.DataModel.Repository;
 using Tz.Property.DataModel;
 using Tz.Resident.DataModel;
-using System.Data.Entity.Migrations;
 using Tz.Property.DataModel.Migrations;
 using Tz.ApplicationServices.Common.Interface;
 using DropOffApplication_service;
 using Tz.LockerBank.Common.Interface;
+using Tz.Common.DataModel.Interface;
 
 namespace DependencyContainer
 {
@@ -61,7 +59,7 @@ namespace DependencyContainer
             LockerBankChannel(container);
 
             container.Verify();
-            //SetupDb();
+            SetupDb();
         }
 
         private static void LockerBankChannel(Container container)
@@ -83,36 +81,52 @@ namespace DependencyContainer
         {
             var connectionString = _container.GetInstance<IConnectionStringFactory>();
 
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<PropertyDbContext, Tz.Property.DataModel.Migrations.Configuration>());
+            //  //Database.SetInitializer(new MigrateDatabaseToLatestVersion<PropertyDbContext, Tz.Property.DataModel.Migrations.Configuration>());
 
-            foreach (var assemblyName in Assembly.GetExecutingAssembly().GetReferencedAssemblies().Where(ass => ass.Name.StartsWith("Tz")))
+            ///*  foreach (var assemblyName in Assembly.GetExecutingAssembly().GetReferencedAssemblies().Where(ass => ass.Name.StartsWith("Tz")))
+            //  {
+            //      Assembly assembly = Assembly.Load(assemblyName);
+            //      foreach (var type in assembly.GetTypes())
+            //      {
+            //          if (typeof(CustomDbContext).IsAssignableFrom(type) && typeof(CustomDbContext) != type)
+            //          {
+            //              if (type == typeof(PropertyDbContext))
+            //              {
+            //                  Database.SetInitializer(new MigrateDatabaseToLatestVersion<PropertyDbContext, Configuration>());
+            //                  var migrator = new DbMigrator(new Configuration());
+            //                  migrator.Update();
+            //              }
+            //              //var context = Activator.CreateInstance(type, connectionString.GetConnectionString()) as CustomDbContext;
+
+            //              ////context.InitializeDb();
+            //              //context.Database.Initialize(true);
+
+            //             // context.Dispose();
+            //          }
+            //      }
+            //  }*/
+
+            //  //using (var con = new PropertyDbContext(connectionString.GetConnectionString()))
+            //  //{
+            //  //    con.Properties.ToList();
+            //  //}
+
+
+            List<IInitialiseDb> intialiseDbOrder = new List<IInitialiseDb>();
+
+            intialiseDbOrder.Add(new Tz.Property.DataModel.Repository.InitialiseDataModel());
+            intialiseDbOrder.Add(new Tz.Locker.DataModel.Repository.InitialiseDataModel());
+            intialiseDbOrder.Add(new Tz.Agent.DataModel.Repository.InitialiseDataModel());
+            intialiseDbOrder.Add(new Tz.Resident.DataModel.Respository.InitialiseDataModel());
+            intialiseDbOrder.Add(new Tz.Parcel.DataModel.Repository.InitialiseDataModel());
+
+
+
+            foreach(var dbinitilise in intialiseDbOrder)
             {
-                Assembly assembly = Assembly.Load(assemblyName);
-                foreach (var type in assembly.GetTypes())
-                {
-                    if (typeof(CustomDbContext).IsAssignableFrom(type) && typeof(CustomDbContext) != type)
-                    {
-                        if (type == typeof(PropertyDbContext))
-                        {
-                            Database.SetInitializer(
-       new MigrateDatabaseToLatestVersion<PropertyDbContext, Configuration>());
-                            var migrator = new DbMigrator(new Configuration());
-                            migrator.Update();
-                        }
-                        var context = Activator.CreateInstance(type, connectionString.GetConnectionString()) as CustomDbContext;
-
-                        //context.InitializeDb();
-                        context.Database.Initialize(true);
-
-                        context.Dispose();
-                    }
-                }
+                dbinitilise.InitialiseDb();
             }
 
-            //using (var con = new PropertyDbContext(connectionString.GetConnectionString()))
-            //{
-            //    con.Properties.ToList();
-            //}
 
         }
 

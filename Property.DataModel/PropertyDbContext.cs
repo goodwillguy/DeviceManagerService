@@ -27,10 +27,5 @@ namespace Tz.Property.DataModel
 
         public virtual DbSet<Entity.OrganisationToProperty> OrganisationToProperty { get; set; }
 
-        public override void InitializeDb()
-        {
-            
-            //Organisations.ToList();
-        }
     }
 }

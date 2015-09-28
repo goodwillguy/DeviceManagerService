@@ -32,9 +32,6 @@ namespace Tz.Locker.DataModel
 
         public virtual DbSet<LockerToDevice> LockerToDevices { get; set; }
 
-        public override void InitializeDb()
-        {
-            Lockers.ToList();
-        }
+      
     }
 }

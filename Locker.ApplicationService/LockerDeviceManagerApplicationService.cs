@@ -24,6 +24,8 @@ namespace Tz.Locker.ApplicationService
 
             var channel=_lockerBankChannelFactory.CreateChannel<IDeviceManagerService>(lockerBankAndDeviceInfo.LockerBankIpAddress);
 
+            var devices=channel.GetAllDevices();
+
             channel.Open(lockerBankAndDeviceInfo.DeviceSerialNumber);
 
         }

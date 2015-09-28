@@ -61,6 +61,7 @@
     <Compile Include="Entitty\PropertyView.cs" />
     <Compile Include="Entitty\Resident.cs" />
     <Compile Include="ResidentDbContext.cs" />
+    <Compile Include="Respository\InitialiseDataModel.cs" />
     <Compile Include="Respository\ResidentRespository.cs" />
   </ItemGroup>
   <ItemGroup>

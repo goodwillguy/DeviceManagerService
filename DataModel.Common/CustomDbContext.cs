@@ -5,6 +5,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tz.Common.DataModel.Interface;
 
 namespace Tz.Common.DataModel
 {
@@ -28,13 +29,15 @@ namespace Tz.Common.DataModel
             //method.Invoke(genericMethod, null);
         }
 
-        public abstract void InitializeDb();
-
         public override int SaveChanges()
         {
             return base.SaveChanges();
         }
 
+        public static void  InitialiseDb()
+        {
+
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             string annotationValue = typeof(ReadonlyTableAttribute).ToString();

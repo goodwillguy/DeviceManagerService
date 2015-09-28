@@ -9,16 +9,19 @@ using System.Threading.Tasks;
 using Tz.Resident.DataModel.Migrations;
 using System.Data.Entity.Migrations;
 using System.Data.Entity.Migrations.Infrastructure;
+using Tz.Common.DataModel.Interface;
 
 namespace Tz.Resident.DataModel
 {
     public class ResidentDbContext : CustomDbContext
     {
+
         public ResidentDbContext(string connectionString) : base(connectionString)
         {
+
         }
 
-        public ResidentDbContext():base("name=Default")
+        public ResidentDbContext() : base("name=Default")
         {
         }
 
@@ -27,20 +30,5 @@ namespace Tz.Resident.DataModel
 
         public virtual DbSet<LockerBankView> LockerBanks { get; set; }
 
-        public override void InitializeDb()
-        {
-           /* var configuration = new Configuration();
-            var migrator = new DbMigrator(configuration);
-
-            var scriptor = new MigratorScriptingDecorator(migrator);
-            var script = scriptor.ScriptUpdate(sourceMigration: null, targetMigration: null);
-            Console.WriteLine(script);
-
-            migrator.Update();
-
-            var pending = migrator.GetPendingMigrations();
-
-            Console.ReadLine();*/
-        }
     }
 }

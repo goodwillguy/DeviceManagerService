@@ -27,9 +27,5 @@ namespace Tz.Agent.DataModel
 
         public virtual DbSet<LockerBankView> LockerBank { get; set; }
 
-        public override void InitializeDb()
-        {
-            Agents.ToList();
-        }
     }
 }

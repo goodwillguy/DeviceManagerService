@@ -18,7 +18,7 @@ namespace Tz.Parcel.DataModel
         {
         }
 
-        public ParcelDbContext():base("name=Default")
+        public ParcelDbContext() : base("name=Default")
         {
         }
 
@@ -32,9 +32,5 @@ namespace Tz.Parcel.DataModel
 
         public virtual DbSet<AgentView> Agents { get; set; }
 
-        public override void InitializeDb()
-        {
-            Parcels.ToList();
-        }
     }
 }
