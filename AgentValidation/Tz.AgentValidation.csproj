@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{69D0B635-95C9-4BE7-A7BB-8E0FF6641574}</ProjectGuid>
+    <ProjectGuid>{17A91523-6D98-4F48-845C-86898A0CA72A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tz.ApplicationServices.Common</RootNamespace>
-    <AssemblyName>Tz.ApplicationServices.Common</AssemblyName>
+    <RootNamespace>Tz.AgentValidation</RootNamespace>
+    <AssemblyName>Tz.AgentValidation</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,9 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IDropOffEvent.cs" />
-    <Compile Include="Interface\IResidentService.cs" />
-    <Compile Include="Interface\IValidateAgent.cs" />
+    <Compile Include="AgentApplicationServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -51,13 +48,13 @@
       <Project>{0983a550-1287-4965-929c-c6ee7106a7bc}</Project>
       <Name>Tz.Agent.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common.Values\Tz.Common.Values.csproj">
-      <Project>{84ee0288-d093-4f5f-aaf9-e2cd64c04a8d}</Project>
-      <Name>Tz.Common.Values</Name>
+    <ProjectReference Include="..\ApplicationServices.Common\Tz.ApplicationServices.Common.csproj">
+      <Project>{69d0b635-95c9-4be7-a7bb-8e0ff6641574}</Project>
+      <Name>Tz.ApplicationServices.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Resident.Common\Tz.Resident.Common.csproj">
-      <Project>{edea211a-2504-4519-b4ed-fcea55907e67}</Project>
-      <Name>Tz.Resident.Common</Name>
+    <ProjectReference Include="..\Locker.Common\Tz.Locker.Common.csproj">
+      <Project>{6fac72a2-7d8d-453f-9d49-abebd741a0c6}</Project>
+      <Name>Tz.Locker.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{69D0B635-95C9-4BE7-A7BB-8E0FF6641574}</ProjectGuid>
+    <ProjectGuid>{D51AD383-A198-4424-AD1D-B825415036AD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tz.ApplicationServices.Common</RootNamespace>
-    <AssemblyName>Tz.ApplicationServices.Common</AssemblyName>
+    <RootNamespace>Tz.DropOff.ApplicationService</RootNamespace>
+    <AssemblyName>Tz.DropOff.ApplicationService</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -41,19 +41,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IDropOffEvent.cs" />
-    <Compile Include="Interface\IResidentService.cs" />
-    <Compile Include="Interface\IValidateAgent.cs" />
+    <Compile Include="DropOffHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Agent.Common\Tz.Agent.Common.csproj">
-      <Project>{0983a550-1287-4965-929c-c6ee7106a7bc}</Project>
-      <Name>Tz.Agent.Common</Name>
+    <ProjectReference Include="..\ApplicationServices.Common\Tz.ApplicationServices.Common.csproj">
+      <Project>{69d0b635-95c9-4be7-a7bb-8e0ff6641574}</Project>
+      <Name>Tz.ApplicationServices.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common.Values\Tz.Common.Values.csproj">
       <Project>{84ee0288-d093-4f5f-aaf9-e2cd64c04a8d}</Project>
       <Name>Tz.Common.Values</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Locker.Common\Tz.Locker.Common.csproj">
+      <Project>{6fac72a2-7d8d-453f-9d49-abebd741a0c6}</Project>
+      <Name>Tz.Locker.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Parcel.Common\Tz.Parcel.Common.csproj">
+      <Project>{2ebee0d0-f5b0-45cd-8a9d-0e1755b8befd}</Project>
+      <Name>Tz.Parcel.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Resident.Common\Tz.Resident.Common.csproj">
       <Project>{edea211a-2504-4519-b4ed-fcea55907e67}</Project>

@@ -4,7 +4,7 @@ using Tz.Common.Values.Enums;
 using Tz.Locker.Common.Interface;
 using Tz.Parcel.Common.Interface;
 
-namespace DropOffApplication_service
+namespace Tz.DropOff.ApplicationService
 {
     public class DropOffHandler : IDropOffEvent
     {

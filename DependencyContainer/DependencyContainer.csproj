@@ -66,6 +66,10 @@
       <Project>{9a53f769-5d03-43dd-bac0-b165b840f563}</Project>
       <Name>Tz.Agent.DataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AgentValidation\Tz.AgentValidation.csproj">
+      <Project>{17a91523-6d98-4f48-845c-86898a0ca72a}</Project>
+      <Name>Tz.AgentValidation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ApplicationServices.Common\Tz.ApplicationServices.Common.csproj">
       <Project>{69d0b635-95c9-4be7-a7bb-8e0ff6641574}</Project>
       <Name>Tz.ApplicationServices.Common</Name>
@@ -82,9 +86,9 @@
       <Project>{485f14ad-3dd0-4274-b590-945fc929d589}</Project>
       <Name>Common.DataModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DropOffApplication service\DropOffApplication service.csproj">
+    <ProjectReference Include="..\DropOffApplication service\Tz.DropOff.ApplicationService.csproj">
       <Project>{d51ad383-a198-4424-ad1d-b825415036ad}</Project>
-      <Name>DropOffApplication service</Name>
+      <Name>Tz.DropOff.ApplicationService</Name>
     </ProjectReference>
     <ProjectReference Include="..\Locker.ApplicationService\Tz.Locker.ApplicationService.csproj">
       <Project>{c77eac46-9b4e-424a-b2e5-9725ab3c3b2f}</Project>
@@ -125,6 +129,10 @@
     <ProjectReference Include="..\Resident.DataModel\Tz.Resident.DataModel.csproj">
       <Project>{b14dfffb-840e-4fe0-80ee-fcaaa572ae99}</Project>
       <Name>Tz.Resident.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResidentApplicationService\Tz.Resident.ApplicationService.csproj">
+      <Project>{39bac534-cb8f-43bb-876e-5793c032b0ee}</Project>
+      <Name>Tz.Resident.ApplicationService</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tz.Property.Common\Tz.Property.Common.csproj">
       <Project>{8ad9041a-94e5-4e43-b3c3-dfffa67f25cf}</Project>

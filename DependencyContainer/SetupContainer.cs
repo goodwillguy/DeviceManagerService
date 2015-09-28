@@ -26,9 +26,11 @@ using Tz.Property.DataModel;
 using Tz.Resident.DataModel;
 using Tz.Property.DataModel.Migrations;
 using Tz.ApplicationServices.Common.Interface;
-using DropOffApplication_service;
 using Tz.LockerBank.Common.Interface;
 using Tz.Common.DataModel.Interface;
+using Tz.DropOff.ApplicationService;
+using Tz.Resident.ApplicationService;
+using Tz.AgentValidation;
 
 namespace DependencyContainer
 {
@@ -58,7 +60,7 @@ namespace DependencyContainer
 
             LockerBankChannel(container);
 
-            container.Verify();
+            //container.Verify();
             SetupDb();
         }
 
@@ -70,6 +72,10 @@ namespace DependencyContainer
         private static void ApplicationServiceRegister(Container container)
         {
             container.Register<IDropOffEvent, DropOffHandler>();
+
+            container.Register<IResidentService, ResidentWorkService>();
+
+            container.Register<IValidateAgent, AgentWorkFlowServices>();
         }
 
         private static void PropertyModuleRegister(Container container)
