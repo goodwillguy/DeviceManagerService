@@ -5,7 +5,7 @@ DropOffService.DropOffParcel = function (lockerBankCode, agentId, consignmentno,
 
     var def = $.Deferred();
 
-    var url = WebApiHost.HostName + "api/parcel/dropoffParcel";
+    var url = WebApiHost.HostName + "/api/parcel/dropoffParcel";
 
     var data = {
         AgentId: agentId,

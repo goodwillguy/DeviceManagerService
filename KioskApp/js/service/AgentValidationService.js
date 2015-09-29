@@ -19,7 +19,6 @@ AgentValidationService.ValidateAgentByCardNumber = function (lockerBankCode, age
     //    lockerBankCode: lockerBankCode,
     //    cardNumber:agentCardNumber
     //};
-    debugger;
     $.post(agentUrl, body)
     .done(function (agentInfo) {
 

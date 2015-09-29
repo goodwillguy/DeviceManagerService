@@ -33,11 +33,13 @@ namespace Tz.Resident.DataModel.Respository
                 query = query.Where(res => res.FirstName.Contains(name) || res.LastName.Contains(name));
             }
 
+            var a = query.ToList();
             var residents = query.Select(res => new ResidentDto
             {
                 ResidentCode = res.ResidentCode,
                 EmailAddress = res.EmailAddress,
                 FirstName = res.FirstName,
+                LastName=res.LastName,
                 IsResidentDisabled = res.IsResidentDisabled,
                 MobileNumber = res.MobileNumber,
                 ResidentId = res.ResidentId

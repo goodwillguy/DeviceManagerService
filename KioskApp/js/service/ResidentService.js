@@ -5,7 +5,7 @@ var ResidentService = ResidentService || {};
 ResidentService.GetResident = function (lockerBankCode, searchText) {
 
     var def = $.Deferred();
-    var url = WebApiHost.HostName + "/api/resident/GetResidents?lockerBankCode='" + lockerBankCode + "'";
+    var url = WebApiHost.HostName + "/api/resident/GetResidents?lockerBankCode=" + lockerBankCode + "";
 
     $.getJSON(url, '', function (residents) {
         def.resolve(residents);
@@ -14,5 +14,5 @@ ResidentService.GetResident = function (lockerBankCode, searchText) {
 
 
 
-    def.promise();
+   return def.promise();
 }

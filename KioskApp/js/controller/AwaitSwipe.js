@@ -1,10 +1,9 @@
 ﻿/// <reference path="~/Scripts/knockout-3.3.0.debug.js" />
 /// <reference path="~/js/jquery-2.1.1.minjs" />
 
-$(document).ready(function () {
     var SwipeController = (function () {
 
-        function SwipeController() {
+        function SwipeController(swipeEventCallback) {
             this.cardNumber = ko.observable();
 
             this.isValiding = ko.observable(false);
@@ -12,6 +11,9 @@ $(document).ready(function () {
             this.isProcessingSwipe = ko.observable(false);
 
             this.isListeningForCardSwipe = ko.observable(false);
+
+
+            this.callBack = swipeEventCallback;
 
             this.timer = null;
 
@@ -52,16 +54,10 @@ $(document).ready(function () {
                 this.isProcessingSwipe(true);
                 this.cardNumber(cardNumber);
 
-                AgentValidationService.ValidateAgentByCardNumber(LockerBankIdentifer.CurrentLockerBankId, this.cardNumber())
-                .done(function (data) {
-                    alert('yes');
-                })
-                .fail(function (data) {
-                    alert('fail');
-                })
-                .always(function () {
-                    this.isProcessingSwipe(false);
-                }.bind(this));
+                this.callBack(cardNumber);
+
+                this.isProcessingSwipe(false);
+
 
             }
 
@@ -71,6 +67,3 @@ $(document).ready(function () {
         return SwipeController;
     })();
 
-    ko.applyBindings(new SwipeController(), document.getElementById('body')[0]);
-
-});

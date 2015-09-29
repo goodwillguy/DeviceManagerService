@@ -22,7 +22,7 @@ CardReaderService.SubscribeForSwipeEvent=function(callbackFunction){
         //$('#messages').html(
         //    '<div>Connected. Waiting for messages...</div>');
 
-        alert('connected waiting for response');
+       // alert('connected waiting for response');
         def.resolve();
     };
 

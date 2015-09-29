@@ -4,10 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Tz.ApplicationServices.Common.Interface;
 
 namespace WebApi.Controllers
 {
+    [EnableCors("http://localhost:49641", "*", "*")]
     public class DropoffController : ApiController
     {
         private readonly IDropOffEvent _dropoffService;

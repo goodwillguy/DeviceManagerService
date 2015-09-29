@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Tz.ApplicationServices.Common.Interface;
 using Tz.Resident.Common.Dto;
 
 namespace WebApi.Controllers
 {
+    [EnableCors("http://localhost:49641", "*", "*")]
     public class ResidentController:ApiController
     {
         private readonly IResidentService _residentService;
