@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TZ.API.DeviceManagement;
 using TZ.ServiceModel;
+using Tz.LockerBank.Common.Interface.CardReaderConversion;
 
 namespace Tz.DeviceManagerService.App_Start
 {
@@ -40,10 +41,11 @@ namespace Tz.DeviceManagerService.App_Start
             containerBuilder.RegisterType<DeviceManager>().As<IDeviceManager>().SingleInstance();
 
             containerBuilder.RegisterType<DeviceManagerServiceHost>().As<IDeviceManagerService>();
+            containerBuilder.RegisterType<LockerBankIdentifier>().As<ILockerBankIdentifier>();
             containerBuilder.RegisterType<CardReaderListner>().As<ICardReaderService>().SingleInstance();
             containerBuilder.RegisterType<CardReaderService>().As<ICardReaderEventsSubscribe>().SingleInstance();
             containerBuilder.RegisterType<CardReaderService>().As<IWebCardReaderEventsSubscribe>().SingleInstance();
-
+            containerBuilder.RegisterType<HidStandard35BitConversion>().As<ICardReaderConversionService>().SingleInstance();
 
             //var deviceManager =container.GetInstance<IDeviceManager>();
         }

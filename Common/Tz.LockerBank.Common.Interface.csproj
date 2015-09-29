@@ -36,6 +36,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Channels" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,16 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardReaderConversion\BitHexConversion.cs" />
+    <Compile Include="CardReaderConversion\HidStandard35BitConversion.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="DeviceChangedEventArg.cs" />
     <Compile Include="DeviceStatus.cs" />
     <Compile Include="DeviceType.cs" />
+    <Compile Include="ICardReaderConversionService.cs" />
     <Compile Include="ICardReaderService.cs" />
     <Compile Include="IComPortProvider.cs" />
     <Compile Include="IDeviceEventsSubscribe.cs" />
     <Compile Include="IDeviceManager.cs" />
     <Compile Include="IDeviceManagerService.cs" />
     <Compile Include="ILockerBankChannel.cs" />
+    <Compile Include="ILockerBankIdentifier.cs" />
     <Compile Include="LockerBankChannel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SwipeEventArgs.cs" />

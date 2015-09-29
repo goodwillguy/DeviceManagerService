@@ -77,6 +77,7 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.ServiceModel.Channels" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -105,6 +106,7 @@
     <Compile Include="App_Start\BootStrap.cs" />
     <Compile Include="ComPortProvider.cs" />
     <Compile Include="DeviceManagerService.cs" />
+    <Compile Include="LockerBankIdentifier.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CardReaderService.cs" />
@@ -118,6 +120,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Delete\CorsSupport\WebHttpCors\WebHttpCors.csproj">
+      <Project>{9045e552-71c6-497f-9c91-97906155c233}</Project>
+      <Name>WebHttpCors</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Tz.LockerBank.Common.Interface.csproj">
       <Project>{b545b3c6-5431-4004-b803-94c0775174c0}</Project>
       <Name>Tz.LockerBank.Common.Interface</Name>

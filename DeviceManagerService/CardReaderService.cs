@@ -18,15 +18,28 @@ namespace Tz.DeviceManagerService
         Dictionary<string, ICardReaderEventsCallBack> _cardReaderSubscription = new Dictionary<string, ICardReaderEventsCallBack>();
 
         Dictionary<string, IWebCardReaderEventsCallBack> _webCardReaderSubscription = new Dictionary<string, IWebCardReaderEventsCallBack>();
+        System.Timers.Timer time = new System.Timers.Timer();
+        private readonly ICardReaderConversionService _cardNumberConversion;
 
-        public CardReaderService(ICardReaderService cardReader)
+        public CardReaderService(ICardReaderService cardReader, ICardReaderConversionService cardNumberConversion)
         {
+            time.Elapsed += Time_Elapsed;
             _cardReader = cardReader;
+            _cardNumberConversion = cardNumberConversion;
             _cardReader.Swipe += _cardReader_Swipe;
+            time.Interval = 60 * 1000;
+            time.Start();
+        }
+
+        private void Time_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            //_cardReader_Swipe(this, new SwipeEventArgs { RFID = "123456", SerialNumber="123456" });
         }
 
         private void _cardReader_Swipe(object sender, SwipeEventArgs e)
         {
+            var cardNumber = _cardNumberConversion.DecodeCardNumber(e.RFID);
+
             var list = _cardReaderSubscription.ToArray();
 
             var webList = _webCardReaderSubscription.ToArray();
@@ -35,7 +48,7 @@ namespace Tz.DeviceManagerService
             {
                 try
                 {
-                    key.Value.SendCardSwipeByName(e.RFID);
+                    key.Value.SendCardSwipeByName(cardNumber);
                 }
                 catch (ObjectDisposedException ex)
                 {
@@ -48,7 +61,7 @@ namespace Tz.DeviceManagerService
             {
                 try
                 {
-                    key.Value.SendCardSwipe(CreateMessage(e.RFID));
+                    key.Value.SendCardSwipe(CreateMessage(cardNumber));
                 }
                 catch (ObjectDisposedException ex)
                 {
@@ -98,7 +111,7 @@ namespace Tz.DeviceManagerService
 
             var hostName = queryParameters["Name"].ToString();
 
-            if (_webCardReaderSubscription.ContainsKey(hostName))
+            if (!_webCardReaderSubscription.ContainsKey(hostName))
             {
                 _webCardReaderSubscription.Add(hostName, current);
             }
@@ -109,7 +122,7 @@ namespace Tz.DeviceManagerService
 
 
 
-           current.SendCardSwipe(CreateMessage(str));
+          // current.SendCardSwipe(CreateMessage(str));
         }
 
         private Message CreateMessage(string content)

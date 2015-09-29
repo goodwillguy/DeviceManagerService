@@ -49,6 +49,8 @@ namespace Tz.DeviceManagerService
             return _deviceManager.GetFirmwareVersion();
         }
 
+       
+
         public bool IsReady()
         {
             return _deviceManager.IsReady();

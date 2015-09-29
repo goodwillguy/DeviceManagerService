@@ -34,6 +34,13 @@ namespace Tz.DeviceManagerService
 
             host1.Open();
 
+
+            ServiceHost host2 = new ServiceHost(typeof(LockerBankIdentifier));
+
+            host2.AddDependencyInjectionBehavior<ILockerBankIdentifier>(Bootstrapper.Container);
+
+            host2.Open();
+
             Console.ReadKey();
         }
     }
