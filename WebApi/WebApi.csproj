@@ -119,6 +119,7 @@
     <Compile Include="Controllers\DropoffController.cs" />
     <Compile Include="Controllers\DropOffDto.cs" />
     <Compile Include="Controllers\ResidentController.cs" />
+    <Compile Include="Dto\AgentCarDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

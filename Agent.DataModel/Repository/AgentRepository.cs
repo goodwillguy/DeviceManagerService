@@ -26,14 +26,16 @@ namespace Tz.Agent.DataModel.Repository
 
             var lockerBank = context.LockerBank.FirstOrDefault(lb => lb.LockerBankId == lockerBankId);
 
+            var currentDate = _dateTime.GetCurrentDate();
 
             var agentDto = context.Agents
                    .Where(ag => ag.Properties.Any(prop => prop.BuildingPropertyId == lockerBank.BuildingPropertyId))
                    .Where(ag => ag.IsDisabled == false)
                    .Where(ag => ag.AgentCards.Any(agCard => agCard.AgentId == ag.AgentId &&
-                                                  agCard.CardNumber.ToLower() == cardNumber.ToLower() && !agCard.IsLocked &&
-                                                  agCard.EffectiveFrom > _dateTime.GetCurrentDate() &&
-                                                  (agCard.EffectiveTo == null || !(_dateTime.GetCurrentDate() > agCard.EffectiveTo.Value))))
+                                                  agCard.CardNumber.ToLower() == cardNumber.ToLower() && !agCard.IsLocked //&&
+                                                  //agCard.EffectiveFrom > currentDate &&
+                                                  //(agCard.EffectiveTo == null || !(currentDate > agCard.EffectiveTo.Value))
+                                                  ))
                    .Select(agent => new AgentDto
                    {
                        AgentId = agent.AgentId,

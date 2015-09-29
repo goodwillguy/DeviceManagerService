@@ -6,7 +6,7 @@ namespace Common
     {
         public DateTime GetCurrentDate()
         {
-            throw new NotImplementedException();
+            return DateTime.Now;
         }
     }
 }

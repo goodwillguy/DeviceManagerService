@@ -7,10 +7,12 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using Tz.Agent.Common.Dto;
 using Tz.ApplicationServices.Common.Interface;
+using WebApi.Dto;
 
 namespace WebApi.Controllers
 {
-    [EnableCors("*","*","*")]
+
+    [EnableCors("http://localhost:49641", "*","*")]
     public class AgentController:ApiController
     {
         private readonly IValidateAgent _validateAgent;
@@ -29,9 +31,9 @@ namespace WebApi.Controllers
 
         [Route("api/agent/agentByCard")]
         [HttpPost]
-        public AgentDto AgentForCard(string lockerBankCode, string cardNumber)
+        public AgentDto AgentForCard(AgentCardDto cardArgs)
         {
-            return _validateAgent.GetAuthorisedAgent(lockerBankCode, cardNumber);
+            return _validateAgent.GetAuthorisedAgent(cardArgs.lockerBankCode, cardArgs.cardNumber);
         }
 
     }

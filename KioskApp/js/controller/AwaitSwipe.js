@@ -44,7 +44,7 @@ $(document).ready(function () {
             },
 
             receivedCardSwipe: function (cardNumber) {
-                if (this.isProcessingSwipe() || isNaN(cardNumber)) {
+                if (this.isProcessingSwipe()) {
                     return;
                 }
 
@@ -52,7 +52,17 @@ $(document).ready(function () {
                 this.isProcessingSwipe(true);
                 this.cardNumber(cardNumber);
 
-                AgentValidationService.ValidateAgentByCardNumber("abc", this.cardNumber());
+                AgentValidationService.ValidateAgentByCardNumber(LockerBankIdentifer.CurrentLockerBankId, this.cardNumber())
+                .done(function (data) {
+                    alert('yes');
+                })
+                .fail(function (data) {
+                    alert('fail');
+                })
+                .always(function () {
+                    this.isProcessingSwipe(false);
+                }.bind(this));
+
             }
 
 

@@ -1,28 +1,40 @@
 ﻿/// <reference path="~/Scripts/jquery-2.1.4.js" />
 var AgentValidationService = AgentValidationService || {};
 
-AgentValidationService.ValidateAgentByCardNumber = function (lockerBankCode,agentCardNumber) {
+AgentValidationService.ValidateAgentByCardNumber = function (lockerBankCode, agentCardNumber) {
 
 
-    var parameters = "?lockerBankCode=" + lockerBankCode + "&cardNumber=" + agentCardNumber;
+    var def = $.Deferred();
 
-    var agentUrl = "http://localhost:55188/api/agent/agentForCard" + parameters;
+    var parameters = "?lockerBankCode='" + lockerBankCode + "'&cardNumber='" + agentCardNumber + "'";
+
+    var body = {
+        lockerBankCode: lockerBankCode,
+        cardNumber: agentCardNumber
+    }
+
+    var agentUrl = WebApiHost.HostName + "/api/agent/agentByCard";
 
     //var data = {
     //    lockerBankCode: lockerBankCode,
     //    cardNumber:agentCardNumber
     //};
     debugger;
-    $.post(agentUrl, '')
+    $.post(agentUrl, body)
     .done(function (agentInfo) {
 
-        if (agentInfo != null)
-        { alert('success'); }
-        else
-        {
-            alert('failure');
+        if (agentInfo != null) {
+            def.resolve(agentInfo);
+        }
+        else {
+            def.reject();
         }
 
+    }.bind(this))
+    .fail(function () {
+        def.reject();
     }.bind(this));
+
+    return def.promise();
 
 };
