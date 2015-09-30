@@ -1,7 +1,7 @@
 ﻿/// <reference path="~/Scripts/jquery-2.1.4.js" />
 var DropOffService = DropOffService || {};
 
-DropOffService.DropOffParcel = function (lockerBankCode, agentId, consignmentno, residentId) {
+DropOffService.DropOffParcel = function (lockerBankCode, agentId, consignmentno, residentId, availableLockerId) {
 
     var def = $.Deferred();
 
@@ -12,7 +12,8 @@ DropOffService.DropOffParcel = function (lockerBankCode, agentId, consignmentno,
         LockerBankCode: lockerBankCode,
         OperatorId: agentId,
         ParcelConsignmentNumber: consignmentno,
-        ResidentId: residentId
+        ResidentId: residentId,
+        LockerId: availableLockerId
     };
 
 

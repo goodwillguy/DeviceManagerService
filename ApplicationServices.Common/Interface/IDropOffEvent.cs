@@ -9,6 +9,6 @@ namespace Tz.ApplicationServices.Common.Interface
 {
     public interface IDropOffEvent
     {
-        void DoDropOff(string lockerBankCode, Guid residentId, Size parcelSize, string consignmentNumber, Guid operatorId, Guid agentDropOffId);
+        LockerDataDto DoDropOff(string lockerBankCode, Guid residentId, Size parcelSize, string consignmentNumber, Guid operatorId, Guid agentDropOffId, Guid lockerId);
     }
 }

@@ -30,7 +30,9 @@ namespace Tz.Locker.DataModel.Repository
                                 LockerBankId = locker.LockerBankId,
                                 LockerOfflineReasonId = locker.LockerOfflineReasonId,
                                 Size = locker.Size,
-                                State = locker.State
+                                State = locker.State,
+                                Column=locker.Column,
+                                LockerNumber=locker.LockerNumber
                             }).ToList();
 
             return lockersList;
@@ -108,6 +110,15 @@ namespace Tz.Locker.DataModel.Repository
                             }).FirstOrDefault();
 
             return lockerData;
+        }
+
+        public bool IsLockerAvailable(Guid lockerBankId, Guid lockerId)
+        {
+
+            LockerDbContext context = new LockerDbContext(_connectionStringFactory.GetConnectionString());
+
+            return context.Lockers.Any(lo => lo.LockerId == lockerId && lo.LockerBankId == lockerBankId && lo.State == LockerState.Available);
+
         }
     }
 }

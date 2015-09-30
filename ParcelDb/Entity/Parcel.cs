@@ -35,7 +35,12 @@ namespace Tz.Parcel.DataModel.ParcelEnitities
 
         public Guid? LockerId { get; set; }
 
+        public Guid? MailRoomId { get; set; }
+
         public virtual List<ParcelTransaction> ParcelTransactions { get; set; }
+
+        [ForeignKey("LockerId")]
+        public virtual LockerView Locker { get; set; }
 
 
     }

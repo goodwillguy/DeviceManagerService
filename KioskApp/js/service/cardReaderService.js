@@ -1,13 +1,15 @@
 ﻿var CardReaderService = CardReaderService || {};
 
-CardReaderService.SubscribeForSwipeEvent=function(callbackFunction){
+CardReaderService.SubscribeForSwipeEvent = function (callbackFunction) {
+
+
 
     var callback = callbackFunction;
-    var uri='ws://localhost:169/IWebCardReaderSubscribe?Name=localhost';
+    var uri = 'ws://localhost:169/IWebCardReaderSubscribe?Name=localhost';
 
     var def = new $.Deferred();
 
-
+    callbackFunction(WebSocketEventEnum.Connecting, '');
     var websocket = new WebSocket(uri);
 
     websocket.onopen = function () {
@@ -22,30 +24,33 @@ CardReaderService.SubscribeForSwipeEvent=function(callbackFunction){
         //$('#messages').html(
         //    '<div>Connected. Waiting for messages...</div>');
 
-       // alert('connected waiting for response');
-        def.resolve();
+        // alert('connected waiting for response');
+        def.resolve(WebSocketEventEnum.Connected);
+
+
     };
 
-    websocket.onerror=function()
-    {
-        def.reject();
+    setInterval(function () {
+        if (websocket.readyState) {
+            debugger;
+            websocket.send("KeepAlive");
+        }
+    }.bind(this), 30000);
+
+
+    websocket.onerror = function () {
+        def.resolve(WebSocketEventEnum.Disconnected);
     }
 
     websocket.onclose = function () {
-        if (document.readyState == "complete") {
-            debugger;
-            var warn = $('<div>').html(
-                'Connection lost. Refresh the page to start again.').
-                css('color', 'red');
-            //$('#messages').append(warn);
-            alert(warn);
-        }
+        callback(WebSocketEventEnum.Disconnected, '');
     };
 
     websocket.onmessage = function (event) {
-        callback(event.data);
+        callback(WebSocketEventEnum.ReceivedEvent, event.data);
         //$("#messages").append(event.data + "<br>");
     };
+
 
 
     return def.promise();

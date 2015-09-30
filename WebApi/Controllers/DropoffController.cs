@@ -5,11 +5,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Tz.ApplicationServices.Common;
 using Tz.ApplicationServices.Common.Interface;
+using WebApi.Dto;
 
 namespace WebApi.Controllers
 {
-    [EnableCors("http://localhost:49641", "*", "*")]
+    [EnableCors("*", "*", "*")]
     public class DropoffController : ApiController
     {
         private readonly IDropOffEvent _dropoffService;
@@ -21,11 +23,10 @@ namespace WebApi.Controllers
 
         [Route("api/parcel/dropoffParcel")]
         [HttpPost]
-        public bool DropOffParcel(DropOffDto dropOff)
+        public LockerDataDto DropOffParcel(DropOffDto dropOff)
         {
-            _dropoffService.DoDropOff(dropOff.LockerBankCode, Guid.Parse(dropOff.ResidentId), Tz.Common.Values.Enums.Size.Small, dropOff.ParcelConsignmentNumber, Guid.Parse(dropOff.OperatorId), Guid.Parse(dropOff.AgentId));
+            return _dropoffService.DoDropOff(dropOff.LockerBankCode, Guid.Parse(dropOff.ResidentId), Tz.Common.Values.Enums.Size.Small, dropOff.ParcelConsignmentNumber, Guid.Parse(dropOff.OperatorId), Guid.Parse(dropOff.AgentId),Guid.Parse(dropOff.LockerId));
 
-            return true;
         }
     }
 }

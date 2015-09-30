@@ -15,6 +15,6 @@ namespace Tz.Parcel.DataModel.ParcelEnitities
 
         public LockerState LockerState { get; set; }
 
-        public string Number { get; set; }
+        public string LockerNumber { get; set; }
     }
 }

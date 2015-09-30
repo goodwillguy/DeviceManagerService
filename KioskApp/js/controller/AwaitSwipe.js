@@ -3,7 +3,7 @@
 
     var SwipeController = (function () {
 
-        function SwipeController(swipeEventCallback) {
+        function SwipeController(connectingCallBack,connectedCallback,disconnectedCallBack,swipeEventCallback) {
             this.cardNumber = ko.observable();
 
             this.isValiding = ko.observable(false);
@@ -12,8 +12,13 @@
 
             this.isListeningForCardSwipe = ko.observable(false);
 
+            this.connectingCallBack = connectingCallBack;
+            this.connectedCallback = connectedCallback;
+            this.disconnectedCallBack = disconnectedCallBack;
 
-            this.callBack = swipeEventCallback;
+            this.swipeEventCallback = swipeEventCallback;
+
+            this.isTimerActive = false;
 
             this.timer = null;
 
@@ -24,23 +29,57 @@
         SwipeController.prototype = {
 
             startTimer: function () {
+                if (this.isTimerActive)
+                {
+                    return;
+                }
+                this.isTimerActive = true;
                 this.timer = setInterval(this.subscribeForSwipeEvent.bind(this), 4000);
             },
 
             subscribeForSwipeEvent: function () {
-                CardReaderService.SubscribeForSwipeEvent(this.receivedCardSwipe.bind(this))
+                CardReaderService.SubscribeForSwipeEvent(this.callbackOnEvent.bind(this))
                 .done(this.subscribeToCardSwipeSuccess.bind(this))
                 .fail(this.subscribeToCardSwipeFailed.bind(this));
 
 
             },
 
-            subscribeToCardSwipeSuccess: function () {
-                this.isListeningForCardSwipe(true);
-                clearInterval(this.timer);
+            subscribeToCardSwipeSuccess: function (messageType) {
+                this.callbackOnEvent(messageType, '');
 
             },
+            callbackOnEvent :function(messageType,data)
+            {
 
+                if(messageType==WebSocketEventEnum.Connecting)
+                {
+                    this.connectingCallBack("Setting up system. Please Wait.")
+                    return;
+                }
+
+                if (messageType == WebSocketEventEnum.Connected)
+                {
+                    this.isListeningForCardSwipe(true);
+                    clearInterval(this.timer);
+                    this.isTimerActive = false;
+                    this.connectedCallback("System is ready.")
+                    return;
+                }
+
+                if(messageType==WebSocketEventEnum.ReceivedEvent)
+                {
+                    this.receivedCardSwipe(data);
+                    return;
+                }
+
+                if(messageType==WebSocketEventEnum.Disconnected)
+                {
+                    this.startTimer();
+                    return;
+                }
+
+            },
             subscribeToCardSwipeFailed: function () {
                 this.isListeningForCardSwipe(false);
             },
@@ -54,7 +93,7 @@
                 this.isProcessingSwipe(true);
                 this.cardNumber(cardNumber);
 
-                this.callBack(cardNumber);
+                this.swipeEventCallback(cardNumber);
 
                 this.isProcessingSwipe(false);
 

@@ -10,7 +10,7 @@ namespace Tz.Parcel.Common.Interface
 {
     public interface IDropOffParcel
     {
-        bool DropOffParcel(Guid operatorId, Guid lockerBankCode, Size lockerSize, string consignmentNumber, Guid agentDropOffId, Guid residentId);
+        bool DropOffParcel(Guid operatorId, Guid lockerBankCode, Size lockerSize, string consignmentNumber, Guid agentDropOffId, Guid residentId,Guid availableLockerId);
 
         ParcelDto GetParcelInformation(Guid lockerBankId, string consignmentNumber);
     }

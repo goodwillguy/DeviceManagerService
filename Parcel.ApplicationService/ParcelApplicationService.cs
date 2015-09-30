@@ -21,12 +21,17 @@ namespace Tz.Parcel.ApplicationService
             _parcelRepository = parcelRepository;
             _dateTime = dateTime;
         }
-        public bool DropOffParcel(Guid operatorId,Guid lockerBankId, Size parcelSize, string consignmentNumber, Guid agentDropOffId, Guid residentId)
+        public bool DropOffParcel(Guid operatorId,Guid lockerBankId, Size parcelSize, string consignmentNumber, Guid agentDropOffId, Guid residentId,Guid availableLockerId)
         {
             bool isDropoffSuccess = false;
 
-            var availableLocker = _lockerService.GetAvailableLocker(lockerBankId, parcelSize);
+            var availableLocker = _lockerService.IsLockerAvailable(lockerBankId, availableLockerId);
 
+
+            if(!availableLocker)
+            {
+                throw new ApplicationException("This locker is not currently available and booked by some one else.");
+            }
 
             var parcel = _parcelRepository.GetParcelByConsignmentNumber(lockerBankId, consignmentNumber);
             //var hasConsignmentNo =context.Parcels.Any(parcel => parcel.ConsignmentNumber.ToLower() == consignmentNumber.ToLower());
@@ -48,7 +53,7 @@ namespace Tz.Parcel.ApplicationService
                 DropoffTime = DateTime.Now,
                 TransactionState = TransactionState.Dropoff,
                 CreateUserId=operatorId,
-                LockerId=availableLocker.Value,
+                LockerId= availableLockerId,
                 CreationTime=_dateTime.GetCurrentDate(),
 
             };
@@ -63,7 +68,7 @@ namespace Tz.Parcel.ApplicationService
                 SenderId = agentDropOffId,
                 RecipientId = residentId,
                 ExpiryTime = exipryTime,
-                LockerId = availableLocker.Value,
+                LockerId = availableLockerId,
                 ParcelTransactions = new List<ParcelTransactionDto> { parcelTransaction }
 
             };

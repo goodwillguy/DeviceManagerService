@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Tz.Common.Values.Enums;
 using Tz.Locker.DataModel;
 using Tz.Locker.Common.Interface;
+using Tz.Locker.Common.Dto;
 
 namespace Tz.Locker.ApplicationService
 {
@@ -18,22 +19,19 @@ namespace Tz.Locker.ApplicationService
             _lockerRepository = lockerRepository;
         }
 
-        public Guid? GetAvailableLocker(Guid lockerBankId, Size lockerSize)
+        public LockerDto GetAvailableLocker(Guid lockerBankId, Size lockerSize)
         {
-            Guid? availableLockerId = null;
 
             var lockersInLockerBank = _lockerRepository.GetAllLockers(lockerBankId);
 
 
-            availableLockerId = lockersInLockerBank
-                                .Where(locker => locker.Size >= lockerSize && locker.State == LockerState.Available)
-                                .Select(locker => locker.LockerId)
-                                .FirstOrDefault();
+            var availableLocker = lockersInLockerBank
+                                .FirstOrDefault(locker => locker.Size >= lockerSize && locker.State == LockerState.Available);
 
-            return availableLockerId;
+            return availableLocker;
         }
 
-        public Guid? GetAvailableLocker(string lockerBankCode, Size lockerSize)
+        public LockerDto GetAvailableLocker(string lockerBankCode, Size lockerSize)
         {
             var lockerBankId = _lockerRepository.GetLockerBankByCode(lockerBankCode);
 
@@ -49,6 +47,17 @@ namespace Tz.Locker.ApplicationService
         public Guid? GetLockerBankForLockerBankCode(string lockerBankCode)
         {
             return _lockerRepository.GetLockerBankByCode(lockerBankCode);
+        }
+
+        public List<LockerDto> GetAllLockers(Guid lockerBankId)
+        {
+
+            return _lockerRepository.GetAllLockers(lockerBankId);
+        }
+
+        public bool IsLockerAvailable(Guid lockerBankId, Guid lockerId)
+        {
+            return _lockerRepository.IsLockerAvailable(lockerBankId, lockerId);
         }
     }
 }

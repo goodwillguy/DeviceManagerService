@@ -28,5 +28,6 @@ namespace Tz.Parcel.Common.Dto
         public Guid? LockerId { get; set; }
 
         public List<ParcelTransactionDto> ParcelTransactions { get; set; }
+        public string LockerNumber { get; set; }
     }
 }

@@ -15,5 +15,8 @@ namespace Tz.Locker.Common.Dto
         public Size Size { get; set; }
 
         public Guid? LockerOfflineReasonId { get; set; }
+
+        public int Column { get; set; }
+        public string LockerNumber { get; set; }
     }
 }

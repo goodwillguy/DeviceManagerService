@@ -34,5 +34,7 @@ namespace Tz.Locker.DataModel
 
         public string LockerNumber { get; set; }
 
+        public int Column { get; set; }
+
     }
 }

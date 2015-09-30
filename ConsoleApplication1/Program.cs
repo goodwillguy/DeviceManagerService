@@ -27,7 +27,7 @@ namespace ConsoleApplication1
 
             Guid tzdropOffAgent = Guid.Parse("3464630D-4814-4AB7-870C-B7F429AD9EDB");
 
-            dropOff.DoDropOff("TzLocker1", tzresidentId, Size.Small, "dsk123", tzdropOffAgent, tzdropOffAgent);
+            //dropOff.DoDropOff("TzLocker1", tzresidentId, Size.Small, "dsk123", tzdropOffAgent, tzdropOffAgent);
 
         }
         //static void Main(string[] args)

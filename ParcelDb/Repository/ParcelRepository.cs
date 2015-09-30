@@ -84,7 +84,8 @@ namespace Tz.Parcel.DataModel.Repository
                                 ParcelId = parcelEnt.ParcelId,
                                 RecipientId = parcelEnt.RecipientId,
                                 SenderId = parcelEnt.SenderId,
-                                Size = parcelEnt.Size
+                                Size = parcelEnt.Size,
+                                LockerNumber=parcelEnt.Locker!=null?parcelEnt.Locker.LockerNumber:string.Empty
                             }).FirstOrDefault();
 
             return parcelData;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel.Activation;
 using System.Text;
 using System.Threading.Tasks;
+using Tz.DeviceManagerService.Properties;
 using Tz.LockerBank.Common.Interface;
 
 namespace Tz.DeviceManagerService
@@ -16,7 +17,7 @@ namespace Tz.DeviceManagerService
         }
         public string GetLockerBankCode()
         {
-            return "TzLocker1";
+            return Settings.Default.Identification;
         }
     }
 }

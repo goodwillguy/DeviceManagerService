@@ -12,7 +12,7 @@ using WebApi.Dto;
 namespace WebApi.Controllers
 {
 
-    [EnableCors("http://localhost:49641", "*","*")]
+    [EnableCors("*", "*","*")]
     public class AgentController:ApiController
     {
         private readonly IValidateAgent _validateAgent;

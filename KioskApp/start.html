@@ -23,6 +23,8 @@
 
     <link href="css/table.css" rel="stylesheet">
 
+    <link href="css/spinning.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
@@ -42,13 +44,39 @@
 
 
     <script src="Scripts/knockout-3.3.0.debug.js"></script>
+    <script>
+        var step = 300;
+        var current = 0;
+
+        function tableup() {
+            current = current - step;
+            if (current < 0) {
+                current = 0;
+            }
+            $('.parceltable').scrollTop(current);
+            console.log(current);
+        }
+
+        function tabledown() {
+            current = current + step;
+            if (current > ($('.parceltable')[0].scrollHeight - $('.parceltable')[0].clientHeight + step)) {
+                current = current - step;
+            }
+            $('.parceltable').scrollTop(current);
+            console.log(current);
+        }
+    </script>
+
     <script type="text/javascript">
 
         var DomReady = DomReady || {};
 
         DomReady.IsReady = ko.observable(false);
 
+
+
     </script>
+    <script src="js/entity/WebSocketEventEnum.js"></script>
     <script src="js/entity/WorkFlowEnum.js"></script>
     <script src="js/service/WebApiHostService.js"></script>
 
@@ -65,7 +93,7 @@
 </head>
 <body id="body">
 
-
+    <!--<div class="errorText">Error message</div>-->
     <!-- Start Main Body Section -->
     <!--ko if: DomReady.IsReady-->
     <!-- ko if: currentWorkFlow()==WorkFlow.AwaitLogin-->
@@ -102,7 +130,7 @@
                     </div>
                     <div class="col-xs-9">
                         <div class="close-modal" data-dismiss="modal" data-bind="click:ResetWorkFlow.bind($data)">
-                            <div class="lr" >
+                            <div class="lr">
                                 <div class="rl">
                                 </div>
                             </div>
@@ -166,7 +194,7 @@
                         <h1>LOGO HERE</h1>
                     </div>
                     <div class="col-xs-9">
-                        <div class="close-modal" data-dismiss="modal"  data-bind="click:ResetWorkFlow.bind($data)"> 
+                        <div class="close-modal" data-dismiss="modal" data-bind="click:ResetWorkFlow.bind($data)">
                             <div class="lr">
                                 <div class="rl">
                                 </div>
@@ -483,7 +511,7 @@
                         <h1>LOGO HERE</h1>
                     </div>
                     <div class="col-xs-9">
-                        <div class="close-modal" data-dismiss="modal"  data-bind="click:ResetWorkFlow.bind($data)">
+                        <div class="close-modal" data-dismiss="modal" data-bind="click:ResetWorkFlow.bind($data)">
                             <div class="lr">
                                 <div class="rl">
                                 </div>
@@ -500,49 +528,170 @@
                 </div>
             </div>
             <div class="container content">
-                <div class="row" id="ex3">
-                    <div class="col-xs-12">
-                        <div class="tablescrollbar">
-                            <table class="col-xs-12">
-                                <thead>
-                                    <tr>
-                                        <th> First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Click To Select</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!--ko foreach: ResidentsForLockerBank-->
-                                    <tr>
-                                        <td data-bind="text:$data.FirstName"></td>
-                                        <td data-bind="text:$data.LastName"></td>
-                                        <td>
-                                            <div class="col-xs-2">
-                                                <a data-toggle="modal" data-dismiss="modal" data-bind="click:$parent.SelectedResident.bind($parent,$data)">
-                                                    <div class="imagetext key">
-                                                        <img src="images/background_grey_half_small.png" class="normal-img img-rounded img-responsive">
-                                                        <span class="smalltext" style="margin-top:-5px;">Select </span>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!--/ko-->
-                                </tbody>
-                            </table>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9 parceltable">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th> First Name</th>
+                                    <th>Last Name</th>
+                                    <th style="text-align:right; padding-right:10%;">Click To Select</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--ko foreach: ResidentsForLockerBank-->
+                                <tr>
+                                    <td data-bind="text:$data.FirstName"></td>
+                                    <td data-bind="text:$data.LastName"></td>
+                                    <td>
+                                        <!--<div class="col-xs-2">
+                                            <a data-toggle="modal" data-dismiss="modal" data-bind="click:$parent.SelectedResident.bind($parent,$data)">
+                                                <div class="imagetext key">
+                                                    <img src="images/background_grey_half_small.png" class="normal-img img-rounded img-responsive">
+                                                    <span class="smalltext" style="margin-top:-5px;">Select </span>
+                                                </div>
+                                            </a>
+                                        </div>-->
+                                        <label>
+                                            <input type="radio" name="radiogroup" data-bind="click:$parent.SelectedResident.bind($parent,$data)" />
+                                            <img src="images/background_green_middle.png" class="img-rounded img-responsive">
+                                        </label>
+
+                                    </td>
+                                </tr>
+                                <!--/ko-->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <a href="javascript:void(0)" onclick="tableup()">
+                                    <div class="imagetext">
+                                        <img src="images/background_gold_half.png" class="small-img img-circle img-responsive">
+                                        <span class="smalltext"><i class="fa fa-arrow-up fa-2x"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-xs-12">
+                                <a data-toggle="modal" data-dismiss="modal" data-bind="click:SelectLocker.bind($data)">
+                                    <div class="imagetext">
+                                        <img src="images/background_gold_half.png" class="small-img img-circle img-responsive">
+                                        <span class="smalltext">Select Locker</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-xs-12">
+                                <a href="javascript:void(0)" onclick="tabledown()">
+                                    <div class="imagetext">
+                                        <img src="images/background_gold_half.png" class="small-img img-circle img-responsive">
+                                        <span class="smalltext"><i class="fa fa-arrow-down fa-2x"></i></span>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="container title">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <a data-toggle="modal" data-dismiss="modal" data-bind="click:PerformDropOff.bind($data)">
-                                <div class="imagetext key">
-                                    <img src="images/background_grey_half_small.png" class="normal-img img-rounded img-responsive">
-                                    <span class="smalltext" style="margin-top:-5px;">Do Drop Off </span>
+                <!--<div class="container title">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <a data-toggle="modal" data-dismiss="modal" data-bind="click:PerformDropOff.bind($data)">
+                                    <div class="imagetext key">
+                                        <img src="images/background_grey_half_small.png" class="normal-img img-rounded img-responsive">
+                                        <span class="smalltext" style="margin-top:-5px;">Do Drop Off </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+
+            </div>
+
+        </div>
+
+        <div class="container footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ko-->
+    <!-- ko if: currentWorkFlow()==WorkFlow.Dropoff-->
+    <div class="dropoff-section text-center section-modal" id="dropoff-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="container header">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <h1>LOGO HERE</h1>
+                    </div>
+                    <div class="col-xs-9">
+                        <div class="close-modal" data-dismiss="modal" data-bind="click:ResetWorkFlow.bind($data)">
+                            <div class="lr">
+                                <div class="rl">
                                 </div>
-                            </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container title">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>DROP OFF PACKAGE IN LOCKER XX</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="container content locker-panel">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9 lockers">
+                        <div class="row" data-bind="foreach: LockerBankLayout()">
+
+                            <!--CreateColumns-->
+                            <div class="col-xs-12 col-sm-2" data-bind="foreach:$data.Value">
+                                <div class="row">
+                                    <!--create lockers in the column-->
+                                    <div class="col-xs-12">
+                                        <div class="imagetext">
+                                            <img data-bind="attr:{'id':$data.LockerNumber},css: $root.IsLockerOpen($data)">
+                                            <span data-bind="text:$data.LockerNumber"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <a data-toggle="modal" data-dismiss="modal" data-bind="click:PerformDropOff.bind($data)">
+                                    <div class="imagetext">
+                                        <img src="images/background_gold_half.png" class="small-img img-circle img-responsive">
+                                        <span class="smalltext">YES</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-xs-12">
+                                <a data-toggle="modal" data-dismiss="modal" data-bind="click:ReturnToAgentMenu.bind($data)">
+                                    <div class="imagetext">
+                                        <img src="images/background_gold_half.png" class="small-img img-circle img-responsive">
+                                        <span class="smalltext">NO</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-xs-12">
+                                <a data-toggle="modal" data-dismiss="modal" data-bind="click:ReopenLocker.bind($data)">
+                                    <div class="imagetext">
+                                        <img src="images/background_gold_half.png" class="small-img img-circle img-responsive">
+                                        <span class="smalltext">REOPEN THE<br />LOCKER DOOR</span>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -558,5 +707,19 @@
     </div>
     <!--/ko-->
     <!--/ko-->
+    <!--ko if: !DomReady.IsReady() || isLoading()-->
+
+    <div class="spinningModalDialog">
+        <div>
+            <i class="fa fa-spinner fa-2x spinning">
+            </i>
+            <div class="" data-bind="text:loadingText">
+
+            </div>
+        </div>
+    </div>
+    <!--/ko-->
 </body>
 </html>
+
+

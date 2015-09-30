@@ -134,6 +134,10 @@
       <Project>{39bac534-cb8f-43bb-876e-5793c032b0ee}</Project>
       <Name>Tz.Resident.ApplicationService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tz.Locker.ApplicationService\Tz.LockerBank.ApplicationService.csproj">
+      <Project>{b64e907e-b5c8-449b-a179-394d86945ca9}</Project>
+      <Name>Tz.LockerBank.ApplicationService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tz.Property.Common\Tz.Property.Common.csproj">
       <Project>{8ad9041a-94e5-4e43-b3c3-dfffa67f25cf}</Project>
       <Name>Tz.Property.Common</Name>

@@ -11,7 +11,7 @@ using System.Web;
 
 namespace Tz.DeviceManagerService
 {
-    public class CardReaderService : ICardReaderEventsSubscribe,IWebCardReaderEventsSubscribe,IDisposable
+    public class CardReaderService : ICardReaderEventsSubscribe, IWebCardReaderEventsSubscribe, IDisposable
     {
         private readonly ICardReaderService _cardReader;
 
@@ -21,24 +21,29 @@ namespace Tz.DeviceManagerService
         System.Timers.Timer time = new System.Timers.Timer();
         private readonly ICardReaderConversionService _cardNumberConversion;
 
+        bool fire = false;
         public CardReaderService(ICardReaderService cardReader, ICardReaderConversionService cardNumberConversion)
         {
             time.Elapsed += Time_Elapsed;
             _cardReader = cardReader;
             _cardNumberConversion = cardNumberConversion;
             _cardReader.Swipe += _cardReader_Swipe;
-            time.Interval = 60 * 1000;
+            time.Interval = 10 * 1000;
             time.Start();
         }
 
         private void Time_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            //_cardReader_Swipe(this, new SwipeEventArgs { RFID = "123456", SerialNumber="123456" });
+            if (fire)
+            {
+                _cardReader_Swipe(this, new SwipeEventArgs { RFID = "2973-0057922", SerialNumber = "2973-0057922" });
+            }
         }
 
         private void _cardReader_Swipe(object sender, SwipeEventArgs e)
         {
-            var cardNumber = _cardNumberConversion.DecodeCardNumber(e.RFID);
+
+            var cardNumber = e.RFID == "2973-0057922" ? "2973-0057922" : _cardNumberConversion.DecodeCardNumber(e.RFID);
 
             var list = _cardReaderSubscription.ToArray();
 
@@ -75,10 +80,9 @@ namespace Tz.DeviceManagerService
         {
             var current = OperationContext.Current.GetCallbackChannel<IWebCardReaderEventsCallBack>();
 
-
-            if (message == null)
+            if (message == null || current==null)
             {
-                throw new ArgumentNullException("message");
+                throw new ArgumentNullException("message or current is null");
             }
 
             WebSocketMessageProperty property =
@@ -92,6 +96,12 @@ namespace Tz.DeviceManagerService
             {
                 byte[] body = message.GetBody<byte[]>();
                 content = Encoding.UTF8.GetString(body);
+
+                //client needs to send this to ensure connection is open.
+                if(content== "KeepAlive")
+                {
+                    return;
+                }
             }
 
 
@@ -111,7 +121,7 @@ namespace Tz.DeviceManagerService
 
             var hostName = queryParameters["Name"].ToString();
 
-            if (!_webCardReaderSubscription.ContainsKey(hostName))
+            if (!_webCardReaderSubscription.ContainsKey(hostName) && current!=null)
             {
                 _webCardReaderSubscription.Add(hostName, current);
             }
@@ -122,7 +132,7 @@ namespace Tz.DeviceManagerService
 
 
 
-          // current.SendCardSwipe(CreateMessage(str));
+            // current.SendCardSwipe(CreateMessage(str));
         }
 
         private Message CreateMessage(string content)

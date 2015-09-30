@@ -10,7 +10,7 @@ using Tz.Resident.Common.Dto;
 
 namespace WebApi.Controllers
 {
-    [EnableCors("http://localhost:49641", "*", "*")]
+    [EnableCors("*", "*", "*")]
     public class ResidentController:ApiController
     {
         private readonly IResidentService _residentService;

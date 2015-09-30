@@ -7,5 +7,7 @@
         public string OperatorId { get;  set; }
         public string ParcelConsignmentNumber { get;  set; }
         public string ResidentId { get;  set; }
+
+        public string LockerId { get; set; }
     }
 }

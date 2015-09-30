@@ -56,6 +56,14 @@
     <Compile Include="Migrations\201509271559536_Initial.Designer.cs">
       <DependentUpon>201509271559536_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509300633480_AddedMailRoom.cs" />
+    <Compile Include="Migrations\201509300633480_AddedMailRoom.Designer.cs">
+      <DependentUpon>201509300633480_AddedMailRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509300647296_AddedMailRoom1.cs" />
+    <Compile Include="Migrations\201509300647296_AddedMailRoom1.Designer.cs">
+      <DependentUpon>201509300647296_AddedMailRoom1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ParcelDbContext.cs" />
     <Compile Include="Entity\Parcel.cs" />
@@ -86,6 +94,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201509271559536_Initial.resx">
       <DependentUpon>201509271559536_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509300633480_AddedMailRoom.resx">
+      <DependentUpon>201509300633480_AddedMailRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509300647296_AddedMailRoom1.resx">
+      <DependentUpon>201509300647296_AddedMailRoom1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

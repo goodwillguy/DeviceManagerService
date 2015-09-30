@@ -118,8 +118,10 @@
     <Compile Include="Controllers\AgentController.cs" />
     <Compile Include="Controllers\DropoffController.cs" />
     <Compile Include="Controllers\DropOffDto.cs" />
+    <Compile Include="Controllers\LockerBankLayoutController.cs" />
     <Compile Include="Controllers\ResidentController.cs" />
     <Compile Include="Dto\AgentCarDto.cs" />
+    <Compile Include="Dto\LockerBankLayoutDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -159,6 +161,10 @@
     <ProjectReference Include="..\DependencyContainer\DependencyContainer.csproj">
       <Project>{38b68574-41ad-4c07-a1e3-077409257983}</Project>
       <Name>DependencyContainer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Locker.Common\Tz.Locker.Common.csproj">
+      <Project>{6fac72a2-7d8d-453f-9d49-abebd741a0c6}</Project>
+      <Name>Tz.Locker.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Resident.Common\Tz.Resident.Common.csproj">
       <Project>{edea211a-2504-4519-b4ed-fcea55907e67}</Project>

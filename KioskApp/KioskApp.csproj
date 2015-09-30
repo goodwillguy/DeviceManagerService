@@ -66,10 +66,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\spinning.css" />
     <Content Include="css\table.css" />
     <Content Include="js\controller\DropoffController.js" />
+    <Content Include="js\entity\WebSocketEventEnum.js" />
     <Content Include="js\entity\WorkFlowEnum.js" />
     <Content Include="js\service\DropOffService.js" />
+    <Content Include="js\service\LockerBankService.js" />
     <Content Include="js\service\WebApiHostService.js" />
     <Content Include="js\service\lockerBankIdentificationService.js" />
     <Content Include="js\service\ResidentService.js" />
@@ -122,7 +125,6 @@
     <Content Include="images\keyboard.png" />
     <Content Include="images\scanner.png" />
     <Content Include="index.html" />
-    <Content Include="js\controller\AgentController.js" />
     <Content Include="js\controller\AwaitSwipe.js" />
     <Content Include="js\entity\agentCardEntity.js" />
     <Content Include="js\jqBootstrapValidation.js" />

@@ -31,6 +31,7 @@ using Tz.Common.DataModel.Interface;
 using Tz.DropOff.ApplicationService;
 using Tz.Resident.ApplicationService;
 using Tz.AgentValidation;
+using Tz.LockerBank.ApplicationService;
 
 namespace DependencyContainer
 {
@@ -76,6 +77,8 @@ namespace DependencyContainer
             container.Register<IResidentService, ResidentWorkService>();
 
             container.Register<IValidateAgent, AgentWorkFlowServices>();
+
+            container.Register<ILockerBankService, LockerService>();
         }
 
         private static void PropertyModuleRegister(Container container)
