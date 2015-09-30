@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="css\spinning.css" />
     <Content Include="css\table.css" />
+    <Content Include="images\error.png" />
     <Content Include="js\controller\DropoffController.js" />
     <Content Include="js\entity\WebSocketEventEnum.js" />
     <Content Include="js\entity\WorkFlowEnum.js" />

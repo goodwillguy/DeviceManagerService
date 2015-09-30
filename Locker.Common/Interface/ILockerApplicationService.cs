@@ -16,6 +16,7 @@ namespace Tz.Locker.Common.Interface
         List<LockerDto> GetAllLockers(Guid lockerBankId);
 
         bool IsLockerAvailable(Guid lockerBankId, Guid lockerId);
+        void UpdateLockerAsOccupied(Guid lockerBankId, Guid lockerId);
         //Locker GetAvailableLocker(string lockerBankId, Size lockerSize);
     }
 

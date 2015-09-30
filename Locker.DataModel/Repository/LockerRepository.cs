@@ -120,5 +120,22 @@ namespace Tz.Locker.DataModel.Repository
             return context.Lockers.Any(lo => lo.LockerId == lockerId && lo.LockerBankId == lockerBankId && lo.State == LockerState.Available);
 
         }
+
+        public void UpdateLockerAsOccupied(Guid lockerBankId, Guid lockerId)
+        {
+            LockerDbContext context = new LockerDbContext(_connectionStringFactory.GetConnectionString());
+
+            var locker=context.Lockers.FirstOrDefault(lo => lo.LockerId == lockerId && lo.LockerBankId == lockerBankId);
+
+            if(locker==null)
+            {
+                throw new ApplicationException("Locker not present in system for update");
+            }
+
+            locker.State = LockerState.Occupied;
+
+            context.SaveChanges();
+
+        }
     }
 }

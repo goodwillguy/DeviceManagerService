@@ -34,6 +34,9 @@ AgentValidationService.ValidateAgentByCardNumber = function (lockerBankCode, age
         def.reject();
     }.bind(this));
 
+
+
+
     return def.promise();
 
 };

@@ -21,16 +21,16 @@ namespace Tz.AgentValidation
         }
         public Tz.Agent.Common.Dto.AgentDto GetAuthorisedAgent(string lockerBankCode, string agentCard)
         {
-            var lockerId = _lockerService.GetLockerBankForLockerBankCode(lockerBankCode);
+            var lockerBankId = _lockerService.GetLockerBankForLockerBankCode(lockerBankCode);
 
-            if (lockerId == null)
+            if (lockerBankId == null || !lockerBankId.HasValue || lockerBankId == Guid.Empty)
             {
-                new ApplicationException("No locker bank available");
+                throw new ApplicationException("Locker bank code invalid");
             }
 
 
 
-            return _agentService.GetAgent(lockerId.Value, agentCard);
+            return _agentService.GetAgent(lockerBankId.Value, agentCard);
         }
 
         public Tz.Agent.Common.Dto.AgentDto GetAuthorisedAgent(string lockerBankCode, string agentUserName, string agentPassword)

@@ -15,7 +15,7 @@ var DropoffController = (function () {
 
         this.AgentData = ko.observable();
 
-        this.ErrorText = ko.observable();
+        this.ErrorText = ko.observable(null);
 
         this.ParcelNumber = ko.observable();
 
@@ -54,24 +54,29 @@ var DropoffController = (function () {
 
         },
 
-        ShowLoading : function(message)
-        {
+        ShowErrorMessage: function (message) {
+            this.ErrorText(message);
+
+            var timer = setInterval(function () {
+                this.ErrorText(null);
+                clearInterval(timer);
+            }.bind(this), 5000);
+        },
+
+        ShowLoading: function (message) {
             this.loadingText(message);
             this.isLoading(true);
         },
 
-        HideLoading :function()
-        {
+        HideLoading: function () {
             this.loadingText('');
             this.isLoading(false);
         },
-        Connected:function(message)
-        {
+        Connected: function (message) {
             this.HideLoading();
         },
 
-        Disconnected:function(message)
-        {
+        Disconnected: function (message) {
 
         },
 
@@ -122,10 +127,10 @@ var DropoffController = (function () {
                .done(function (data) {
                    this.AgentData(data);
                    this.ProceedToAgentLogin();
-                   
+
                }.bind(this))
                .fail(function (data) {
-                   this.ErrorText('Invalid Agent');
+                   this.ShowErrorMessage('Invalid Agent');
                }.bind(this))
                .always(function () {
                    this.IsCardSwipeProcessing(false);
@@ -145,6 +150,13 @@ var DropoffController = (function () {
         },
 
         ParcelNumberEntered: function () {
+
+            var parcelNumber = this.ParcelNumber();
+            if (parcelNumber == undefined || parcelNumber == null || parcelNumber == '') {
+                this.ShowErrorMessage("Please enter parcel number to continue.");
+                return;
+            }
+
             this.currentWorkFlow(WorkFlow.SelectResident);
 
         },
@@ -188,14 +200,25 @@ var DropoffController = (function () {
         ,
 
         SelectLocker: function () {
+            var resident = this.ResidentSelected();
+            if (resident == undefined || resident == null || resident == '') {
+                this.ShowErrorMessage("Please select recipient of parcel to continue.");
+                return;
+            }
+
             LockerBankIdentifer.GetAvailableLockerForParcel(LockerBankIdentifer.CurrentLockerBankId, 1)
             .done(function (availableLocker) {
 
                 this.AvailableLocker(availableLocker);
+                this.currentWorkFlow(WorkFlow.Dropoff);
 
+
+            }.bind(this))
+            .fail(function () {
+                this.ShowErrorMessage("No Lockers available to drop off the parcel.");
             }.bind(this));
 
-            this.currentWorkFlow(WorkFlow.Dropoff);
+
         },
 
         ReturnToAgentMenu: function () {
@@ -214,15 +237,19 @@ var DropoffController = (function () {
         },
 
         PerformDropOff: function () {
+            this.ShowLoading("Dropping off parcel. Please wait.")
             //this.currentWorkFlow(WorkFlow.Dropoff);
             DropOffService.DropOffParcel(LockerBankIdentifer.CurrentLockerBankId, this.AgentData().AgentId, this.ParcelNumber(), this.ResidentSelected().ResidentId, this.AvailableLocker().LockerId)
             .done(function (lockerData) {
                 //this.LockerData(lockerData);
                 this.ResetWorkFlow();
-                this.currentWorkFlow(WorkFlow.Dropoff);
+                this.currentWorkFlow(WorkFlow.AwaitLogin);
             }.bind(this))
-            .error(function () {
-                alert('fail');
+            .fail(function () {
+                this.ResetWorkFlow(true);
+                this.currentWorkFlow(WorkFlow.AgentWork);
+                this.ShowErrorMessage("Could not drop off parcel. Please retry again.");
+                this.HideLoading();
             }.bind(this));
         },
 

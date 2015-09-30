@@ -73,7 +73,7 @@
 
         DomReady.IsReady = ko.observable(false);
 
-
+        $('#error').fadeOut('slow')
 
     </script>
     <script src="js/entity/WebSocketEventEnum.js"></script>
@@ -99,6 +99,10 @@
     <!-- ko if: currentWorkFlow()==WorkFlow.AwaitLogin-->
     <div class="mainbody-section text-center">
         <div class="container logo">
+            <!--ko if: (ErrorText()!='' && ErrorText()!=null)-->
+            <div class="errorText" id="error" data-bind="text:ErrorText"></div>
+            <!--/ko-->
+
             <a href="#login-modal" data-toggle="modal" data-dismiss="modal">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
@@ -110,6 +114,7 @@
                 </div>
             </a>
         </div>
+
         <div class="container footer">
             <div class="row">
                 <div class="col-xs-12">
@@ -146,6 +151,9 @@
                 </div>
             </div>
             <div class="container content" style="padding-top:40px;">
+                <!--ko if: (ErrorText()!='' && ErrorText()!=null)-->
+                <div class="errorText" id="error" data-bind="text:ErrorText"></div>
+                <!--/ko-->
                 <div class="row">
                     <div class="col-xs-12 col-sm-4">
                         <a href="#scan-modal" data-toggle="modal" data-dismiss="modal" data-bind="click:DropOffWorkFlowClicked.bind($data)">
@@ -214,6 +222,9 @@
                 </div>
             </div>
             <div class="container content">
+                <!--ko if: (ErrorText()!='' && ErrorText()!=null)-->
+                <div class="errorText" id="error" data-bind="text:ErrorText"></div>
+                <!--/ko-->
                 <div class="row">
                     <div class="col-xs-12 keypad-panel">
                         <div class="row">
@@ -529,6 +540,9 @@
             </div>
             <div class="container content">
                 <div class="row">
+                    <!--ko if: (ErrorText()!='' && ErrorText()!=null)-->
+                    <div class="errorText" id="error" data-bind="text:ErrorText"></div>
+                    <!--/ko-->
                     <div class="col-xs-12 col-sm-9 parceltable">
                         <table class="table table-striped">
                             <thead>
@@ -647,6 +661,9 @@
             </div>
             <div class="container content locker-panel">
                 <div class="row">
+                    <!--ko if: (ErrorText()!='' && ErrorText()!=null)-->
+                    <div class="errorText" id="error" data-bind="text:ErrorText"></div>
+                    <!--/ko-->
                     <div class="col-xs-12 col-sm-9 lockers">
                         <div class="row" data-bind="foreach: LockerBankLayout()">
 

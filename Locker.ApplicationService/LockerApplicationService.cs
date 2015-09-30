@@ -59,5 +59,10 @@ namespace Tz.Locker.ApplicationService
         {
             return _lockerRepository.IsLockerAvailable(lockerBankId, lockerId);
         }
+
+        public void UpdateLockerAsOccupied(Guid lockerBankId, Guid lockerId)
+        {
+            _lockerRepository.UpdateLockerAsOccupied(lockerBankId, lockerId);
+        }
     }
 }

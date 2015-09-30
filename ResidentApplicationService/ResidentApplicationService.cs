@@ -24,9 +24,9 @@ namespace Tz.Resident.ApplicationService
         {
             var lockerBankId=_lockerService.GetLockerBankForLockerBankCode(lockerBankCode);
 
-            if(lockerBankId==null)
+            if (lockerBankId == null || !lockerBankId.HasValue || lockerBankId == Guid.Empty)
             {
-                throw new ApplicationException("locker bank does not exist");
+                throw new ApplicationException("Locker bank code invalid");
             }
 
             return _residentService.GetAllResidents(lockerBankId.Value);

@@ -20,17 +20,17 @@ namespace Tz.LockerBank.ApplicationService
         }
         public List<LockerDto> GetAllLockers(string lockerBankCode)
         {
-            var lockerId = _lockerDomainSvc.GetLockerBankForLockerBankCode(lockerBankCode);
+            var lockerBankId = _lockerDomainSvc.GetLockerBankForLockerBankCode(lockerBankCode);
 
-            return _lockerDomainSvc.GetAllLockers(lockerId.Value);
+            return _lockerDomainSvc.GetAllLockers(lockerBankId.Value);
 
         }
 
         public LockerDto GetAvailableLocker(string lockerBankCode, Size parcelSize)
         {
-            var lockerId = _lockerDomainSvc.GetLockerBankForLockerBankCode(lockerBankCode);
+            var lockerBankId = _lockerDomainSvc.GetLockerBankForLockerBankCode(lockerBankCode);
 
-             return _lockerDomainSvc.GetAvailableLocker(lockerId.Value, parcelSize);
+             return _lockerDomainSvc.GetAvailableLocker(lockerBankId.Value, parcelSize);
         }
     }
 }

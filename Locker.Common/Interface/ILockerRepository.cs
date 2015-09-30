@@ -19,5 +19,6 @@ namespace Tz.Locker.Common.Interface
 
         LockerAndDeviceDto GetDeviceSerialNumberForLocker(Guid lockerBankId, Guid lockerId);
         bool IsLockerAvailable(Guid lockerBankId, Guid lockerId);
+        void UpdateLockerAsOccupied(Guid lockerBankId, Guid lockerId);
     }
 }

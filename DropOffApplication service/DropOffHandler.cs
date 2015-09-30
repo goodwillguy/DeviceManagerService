@@ -23,9 +23,9 @@ namespace Tz.DropOff.ApplicationService
         {
             var lockerBankId=_lockerApplicationService.GetLockerBankForLockerBankCode(lockerBankCode);
 
-            if(lockerBankId==null)
+            if(lockerBankId==null || !lockerBankId.HasValue || lockerBankId==Guid.Empty)
             {
-                new ApplicationException("Locker bank code invalid");
+                throw new ApplicationException("Locker bank code invalid");
             }
 
             _parcelApplcationService.DropOffParcel(operatorId, lockerBankId.Value, parcelSize, consignmentNumber, agentDropOffId, residentId, lockerId);
@@ -33,6 +33,8 @@ namespace Tz.DropOff.ApplicationService
             var parcelInfo=_parcelApplcationService.GetParcelInformation(lockerBankId.Value, consignmentNumber);
 
             _lockerManager.OpenLocker(lockerBankId.Value, parcelInfo.LockerId.Value);
+
+            _lockerApplicationService.UpdateLockerAsOccupied(lockerBankId.Value, parcelInfo.LockerId.Value);
 
             return new LockerDataDto { LockerId = parcelInfo.LockerId, LockerNumber = parcelInfo.LockerNumber };
         }

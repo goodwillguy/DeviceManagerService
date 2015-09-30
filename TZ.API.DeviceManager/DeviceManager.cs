@@ -207,6 +207,7 @@ namespace TZ.API.DeviceManagement
                 }
                 catch (Exception ex)
                 {
+                    _waitHandler.Set();
                     _logger.SafeLogError("TZDeviceManager", ex, "Device Manager is failed to initialize");
 
                 }
@@ -272,6 +273,7 @@ namespace TZ.API.DeviceManagement
 
         void EventLog_ErrorEvent(TZLogEventArgs e)
         {
+            _waitHandler.Set();
             LogError(e.Message);
         }
 

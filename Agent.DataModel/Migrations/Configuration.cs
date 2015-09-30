@@ -68,15 +68,15 @@ namespace Tz.Agent.DataModel.Migrations
                 BuildingPropertyId = propertyPromentusSydney
             });
 
-            context.AgentToCards.AddOrUpdate(agCard => agCard.AgentToCardId, new Entity.AgentToCard
+            context.AgentToCards.AddOrUpdate(agCard => agCard.AgentId, new Entity.AgentToCard
             {
                 AgentId = tzAgent,
-                CardNumber = "123456",
+                CardNumber = "2973-0057922",
                 EffectiveFrom = DateTime.Now,
                 IsLocked = false
             });
 
-            context.AgentToCards.AddOrUpdate(agCard => agCard.AgentToCardId, new Entity.AgentToCard
+            context.AgentToCards.AddOrUpdate(agCard => agCard.AgentId, new Entity.AgentToCard
             {
                 AgentId = tzPrometheus,
                 CardNumber = "654321",

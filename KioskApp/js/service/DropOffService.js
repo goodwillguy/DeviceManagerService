@@ -17,16 +17,14 @@ DropOffService.DropOffParcel = function (lockerBankCode, agentId, consignmentno,
     };
 
 
-    $.post(url, data, function (val) {
+    $.post(url, data)
+    .done(function (val) {
 
-        if (data == "true") {
-            alert("yes");
-        }
-        else {
-            alert("no");
-        }
         def.resolve();
 
+    }.bind(this))
+    .fail(function () {
+        def.reject();
     }.bind(this));
 
     return def.promise();

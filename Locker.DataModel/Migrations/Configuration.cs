@@ -95,7 +95,7 @@ namespace Tz.Locker.DataModel.Migrations
 
 
             #region TzLockers
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = tzLocker1,
                 LockerBankId = lockerBankTzSydney1,
@@ -107,7 +107,7 @@ namespace Tz.Locker.DataModel.Migrations
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = tzLocker2,
                 LockerBankId = lockerBankTzSydney1,
@@ -118,7 +118,7 @@ namespace Tz.Locker.DataModel.Migrations
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankTzSydney1,
@@ -129,7 +129,7 @@ namespace Tz.Locker.DataModel.Migrations
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankTzSydney1,
@@ -140,7 +140,7 @@ namespace Tz.Locker.DataModel.Migrations
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankTzSydney1,
@@ -151,7 +151,7 @@ namespace Tz.Locker.DataModel.Migrations
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankTzSydney1,
@@ -162,7 +162,7 @@ namespace Tz.Locker.DataModel.Migrations
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankTzSydney1,
@@ -173,7 +173,7 @@ namespace Tz.Locker.DataModel.Migrations
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankTzSydney1,
@@ -184,7 +184,7 @@ namespace Tz.Locker.DataModel.Migrations
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankTzSydney1,
@@ -199,103 +199,103 @@ namespace Tz.Locker.DataModel.Migrations
 
 
             #region PromethusLockers
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = promethusLocker1,
                 LockerBankId = lockerBankPrometheusSydney1,
                 Size = Tz.Common.Values.Enums.Size.Medium,
                 State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L1",
+                LockerNumber = "P1",
                 Column = 1
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = promethusLocker2,
                 LockerBankId = lockerBankPrometheusSydney1,
                 Size = Tz.Common.Values.Enums.Size.Medium,
                 State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L2",
+                LockerNumber = "P2",
                 Column = 1
 
             });
 
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankPrometheusSydney1,
                 Size = Tz.Common.Values.Enums.Size.Medium,
                 State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L3",
+                LockerNumber = "P3",
                 Column = 1
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankPrometheusSydney1,
                 Size = Tz.Common.Values.Enums.Size.Medium,
                 State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L4",
+                LockerNumber = "P4",
                 Column = 2
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankPrometheusSydney1,
                 Size = Tz.Common.Values.Enums.Size.Medium,
                 State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L5",
+                LockerNumber = "P5",
                 Column = 2
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankPrometheusSydney1,
                 Size = Tz.Common.Values.Enums.Size.Medium,
                 State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L6",
+                LockerNumber = "P6",
                 Column = 2
 
             });
 
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankPrometheusSydney1,
                 Size = Tz.Common.Values.Enums.Size.Medium,
                 State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L7",
+                LockerNumber = "P7",
                 Column = 3
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankPrometheusSydney1,
                 Size = Tz.Common.Values.Enums.Size.Medium,
                 State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L8",
+                LockerNumber = "P8",
                 Column = 3
 
             });
 
-            context.Lockers.AddOrUpdate(lo => lo.LockerId, new Locker
+            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
             {
                 LockerId = Guid.NewGuid(),
                 LockerBankId = lockerBankPrometheusSydney1,
                 Size = Tz.Common.Values.Enums.Size.Medium,
                 State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L9",
+                LockerNumber = "P9",
                 Column = 3
 
             }); 
@@ -338,25 +338,25 @@ namespace Tz.Locker.DataModel.Migrations
             });
 
 
-            context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerToDeviceId, new Entity.LockerToDevice
+            context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
             {
                 LockerId=tzLocker1,
                 DeviceId=tzLocker1Device
             });
 
-            context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerToDeviceId, new Entity.LockerToDevice
+            context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
             {
                 LockerId = tzLocker2,
                 DeviceId = tzLocker2Device
             });
 
-            context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerToDeviceId, new Entity.LockerToDevice
+            context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
             {
                 LockerId = promethusLocker1,
                 DeviceId = promethusLocker1Device
             });
 
-            context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerToDeviceId, new Entity.LockerToDevice
+            context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
             {
                 LockerId = promethusLocker2,
                 DeviceId = promethusLocker2Device
