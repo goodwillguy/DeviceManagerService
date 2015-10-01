@@ -307,7 +307,7 @@ namespace Tz.Locker.DataModel.Migrations
                 IsEnabled=true,
                 LockerBankId=lockerBankTzSydney1,
                 DeviceType=Tz.Common.Values.Enums.DeviceType.Radials,
-                SerialNumber="00000088BB"
+                SerialNumber= "31 0F 31 02 54 5A 49 20 00 00 05 00 00 00 5E BC "
             });
 
             context.Devices.AddOrUpdate(de => de.DeviceId, new Device
@@ -316,7 +316,7 @@ namespace Tz.Locker.DataModel.Migrations
                 IsEnabled = true,
                 LockerBankId = lockerBankTzSydney1,
                 DeviceType = Tz.Common.Values.Enums.DeviceType.Radials,
-                SerialNumber = "0000005EBC"
+                SerialNumber = "31 0F 31 02 54 5A 49 20 00 00 05 00 00 00 5E BC "
             });
 
             context.Devices.AddOrUpdate(de => de.DeviceId, new Device
@@ -325,7 +325,7 @@ namespace Tz.Locker.DataModel.Migrations
                 IsEnabled = true,
                 LockerBankId = lockerBankPrometheusSydney1,
                 DeviceType = Tz.Common.Values.Enums.DeviceType.Radials,
-                SerialNumber = "00000023C7"
+                SerialNumber = "31 0D 11 02 54 5A 49 20 00 00 05 00 00 00 23 C7 "
             });
 
             context.Devices.AddOrUpdate(de => de.DeviceId, new Device
@@ -334,35 +334,47 @@ namespace Tz.Locker.DataModel.Migrations
                 IsEnabled = true,
                 LockerBankId = lockerBankPrometheusSydney1,
                 DeviceType = Tz.Common.Values.Enums.DeviceType.Radials,
-                SerialNumber = "00000023C7"
+                SerialNumber = "31 0D 11 02 54 5A 49 20 00 00 05 00 00 00 23 C7 "
             });
 
+           
+            //context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
+            //{
+            //    LockerId=tzLocker1,
+            //    DeviceId=tzLocker1Device
+            //});
 
-            context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
-            {
-                LockerId=tzLocker1,
-                DeviceId=tzLocker1Device
-            });
+            //context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
+            //{
+            //    LockerId = tzLocker2,
+            //    DeviceId = tzLocker2Device
+            //});
 
-            context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
-            {
-                LockerId = tzLocker2,
-                DeviceId = tzLocker2Device
-            });
+            //context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
+            //{
+            //    LockerId = promethusLocker1,
+            //    DeviceId = promethusLocker1Device
+            //});
 
-            context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
-            {
-                LockerId = promethusLocker1,
-                DeviceId = promethusLocker1Device
-            });
-
-            context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
-            {
-                LockerId = promethusLocker2,
-                DeviceId = promethusLocker2Device
-            });
+            //context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
+            //{
+            //    LockerId = promethusLocker2,
+            //    DeviceId = promethusLocker2Device
+            //});
 
             context.SaveChanges();
+
+            context.Lockers.ToList().ForEach((lo) =>
+            {
+                context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
+                {
+                    LockerId = lo.LockerId,
+                    DeviceId = tzLocker1Device
+                });
+            });
+            context.SaveChanges();
+
+
         }
     }
 }

@@ -64,6 +64,8 @@
             }
             $('.parceltable').scrollTop(current);
             console.log(current);
+
+
         }
     </script>
 
@@ -73,13 +75,14 @@
 
         DomReady.IsReady = ko.observable(false);
 
-        $('#error').fadeOut('slow')
+        
+
 
     </script>
     <script src="js/entity/WebSocketEventEnum.js"></script>
     <script src="js/entity/WorkFlowEnum.js"></script>
     <script src="js/service/WebApiHostService.js"></script>
-
+    <script src="js/service/LockerBankService.js"></script>
     <script src="js/service/lockerBankIdentificationService.js"></script>
     <script src="js/service/ResidentService.js"></script>
     <script src="js/service/AgentValidationService.js"></script>
@@ -554,7 +557,7 @@
                             </thead>
                             <tbody>
                                 <!--ko foreach: ResidentsForLockerBank-->
-                                <tr>
+                                <tr >
                                     <td data-bind="text:$data.FirstName"></td>
                                     <td data-bind="text:$data.LastName"></td>
                                     <td>

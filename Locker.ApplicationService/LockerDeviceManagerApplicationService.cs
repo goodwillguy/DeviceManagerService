@@ -26,7 +26,7 @@ namespace Tz.Locker.ApplicationService
 
             var devices=channel.GetAllDevices();
 
-            channel.Open(lockerBankAndDeviceInfo.DeviceSerialNumber);
+            channel.Open(new LockerBank.Common.Dto.OpenDeviceDto { SerialNumber = lockerBankAndDeviceInfo.DeviceSerialNumber });
 
         }
 

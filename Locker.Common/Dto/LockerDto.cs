@@ -18,5 +18,7 @@ namespace Tz.Locker.Common.Dto
 
         public int Column { get; set; }
         public string LockerNumber { get; set; }
+
+        public string DeviceSerialNumber { get; set; }
     }
 }

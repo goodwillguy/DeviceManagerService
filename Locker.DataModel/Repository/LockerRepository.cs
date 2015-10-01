@@ -32,7 +32,8 @@ namespace Tz.Locker.DataModel.Repository
                                 Size = locker.Size,
                                 State = locker.State,
                                 Column=locker.Column,
-                                LockerNumber=locker.LockerNumber
+                                LockerNumber=locker.LockerNumber,
+                                DeviceSerialNumber=locker.DevicesInLocker.Select(lToD=>lToD.DeviceData.SerialNumber).FirstOrDefault()
                             }).ToList();
 
             return lockersList;

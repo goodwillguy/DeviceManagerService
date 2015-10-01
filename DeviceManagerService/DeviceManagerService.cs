@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TZ.API.DeviceManagement;
 using TZ.ServiceModel;
+using Tz.LockerBank.Common.Dto;
 
 namespace Tz.DeviceManagerService
 {
@@ -56,14 +57,14 @@ namespace Tz.DeviceManagerService
             return _deviceManager.IsReady();
         }
 
-        public void Open(string[] serialNumbers)
+        public void OpenLockers(string[] serialNumbers)
         {
              _deviceManager.Open(serialNumbers);
         }
 
-        public bool Open(string serialNumber)
+        public bool Open(OpenDeviceDto deviceData)
         {
-            return _deviceManager.Open(serialNumber);
+            return _deviceManager.Open(deviceData.SerialNumber);
         }
     }
 }

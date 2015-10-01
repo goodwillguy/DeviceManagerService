@@ -99,29 +99,38 @@ height:450px;
 #ex3::-webkit-scrollbar{
 width:16px;
 background-color:#cccccc;
-}*/ 
+}*/
 
 th {
     text-align: center;
 }
 
-label > input{ /* HIDE RADIO */
-  visibility: hidden; /* Makes input not-clickable */
-  position: absolute; /* Remove input from document flow */
+label > input { /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
 }
+
 label > img {
     width: 30%;
     float: right;
 }
-label > input + img{ /* IMAGE STYLES */
-  cursor:pointer;
-  border:2px solid transparent;
-}
-label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
-  border:2px solid #CC9C54;
+
+label > input + img { /* IMAGE STYLES */
+    cursor: pointer;
+    border: 2px solid transparent;
 }
 
-.parceltable{
+label > input:checked + img { /* (RADIO CHECKED) IMAGE STYLES */
+    border: 2px solid #CC9C54;
+}
+
+.parceltable {
     max-height: 500px;
     overflow: scroll;
+}
+
+.selectedResident {
+    border-color: #CC9C54;
+    border-width: 2px,;
+    border-style: solid;
 }

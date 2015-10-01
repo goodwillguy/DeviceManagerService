@@ -26,12 +26,16 @@ AgentValidationService.ValidateAgentByCardNumber = function (lockerBankCode, age
             def.resolve(agentInfo);
         }
         else {
-            def.reject();
+            def.reject('');
         }
 
     }.bind(this))
-    .fail(function () {
-        def.reject();
+    .fail(function (errorMessage) {
+        var message = '';
+        if (errorMessage != undefined && errorMessage != null) {
+            message = errorMessage.responseText.split(":")[1];
+        }
+        def.reject(message);
     }.bind(this));
 
 

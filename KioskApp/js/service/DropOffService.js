@@ -23,8 +23,12 @@ DropOffService.DropOffParcel = function (lockerBankCode, agentId, consignmentno,
         def.resolve();
 
     }.bind(this))
-    .fail(function () {
-        def.reject();
+    .fail(function (errorMessage) {
+        var message = '';
+        if (errorMessage != undefined && errorMessage != null) {
+            message = errorMessage.responseText.split(":")[1];
+        }
+        def.reject(message);
     }.bind(this));
 
     return def.promise();

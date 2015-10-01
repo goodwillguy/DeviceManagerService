@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using WebApi.RoutePrefix;
 
 namespace WebApi
 {
@@ -12,6 +13,7 @@ namespace WebApi
         {
             // Web API configuration and services
 
+            config.Filters.Add(new ApplicationExceptionFilterAttribute());
             config.EnableCors();
 
             // Web API routes

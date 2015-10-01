@@ -129,8 +129,11 @@ var DropoffController = (function () {
                    this.ProceedToAgentLogin();
 
                }.bind(this))
-               .fail(function (data) {
-                   this.ShowErrorMessage('Invalid Agent');
+               .fail(function (errorMessage) {
+                   if (errorMessage == '') {
+                       errorMessage = 'Invalid Agent';
+                   }
+                   this.ShowErrorMessage(errorMessage);
                }.bind(this))
                .always(function () {
                    this.IsCardSwipeProcessing(false);
@@ -172,7 +175,16 @@ var DropoffController = (function () {
         },
 
         SelectedResident: function (residentSelected) {
+            $("input[name='radiogroup']").click(function () {
+                $("input[name='radiogroup']").parents('tr').css({ "border-width": "0px" });
+                $("input[name='radiogroup']:checked").parents('tr').css({
+                    "border-color": "#CC9C54",
+                    "border-width": "2px",
+                    "border-style": "solid"
+                });
+            });
             this.ResidentSelected(residentSelected);
+
         },
 
         OnScreenPress: function (keyValue) {
@@ -210,15 +222,42 @@ var DropoffController = (function () {
             .done(function (availableLocker) {
 
                 this.AvailableLocker(availableLocker);
-                this.currentWorkFlow(WorkFlow.Dropoff);
-
+                this.OpenLocker();
 
             }.bind(this))
-            .fail(function () {
-                this.ShowErrorMessage("No Lockers available to drop off the parcel.");
+            .fail(function (errorMessage) {
+
+                if (errorMessage == '') {
+                    errorMessage = "No Lockers available to drop off the parcel.";
+                }
+
+                this.ShowErrorMessage(errorMessage);
             }.bind(this));
 
 
+        },
+
+        OpenLocker: function () {
+            debugger;
+            if (this.AvailableLocker() == null || this.AvailableLocker() == undefined) {
+                this.ShowErrorMessage("No locker available to open locker.");
+                return;
+            }
+
+            this.ShowLoading("Opening locker " + this.AvailableLocker().LockerNumber);
+
+            LockerBankService.OpenLocker(this.AvailableLocker().DeviceSerialNumber)
+            .done(function (data) {
+                this.currentWorkFlow(WorkFlow.Dropoff);
+
+            }.bind(this))
+            .fail(function (errorMessage) {
+                this.ShowErrorMessage("Cannot open locker for the parcel");
+            }.bind(this))
+            .always(function () {
+                this.HideLoading();
+
+            }.bind(this));
         },
 
         ReturnToAgentMenu: function () {
@@ -245,10 +284,15 @@ var DropoffController = (function () {
                 this.ResetWorkFlow();
                 this.currentWorkFlow(WorkFlow.AwaitLogin);
             }.bind(this))
-            .fail(function () {
+            .fail(function (errorMessage) {
                 this.ResetWorkFlow(true);
                 this.currentWorkFlow(WorkFlow.AgentWork);
-                this.ShowErrorMessage("Could not drop off parcel. Please retry again.");
+
+                if (errorMessage == '') {
+                    errorMessage = "Could not drop off parcel. Please retry again.";
+                }
+
+                this.ShowErrorMessage(errorMessage);
                 this.HideLoading();
             }.bind(this));
         },

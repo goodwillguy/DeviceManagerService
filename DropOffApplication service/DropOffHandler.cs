@@ -32,11 +32,9 @@ namespace Tz.DropOff.ApplicationService
 
             var parcelInfo=_parcelApplcationService.GetParcelInformation(lockerBankId.Value, consignmentNumber);
 
-            _lockerManager.OpenLocker(lockerBankId.Value, parcelInfo.LockerId.Value);
-
             _lockerApplicationService.UpdateLockerAsOccupied(lockerBankId.Value, parcelInfo.LockerId.Value);
 
-            return new LockerDataDto { LockerId = parcelInfo.LockerId, LockerNumber = parcelInfo.LockerNumber };
+            return new LockerDataDto { LockerId = parcelInfo.LockerId, LockerNumber = parcelInfo.LockerNumber};
         }
     }
 }

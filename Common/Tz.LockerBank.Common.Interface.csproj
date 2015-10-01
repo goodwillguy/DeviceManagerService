@@ -51,6 +51,7 @@
     <Compile Include="DeviceChangedEventArg.cs" />
     <Compile Include="DeviceStatus.cs" />
     <Compile Include="DeviceType.cs" />
+    <Compile Include="Dto\OpenDeviceDto.cs" />
     <Compile Include="ICardReaderConversionService.cs" />
     <Compile Include="ICardReaderService.cs" />
     <Compile Include="IComPortProvider.cs" />

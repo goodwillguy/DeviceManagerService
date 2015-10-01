@@ -31,7 +31,7 @@ CardReaderService.SubscribeForSwipeEvent = function (callbackFunction) {
     };
 
     setInterval(function () {
-        if (websocket.readyState) {
+        if (websocket.readyState==0) {
             websocket.send("KeepAlive");
         }
     }.bind(this), 30000);

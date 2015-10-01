@@ -7,9 +7,11 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using Tz.ApplicationServices.Common.Interface;
 using Tz.Resident.Common.Dto;
+using WebApi.RoutePrefix;
 
 namespace WebApi.Controllers
 {
+    [ApplicationExceptionFilter]
     [EnableCors("*", "*", "*")]
     public class ResidentController:ApiController
     {

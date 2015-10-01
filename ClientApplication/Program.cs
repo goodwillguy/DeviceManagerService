@@ -30,7 +30,7 @@ namespace ClientApplication
             using (fact)
             {
                 var devices = cha.GetAllDevices();
-                cha.Open(devices[0].FullSerialNumber );
+                //cha.Open(new  devices[0].FullSerialNumber );
 
 
             }

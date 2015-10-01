@@ -8,9 +8,11 @@ using System.Web.Http.Cors;
 using Tz.ApplicationServices.Common;
 using Tz.ApplicationServices.Common.Interface;
 using WebApi.Dto;
+using WebApi.RoutePrefix;
 
 namespace WebApi.Controllers
 {
+    [ApplicationExceptionFilter]
     [EnableCors("*", "*", "*")]
     public class DropoffController : ApiController
     {

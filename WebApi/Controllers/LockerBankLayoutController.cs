@@ -10,9 +10,11 @@ using Tz.ApplicationServices.Common.Interface;
 using Tz.Common.Values.Enums;
 using Tz.Locker.Common.Dto;
 using WebApi.Dto;
+using WebApi.RoutePrefix;
 
 namespace WebApi.Controllers
 {
+    [ApplicationExceptionFilter]
     [EnableCors("*", "*", "*")]
     public class LockerBankLayoutController : ApiController
     {
@@ -52,7 +54,7 @@ namespace WebApi.Controllers
                 throw new ApplicationException("No lockers available for dropoff");
             }
 
-            return new LockerDataDto { LockerId = locker.LockerId, LockerNumber = locker.LockerNumber };
+            return new LockerDataDto { LockerId = locker.LockerId, LockerNumber = locker.LockerNumber,DeviceSerialNumber=locker.DeviceSerialNumber };
 
         }
 

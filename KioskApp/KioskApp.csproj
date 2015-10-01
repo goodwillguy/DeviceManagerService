@@ -88,6 +88,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <None Include="Properties\PublishProfiles\app-Residential.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

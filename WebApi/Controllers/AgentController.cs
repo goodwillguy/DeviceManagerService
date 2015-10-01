@@ -8,10 +8,12 @@ using System.Web.Http.Cors;
 using Tz.Agent.Common.Dto;
 using Tz.ApplicationServices.Common.Interface;
 using WebApi.Dto;
+using WebApi.RoutePrefix;
 
 namespace WebApi.Controllers
 {
 
+    [ApplicationExceptionFilter]
     [EnableCors("*", "*","*")]
     public class AgentController:ApiController
     {

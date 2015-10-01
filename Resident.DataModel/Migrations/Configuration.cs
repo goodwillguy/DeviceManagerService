@@ -25,7 +25,7 @@ namespace Tz.Resident.DataModel.Migrations
             var propertyTzSydney = Guid.Parse("0ABAA1CF-C482-4E89-A0E9-BF232F7D97C3");
 
 
-            context.Residents.AddOrUpdate(res => res.ResidentId, new Resident
+            context.Residents.AddOrUpdate(res => res.ResidentCode, new Resident
             {
                 ResidentId = residentSenthil,
                 EmailAddress = "goodwillguy@gmail.com",
@@ -38,7 +38,7 @@ namespace Tz.Resident.DataModel.Migrations
                 ResidentCode="Pro001"
             });
 
-            context.Residents.AddOrUpdate(res => res.ResidentId, new Resident
+            context.Residents.AddOrUpdate(res => res.ResidentCode, new Resident
             {
                 ResidentId = residentLeon,
                 EmailAddress = "Leon@gmail.com",
@@ -51,7 +51,7 @@ namespace Tz.Resident.DataModel.Migrations
                 ResidentCode = "Tz001"
             });
 
-            context.Residents.AddOrUpdate(res => res.ResidentId, new Resident
+            context.Residents.AddOrUpdate(res => res.ResidentCode, new Resident
             {
                 ResidentId = residentSam,
                 EmailAddress = "sam@gmail.com",

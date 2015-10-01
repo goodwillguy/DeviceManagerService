@@ -11,9 +11,13 @@ ResidentService.GetResident = function (lockerBankCode, searchText) {
     .done(function (residents) {
         def.resolve(residents);
     }.bind(this))
-    .fail(function () {
-        def.reject();
-    }.bind(this));
+   .fail(function (errorMessage) {
+       var message = '';
+       if (errorMessage != undefined && errorMessage != null) {
+           message = errorMessage.responseText.split(":")[1];
+       }
+       def.reject(message);
+   }.bind(this));
 
 
 

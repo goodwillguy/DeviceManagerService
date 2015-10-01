@@ -34,16 +34,16 @@ namespace Tz.DeviceManagerService
 
         private void Time_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            if (fire)
-            {
-                _cardReader_Swipe(this, new SwipeEventArgs { RFID = "2973-0057922", SerialNumber = "2973-0057922" });
-            }
+            //if (fire)
+            //{
+            //    _cardReader_Swipe(this, new SwipeEventArgs { RFID = "2973-0057922", SerialNumber = "2973-0057922" });
+            //}
         }
 
         private void _cardReader_Swipe(object sender, SwipeEventArgs e)
         {
 
-            var cardNumber = e.RFID == "2973-0057922" ? "2973-0057922" : _cardNumberConversion.DecodeCardNumber(e.RFID);
+            var cardNumber = _cardNumberConversion.DecodeCardNumber(e.RFID);
 
             var list = _cardReaderSubscription.ToArray();
 
