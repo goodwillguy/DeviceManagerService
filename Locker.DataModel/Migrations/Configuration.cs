@@ -48,295 +48,306 @@ namespace Tz.Locker.DataModel.Migrations
 
             var promethusLocker2Device = Guid.Parse("5D1CE7F3-D04D-4BAB-AFB3-0061B4955D71");
 
-            context.LockerBanks.AddOrUpdate(lb => lb.LockerBankId, new LockerBank
+            if (!context.LockerBanks.Any())
             {
-                LockerBankId=lockerBankTzSydney1,
-                BuildingPropertyId=propertyTzSydney,
-                IpAddress="127.0.0.1",
-                IsEnabled=true,
-                Description="Tz sydney locker 1",
-                LockerBankCode="TzLocker1",
-                Name="Tz locker 1"
-            });
 
-            context.LockerBanks.AddOrUpdate(lb => lb.LockerBankId, new LockerBank
+                context.LockerBanks.AddOrUpdate(lb => lb.LockerBankId, new LockerBank
+                {
+                    LockerBankId = lockerBankTzSydney1,
+                    BuildingPropertyId = propertyTzSydney,
+                    IpAddress = "127.0.0.1",
+                    IsEnabled = true,
+                    Description = "Tz sydney locker 1",
+                    LockerBankCode = "TzLocker1",
+                    Name = "Tz locker 1"
+                });
+
+                context.LockerBanks.AddOrUpdate(lb => lb.LockerBankId, new LockerBank
+                {
+                    LockerBankId = lockerBankTzSydney2,
+                    BuildingPropertyId = propertyTzSydney,
+                    IpAddress = "127.0.0.1",
+                    IsEnabled = true,
+                    Description = "Tz sydney locker 2",
+                    LockerBankCode = "TzLocker2",
+                    Name = "Tz locker 2"
+                });
+
+                context.LockerBanks.AddOrUpdate(lb => lb.LockerBankId, new LockerBank
+                {
+                    LockerBankId = lockerBankPrometheusSydney1,
+                    BuildingPropertyId = propertyPromentusSydney,
+                    IpAddress = "127.0.0.1",
+                    IsEnabled = true,
+                    Description = "Prometheus sydney locker 1",
+                    LockerBankCode = "PrometheusLocker1",
+                    Name = "Prometheus locker 2"
+                });
+
+                context.LockerBanks.AddOrUpdate(lb => lb.LockerBankId, new LockerBank
+                {
+                    LockerBankId = lockerBankPrometheusSydney2,
+                    BuildingPropertyId = propertyPromentusSydney,
+                    IpAddress = "127.0.0.1",
+                    IsEnabled = true,
+                    Description = "Prometheus sydney locker 2",
+                    LockerBankCode = "PrometheusLocker2",
+                    Name = "Prometheus locker 2"
+                });
+
+            };
+
+            if (!context.Lockers.Any())
             {
-                LockerBankId = lockerBankTzSydney2,
-                BuildingPropertyId = propertyTzSydney,
-                IpAddress = "127.0.0.1",
-                IsEnabled = true,
-                Description = "Tz sydney locker 2",
-                LockerBankCode = "TzLocker2",
-                Name = "Tz locker 2"
-            });
 
-            context.LockerBanks.AddOrUpdate(lb => lb.LockerBankId, new LockerBank
+                #region TzLockers
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = tzLocker1,
+                    LockerBankId = lockerBankTzSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "L1",
+                    Column = 1
+
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = tzLocker2,
+                    LockerBankId = lockerBankTzSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "L2",
+                    Column = 1
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankTzSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "L3",
+                    Column = 1
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankTzSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "L4",
+                    Column = 2
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankTzSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "L5",
+                    Column = 2
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankTzSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "L6",
+                    Column = 2
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankTzSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "L7",
+                    Column = 3
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankTzSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "L8",
+                    Column = 3
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankTzSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "L9",
+                    Column = 3
+
+                });
+
+                #endregion
+
+
+                #region PromethusLockers
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = promethusLocker1,
+                    LockerBankId = lockerBankPrometheusSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "P1",
+                    Column = 1
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = promethusLocker2,
+                    LockerBankId = lockerBankPrometheusSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "P2",
+                    Column = 1
+
+                });
+
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankPrometheusSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "P3",
+                    Column = 1
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankPrometheusSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "P4",
+                    Column = 2
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankPrometheusSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "P5",
+                    Column = 2
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankPrometheusSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "P6",
+                    Column = 2
+
+                });
+
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankPrometheusSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "P7",
+                    Column = 3
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankPrometheusSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "P8",
+                    Column = 3
+
+                });
+
+                context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
+                {
+                    LockerId = Guid.NewGuid(),
+                    LockerBankId = lockerBankPrometheusSydney1,
+                    Size = Tz.Common.Values.Enums.Size.Medium,
+                    State = Tz.Common.Values.Enums.LockerState.Available,
+                    LockerNumber = "P9",
+                    Column = 3
+
+                });
+                #endregion
+
+            }
+
+            if (!context.Devices.Any())
             {
-                LockerBankId = lockerBankPrometheusSydney1,
-                BuildingPropertyId = propertyPromentusSydney,
-                IpAddress = "127.0.0.1",
-                IsEnabled = true,
-                Description = "Prometheus sydney locker 1",
-                LockerBankCode = "PrometheusLocker1",
-                Name = "Prometheus locker 2"
-            });
+                context.Devices.AddOrUpdate(de => de.DeviceId, new Device
+                {
+                    DeviceId = tzLocker1Device,
+                    IsEnabled = true,
+                    LockerBankId = lockerBankTzSydney1,
+                    DeviceType = Tz.Common.Values.Enums.DeviceType.Radials,
+                    SerialNumber = "31 0F 31 02 54 5A 49 20 00 00 05 00 00 00 5E BC "
+                });
 
-            context.LockerBanks.AddOrUpdate(lb => lb.LockerBankId, new LockerBank
-            {
-                LockerBankId = lockerBankPrometheusSydney2,
-                BuildingPropertyId = propertyPromentusSydney,
-                IpAddress = "127.0.0.1",
-                IsEnabled = true,
-                Description = "Prometheus sydney locker 2",
-                LockerBankCode = "PrometheusLocker2",
-                Name = "Prometheus locker 2"
-            });
+                context.Devices.AddOrUpdate(de => de.DeviceId, new Device
+                {
+                    DeviceId = tzLocker2Device,
+                    IsEnabled = true,
+                    LockerBankId = lockerBankTzSydney1,
+                    DeviceType = Tz.Common.Values.Enums.DeviceType.Radials,
+                    SerialNumber = "31 0F 31 02 54 5A 49 20 00 00 05 00 00 00 5E BC "
+                });
 
+                context.Devices.AddOrUpdate(de => de.DeviceId, new Device
+                {
+                    DeviceId = promethusLocker1Device,
+                    IsEnabled = true,
+                    LockerBankId = lockerBankPrometheusSydney1,
+                    DeviceType = Tz.Common.Values.Enums.DeviceType.Radials,
+                    SerialNumber = "31 0D 11 02 54 5A 49 20 00 00 05 00 00 00 23 C7 "
+                });
 
+                context.Devices.AddOrUpdate(de => de.DeviceId, new Device
+                {
+                    DeviceId = promethusLocker2Device,
+                    IsEnabled = true,
+                    LockerBankId = lockerBankPrometheusSydney1,
+                    DeviceType = Tz.Common.Values.Enums.DeviceType.Radials,
+                    SerialNumber = "31 0D 11 02 54 5A 49 20 00 00 05 00 00 00 23 C7 "
+                });
 
-            #region TzLockers
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = tzLocker1,
-                LockerBankId = lockerBankTzSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L1",
-                Column = 1
-
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = tzLocker2,
-                LockerBankId = lockerBankTzSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L2",
-                Column = 1
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankTzSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L3",
-                Column = 1
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankTzSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L4",
-                Column = 2
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankTzSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L5",
-                Column = 2
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankTzSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L6",
-                Column = 2
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankTzSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L7",
-                Column = 3
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankTzSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L8",
-                Column = 3
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankTzSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "L9",
-                Column = 3
-
-            });
-
-            #endregion
-
-
-            #region PromethusLockers
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = promethusLocker1,
-                LockerBankId = lockerBankPrometheusSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "P1",
-                Column = 1
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = promethusLocker2,
-                LockerBankId = lockerBankPrometheusSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "P2",
-                Column = 1
-
-            });
-
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankPrometheusSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "P3",
-                Column = 1
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankPrometheusSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "P4",
-                Column = 2
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankPrometheusSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "P5",
-                Column = 2
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankPrometheusSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "P6",
-                Column = 2
-
-            });
-
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankPrometheusSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "P7",
-                Column = 3
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankPrometheusSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "P8",
-                Column = 3
-
-            });
-
-            context.Lockers.AddOrUpdate(lo => lo.LockerNumber, new Locker
-            {
-                LockerId = Guid.NewGuid(),
-                LockerBankId = lockerBankPrometheusSydney1,
-                Size = Tz.Common.Values.Enums.Size.Medium,
-                State = Tz.Common.Values.Enums.LockerState.Available,
-                LockerNumber = "P9",
-                Column = 3
-
-            }); 
-            #endregion
-
-            context.Devices.AddOrUpdate(de => de.DeviceId, new Device
-            {
-                DeviceId=tzLocker1Device,
-                IsEnabled=true,
-                LockerBankId=lockerBankTzSydney1,
-                DeviceType=Tz.Common.Values.Enums.DeviceType.Radials,
-                SerialNumber= "31 0F 31 02 54 5A 49 20 00 00 05 00 00 00 5E BC "
-            });
-
-            context.Devices.AddOrUpdate(de => de.DeviceId, new Device
-            {
-                DeviceId = tzLocker2Device,
-                IsEnabled = true,
-                LockerBankId = lockerBankTzSydney1,
-                DeviceType = Tz.Common.Values.Enums.DeviceType.Radials,
-                SerialNumber = "31 0F 31 02 54 5A 49 20 00 00 05 00 00 00 5E BC "
-            });
-
-            context.Devices.AddOrUpdate(de => de.DeviceId, new Device
-            {
-                DeviceId = promethusLocker1Device,
-                IsEnabled = true,
-                LockerBankId = lockerBankPrometheusSydney1,
-                DeviceType = Tz.Common.Values.Enums.DeviceType.Radials,
-                SerialNumber = "31 0D 11 02 54 5A 49 20 00 00 05 00 00 00 23 C7 "
-            });
-
-            context.Devices.AddOrUpdate(de => de.DeviceId, new Device
-            {
-                DeviceId = promethusLocker2Device,
-                IsEnabled = true,
-                LockerBankId = lockerBankPrometheusSydney1,
-                DeviceType = Tz.Common.Values.Enums.DeviceType.Radials,
-                SerialNumber = "31 0D 11 02 54 5A 49 20 00 00 05 00 00 00 23 C7 "
-            });
-
+            }
            
             //context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
             //{
@@ -364,15 +375,20 @@ namespace Tz.Locker.DataModel.Migrations
 
             context.SaveChanges();
 
-            context.Lockers.ToList().ForEach((lo) =>
+
+            if (!context.LockerToDevices.Any())
             {
-                context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
+                context.Lockers.ToList().ForEach((lo) =>
                 {
-                    LockerId = lo.LockerId,
-                    DeviceId = tzLocker1Device
+                    context.LockerToDevices.AddOrUpdate(ltod => ltod.LockerId, new Entity.LockerToDevice
+                    {
+                        LockerId = lo.LockerId,
+                        DeviceId = tzLocker1Device
+                    });
                 });
-            });
-            context.SaveChanges();
+
+                context.SaveChanges();
+            }
 
 
         }

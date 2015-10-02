@@ -33,54 +33,60 @@ namespace Tz.Property.DataModel.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-            context.Organisations.AddOrUpdate(
-                    org => org.OrganisationId, new Entity.Organisation
-                    {
-                        OrganisationId = tzorganization,
-                        Code = "Tz",
-                        Description = "TzOrganization"
-                    });
-
-            context.Organisations.AddOrUpdate(
-                   org => org.OrganisationId, new Entity.Organisation
-                   {
-                       OrganisationId = prometheus,
-                       Code = "Prometheus",
-                       Description = "Prometheus Organization"
-                   });
-
-            context.BuildingProperties.AddOrUpdate(prop =>
-            prop.BuildingPropertyId, new Entity.BuildingProperty
+            if (!context.Organisations.Any())
             {
-                BuildingPropertyId = Guid.Parse("0ABAA1CF-C482-4E89-A0E9-BF232F7D97C3"),
-                Code = "TzSydney",
-                Description = "Tz at Sydney"
+                context.Organisations.AddOrUpdate(
+                        org => org.OrganisationId, new Entity.Organisation
+                        {
+                            OrganisationId = tzorganization,
+                            Code = "Tz",
+                            Description = "TzOrganization"
+                        });
 
-            });
+                context.Organisations.AddOrUpdate(
+                       org => org.OrganisationId, new Entity.Organisation
+                       {
+                           OrganisationId = prometheus,
+                           Code = "Prometheus",
+                           Description = "Prometheus Organization"
+                       });
 
+            }
 
-            context.BuildingProperties.AddOrUpdate(prop =>
-           prop.BuildingPropertyId, new Entity.BuildingProperty
-           {
-               BuildingPropertyId = Guid.Parse("1D4B448B-4E69-4ECA-A06E-E7F85256C920"),
-               Code = "PrometheusSydney",
-               Description = "Prometheus at Sydney"
-           });
-
-
-            context.OrganisationToProperty.AddOrUpdate(org => org.OrganisationToPropertyId, new Entity.OrganisationToProperty
+            if (!context.BuildingProperties.Any())
             {
-                OrganisationId= tzorganization,
-                BuildingPropertyId= Guid.Parse("0ABAA1CF-C482-4E89-A0E9-BF232F7D97C3")
-            });
+                context.BuildingProperties.AddOrUpdate(prop =>
+                prop.BuildingPropertyId, new Entity.BuildingProperty
+                {
+                    BuildingPropertyId = Guid.Parse("0ABAA1CF-C482-4E89-A0E9-BF232F7D97C3"),
+                    Code = "TzSydney",
+                    Description = "Tz at Sydney"
 
-            context.OrganisationToProperty.AddOrUpdate(org => org.OrganisationToPropertyId, new Entity.OrganisationToProperty
-            {
-                OrganisationId = prometheus,
-                BuildingPropertyId = Guid.Parse("1D4B448B-4E69-4ECA-A06E-E7F85256C920")
-            });
+                });
 
+
+                context.BuildingProperties.AddOrUpdate(prop =>
+               prop.BuildingPropertyId, new Entity.BuildingProperty
+               {
+                   BuildingPropertyId = Guid.Parse("1D4B448B-4E69-4ECA-A06E-E7F85256C920"),
+                   Code = "PrometheusSydney",
+                   Description = "Prometheus at Sydney"
+               });
+
+
+                context.OrganisationToProperty.AddOrUpdate(org => org.OrganisationToPropertyId, new Entity.OrganisationToProperty
+                {
+                    OrganisationId = tzorganization,
+                    BuildingPropertyId = Guid.Parse("0ABAA1CF-C482-4E89-A0E9-BF232F7D97C3")
+                });
+
+                context.OrganisationToProperty.AddOrUpdate(org => org.OrganisationToPropertyId, new Entity.OrganisationToProperty
+                {
+                    OrganisationId = prometheus,
+                    BuildingPropertyId = Guid.Parse("1D4B448B-4E69-4ECA-A06E-E7F85256C920")
+                });
+
+            }
             context.SaveChanges();
         }
     }

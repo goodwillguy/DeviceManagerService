@@ -28,61 +28,65 @@ namespace Tz.Agent.DataModel.Migrations
 
             var tzPrometheus = Guid.Parse("6A638CA6-EFD7-40B2-9FA6-86F129BD0382");
 
-
-            context.Agents.AddOrUpdate(ag => ag.AgentId, new Entity.Agent
+            if (!context.Agents.Any())
             {
-                AgentId = tzAgent,
-                EmailAddress="test@gmail.com",
-                FirstName="tzAgent",
-                LastName="Test",
-                IsDisabled=false,
-                OrganisationId=tzorganization,
-                Username="tzAgent",
-                SignInPin="123456"
-                
-                
-            });
-
-            context.Agents.AddOrUpdate(ag => ag.AgentId, new Entity.Agent
-            {
-                AgentId = tzPrometheus,
-                EmailAddress = "pormetheus@gmail.com",
-                FirstName = "tzPrmetheus",
-                LastName = "Test",
-                IsDisabled = false,
-                OrganisationId = prometheus,
-                Username = "tzPormetheus",
-                SignInPin = "123456"
-            });
 
 
-            context.AgentToProperties.AddOrUpdate(agProp => agProp.AgentToPropertyId, new Entity.AgentToProperty
-            {
-                AgentId=tzAgent,
-                BuildingPropertyId=propertyTzSydney
-            });
+                context.Agents.AddOrUpdate(ag => ag.AgentId, new Entity.Agent
+                {
+                    AgentId = tzAgent,
+                    EmailAddress = "test@gmail.com",
+                    FirstName = "tzAgent",
+                    LastName = "Test",
+                    IsDisabled = false,
+                    OrganisationId = tzorganization,
+                    Username = "tzAgent",
+                    SignInPin = "123456"
 
-            context.AgentToProperties.AddOrUpdate(agProp => agProp.AgentToPropertyId, new Entity.AgentToProperty
-            {
-                AgentId = tzPrometheus,
-                BuildingPropertyId = propertyPromentusSydney
-            });
 
-            context.AgentToCards.AddOrUpdate(agCard => agCard.AgentId, new Entity.AgentToCard
-            {
-                AgentId = tzAgent,
-                CardNumber = "2973-0057922",
-                EffectiveFrom = DateTime.Now,
-                IsLocked = false
-            });
+                });
 
-            context.AgentToCards.AddOrUpdate(agCard => agCard.AgentId, new Entity.AgentToCard
-            {
-                AgentId = tzPrometheus,
-                CardNumber = "654321",
-                EffectiveFrom = DateTime.Now,
-                IsLocked = false
-            });
+                context.Agents.AddOrUpdate(ag => ag.AgentId, new Entity.Agent
+                {
+                    AgentId = tzPrometheus,
+                    EmailAddress = "pormetheus@gmail.com",
+                    FirstName = "tzPrmetheus",
+                    LastName = "Test",
+                    IsDisabled = false,
+                    OrganisationId = prometheus,
+                    Username = "tzPormetheus",
+                    SignInPin = "123456"
+                });
+
+
+                context.AgentToProperties.AddOrUpdate(agProp => agProp.AgentToPropertyId, new Entity.AgentToProperty
+                {
+                    AgentId = tzAgent,
+                    BuildingPropertyId = propertyTzSydney
+                });
+
+                context.AgentToProperties.AddOrUpdate(agProp => agProp.AgentToPropertyId, new Entity.AgentToProperty
+                {
+                    AgentId = tzPrometheus,
+                    BuildingPropertyId = propertyPromentusSydney
+                });
+
+                context.AgentToCards.AddOrUpdate(agCard => agCard.AgentId, new Entity.AgentToCard
+                {
+                    AgentId = tzAgent,
+                    CardNumber = "2973-0057922",
+                    EffectiveFrom = DateTime.Now,
+                    IsLocked = false
+                });
+
+                context.AgentToCards.AddOrUpdate(agCard => agCard.AgentId, new Entity.AgentToCard
+                {
+                    AgentId = tzPrometheus,
+                    CardNumber = "654321",
+                    EffectiveFrom = DateTime.Now,
+                    IsLocked = false
+                });
+            }
 
             context.SaveChanges();
         }
