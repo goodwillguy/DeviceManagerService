@@ -126,7 +126,7 @@
     <Content Include="images\background_yellowgreen_small.png" />
     <Content Include="images\keyboard.png" />
     <Content Include="images\scanner.png" />
-    <Content Include="index.html" />
+    <Content Include="index_Test.html" />
     <Content Include="js\controller\AwaitSwipe.js" />
     <Content Include="js\entity\agentCardEntity.js" />
     <Content Include="js\jqBootstrapValidation.js" />
@@ -141,7 +141,7 @@
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
-    <Content Include="start.html" />
+    <Content Include="index.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

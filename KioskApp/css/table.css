@@ -134,3 +134,5 @@ label > input:checked + img { /* (RADIO CHECKED) IMAGE STYLES */
     border-width: 2px,;
     border-style: solid;
 }
+
+.selector { cursor: none; }

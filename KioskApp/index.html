@@ -1,2388 +1,745 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <head>
+    <title>TZ LIMITED</title>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <!-- Bootstrap Core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <title>TZ LIMITED</title>
+    <!-- Font Awesome CSS -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
 
-        <!-- Bootstrap Core CSS -->
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/animate.css" rel="stylesheet">
 
-        <!-- Font Awesome CSS -->
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-		
-		<!-- Custom CSS -->
-        <link href="css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
 
-        <!-- Custom CSS -->
-        <link href="css/style.css" rel="stylesheet">
+    <link href="css/table.css" rel="stylesheet">
 
-        <!-- Custom Fonts -->
-        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href="css/spinning.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+    <!-- Template js -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/script.js"></script>
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 
-        <!-- Template js -->
-        <script src="js/jquery-2.1.1.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="js/jquery.appear.js"></script>
-        <script src="js/jqBootstrapValidation.js"></script>
-        <script src="js/modernizr.custom.js"></script>
-        <script src="js/script.js"></script>
+    <script src="Scripts/knockout-3.3.0.debug.js"></script>
+    <script>
+        var step = 300;
+        var current = 0;
 
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        function tableup() {
+            current = current - step;
+            if (current < 0) {
+                current = 0;
+            }
+            $('.parceltable').scrollTop(current);
+            console.log(current);
+        }
 
-    </head>
-    
-    <body>           
-        <!-- Start Main Body Section -->
-        <div class="mainbody-section text-center">
-            <div class="container logo">
-                <a href="#login-modal" data-toggle="modal" data-dismiss="modal">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6">
-                            <div class="imagetext">
-                                <img src="images/background_white.png" class="logo-img img-circle img-responsive"> 
-                                <span>LOGO HERE</span>
-                            </div>  
+        function tabledown() {
+            current = current + step;
+            if (current > ($('.parceltable')[0].scrollHeight - $('.parceltable')[0].clientHeight + step)) {
+                current = current - step;
+            }
+            $('.parceltable').scrollTop(current);
+            console.log(current);
+
+
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        var DomReady = DomReady || {};
+
+        DomReady.IsReady = ko.observable(false);
+
+        
+
+
+    </script>
+    <script src="js/entity/WebSocketEventEnum.js"></script>
+    <script src="js/entity/WorkFlowEnum.js"></script>
+    <script src="js/service/WebApiHostService.js"></script>
+    <script src="js/service/LockerBankService.js"></script>
+    <script src="js/service/lockerBankIdentificationService.js"></script>
+    <script src="js/service/ResidentService.js"></script>
+    <script src="js/service/AgentValidationService.js"></script>
+    <script src="js/service/cardReaderService.js"></script>
+    <script src="js/service/DropOffService.js"></script>
+    <script src="js/controller/AwaitSwipe.js"></script>
+    <script src="js/controller/DropoffController.js"></script>
+
+
+
+</head>
+<body id="body" class="selector">
+
+    <!--<div class="errorText">Error message</div>-->
+    <!-- Start Main Body Section -->
+    <!--ko if: DomReady.IsReady-->
+    <!-- ko if: currentWorkFlow()==WorkFlow.AwaitLogin-->
+    <div class="mainbody-section text-center">
+        <div class="container logo">
+            <!--ko if: (ErrorText()!='' && ErrorText()!=null)-->
+            <div class="errorText" id="error" data-bind="text:ErrorText"></div>
+            <!--/ko-->
+
+            <a href="#login-modal" data-toggle="modal" data-dismiss="modal">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="imagetext">
+                            <img src="images/background_white.png" class="logo-img img-circle img-responsive">
+                            <span>LOGO HERE</span>
                         </div>
                     </div>
-                </a>
+                </div>
+            </a>
+        </div>
+
+        <div class="container footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <span>PLEASE TAP YOUR CARD OR TOUCH THIS SCREEN TO BEGIN</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ko-->
+    <!-- End Main Body Section -->
+    <!-- ko if: currentWorkFlow()==WorkFlow.AgentWork-->
+    <div class="menu-section text-center section-modal" id="menu-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="container header">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <h1>LOGO HERE</h1>
+                    </div>
+                    <div class="col-xs-9">
+                        <div class="close-modal" data-dismiss="modal" data-bind="click:ResetWorkFlow.bind($data)">
+                            <div class="lr">
+                                <div class="rl">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container title">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>DELIVERY AGENT MENU</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="container content" style="padding-top:40px;">
+                <!--ko if: (ErrorText()!='' && ErrorText()!=null)-->
+                <div class="errorText" id="error" data-bind="text:ErrorText"></div>
+                <!--/ko-->
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <a href="#scan-modal" data-toggle="modal" data-dismiss="modal" data-bind="click:DropOffWorkFlowClicked.bind($data)">
+                            <div class="imagetext">
+                                <img src="images/background_gold_half.png" class="logo-img img-circle img-responsive">
+                                <span><i class="fa fa-archive fa-3x"></i><br />DROP OFF<br />PACKAGES</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <a href="#expire-modal" data-toggle="modal" data-dismiss="modal">
+                            <div class="imagetext">
+                                <img src="images/background_gold_half.png" class="logo-img img-circle img-responsive">
+                                <span><i class="fa fa-unlock fa-3x"></i><br />COLLECT<br />EXPIRED<br />PACKAGES</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <a href="#" data-toggle="modal" data-dismiss="modal">
+                            <div class="imagetext">
+                                <img src="images/background_gold_half.png" class="logo-img img-circle img-responsive">
+                                <span><i class="fa fa-key fa-3x"></i><br />LOG OFF</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="container footer">
                 <div class="row">
                     <div class="col-xs-12">
-                        <span>PLEASE TAP YOUR CARD OR TOUCH THIS SCREEN TO BEGIN</span>
+                        <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End Main Body Section -->
-        
-        <!-- Start Login Body Section -->
-        <div class="login-section text-center section-modal modal" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">             
-                <div class="container header">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h1>LOGO HERE</h1>
-                        </div>
-                        <div class="col-xs-9">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container title">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h2>Login With Your Account</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="container content">
-                    <div class="row">
-                        <div class="col-xs-12 keypad-panel">
-                            <div class="row">
-                                <div class="col-xs-6 faked-input-field">
-                                    <input type="text" id="name" placeholder="User Name" value="" max-length="100" readonly> 
-                                </div>
-                                <div class="col-xs-6 faked-input-field">
-                                    <input type="text" id="password" placeholder="Password" value="" max-length="100" readonly>
-                                </div>
-                            </div>  
-                            <div class="row eleven-cols">
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="1" >
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
-                                        <span class="smalltext">1</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="2">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">2</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="3">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">3</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="4">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">4</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="5">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">5</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="6">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">6</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="7">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">7</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="8">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">8</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="9">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">9</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="0">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">0</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="BACK">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext" style="margin-top:-10px;"><i class="fa fa-arrow-left fa-2x"></i></span>
-                                    </div> 
-                                </div>
-                            </div> 
-                            <div class="row eleven-cols">
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="Q">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">Q</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="W">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">W</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="E">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">E</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="R">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">R</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="T">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">T</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="Y">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">Y</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="U">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">U</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="I" >
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
-                                        <span class="smalltext">I</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="O">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">O</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="P">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">P</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="@">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">@</span>
-                                    </div> 
-                                </div>
-                            </div>  
-                            <div class="row eleven-cols">
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="A">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">A</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="S">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">S</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="D">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">D</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="F">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">F</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="G">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">G</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="H">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">H</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="J">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">J</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="K">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">K</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="L">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">L</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value=".">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">.</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="-">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">-</span>
-                                    </div> 
-                                </div>
-                            </div>  
-                            <div class="row eleven-cols">
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="#">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">#</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="Z">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">Z</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="X">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">X</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="C">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">C</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="V">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">V</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="B">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">B</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="N">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">N</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="M">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">M</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="BLANK">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext"></span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-2">
-                                    <a href="#menu-modal" data-toggle="modal" data-dismiss="modal">
-                                        <div class="imagetext key" data-value="ENTER">
-                                            <img src="images/background_grey_half_small.png" class="normal-img img-rounded img-responsive" >
-                                            <span class="smalltext" style="margin-top:-5px;">Enter</span>
-                                        </div> 
-                                    </a>
-                                </div>
-                            </div>   
-                        </div>
-                    </div>
-                </div>
-                <div class="container footer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </div>
-        <!-- End Login Body Section -->    
+    </div>
 
-        <!-- Start Menu Body Section -->
-        <div class="menu-section text-center section-modal modal" id="menu-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">             
-                <div class="container header">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h1>LOGO HERE</h1>
-                        </div>
-                        <div class="col-xs-9">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container title">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h2>DELIVERY AGENT MENU</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="container content" style="padding-top:40px;">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4">
-                            <a href="#scan-modal" data-toggle="modal" data-dismiss="modal">
-                                <div class="imagetext">
-                                    <img src="images/background_gold_half.png" class="logo-img img-circle img-responsive"> 
-                                    <span><i class="fa fa-archive fa-3x"></i><br />DROP OFF<br />PACKAGES</span>
-                                </div> 
-                            </a>
-                        </div>
-                        <div class="col-xs-12 col-sm-4">
-                            <a href="#expire-modal" data-toggle="modal" data-dismiss="modal">
-                                <div class="imagetext">
-                                    <img src="images/background_gold_half.png" class="logo-img img-circle img-responsive">
-                                    <span><i class="fa fa-unlock fa-3x"></i><br />COLLECT<br />EXPIRED<br />PACKAGES</span>
-                                </div>   
-                            </a>
-                        </div>
-                        <div class="col-xs-12 col-sm-4">
-                            <a href="#" data-toggle="modal" data-dismiss="modal">
-                                <div class="imagetext">
-                                    <img src="images/background_gold_half.png" class="logo-img img-circle img-responsive">
-                                    <span><i class="fa fa-key fa-3x"></i><br />LOG OFF</span>
-                                </div> 
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="container footer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </div>
-        <!-- End Menu Body Section -->
+    <!--/ko-->
+    <!-- ko if: currentWorkFlow()==WorkFlow.ScanParcel-->
 
-        <!-- Start Scan Body Section -->
-        <div class="scan-section text-center section-modal modal" id="scan-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">             
-                <div class="container header">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h1>LOGO HERE</h1>
-                        </div>
-                        <div class="col-xs-9">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl">
-                                    </div>
+    <div class="barcode-section text-center section-modal noselect" id="barcode-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="container header">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <h1>LOGO HERE</h1>
+                    </div>
+                    <div class="col-xs-9">
+                        <div class="close-modal" data-dismiss="modal" data-bind="click:ResetWorkFlow.bind($data)">
+                            <div class="lr">
+                                <div class="rl">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="container title">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h2>SCAN THE PACKAGE USING THE HAND-HELD SCANNER</h2>
-                        </div>
+            </div>
+            <div class="container title">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Please Enter The Package Barcode</h2>
+                    </div>
+                    <div class="col-xs-12">
+                        <h3>Enter the package barcode and select ENTER to continue.</h3>
                     </div>
                 </div>
-                <div class="container content">
-                    <div class="row">
-                        <div class="hidden-xs col-sm-6">
-                            <a href="#dropoff-modal" data-toggle="modal" data-dismiss="modal">
-                                <img src="images/scanner.png" class="normal-img img-rounded img-responsive"> 
-                            </a>
+            </div>
+            <div class="container content">
+                <!--ko if: (ErrorText()!='' && ErrorText()!=null)-->
+                <div class="errorText" id="error" data-bind="text:ErrorText"></div>
+                <!--/ko-->
+                <div class="row">
+                    <div class="col-xs-12 keypad-panel">
+                        <div class="row">
+                            <div class="col-xs-12 faked-input-field">
+                                <input type="text" id="barcode" placeholder="XXXXXXXXXXX" value="" max-length="100" data-bind="value:ParcelNumber,hasfocus: barCodeHasFocus">
+                            </div>
                         </div>
-                        <div class="hidden-xs col-sm-6">
-                            <a href="#barcode-modal" data-toggle="modal" data-dismiss="modal">
-                                <img src="images/keyboard.png" class="normal-img img-rounded img-responsive"> 
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-sm-offset-1">
-                            <a href="#dropoff-modal" data-toggle="modal" data-dismiss="modal">
-                                <div class="imagetext">
-                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive"> 
-                                    <span><i class="fa fa-barcode fa-3x"></i><br />How To Use<br />Scanner</span>
-                                </div> 
-                            </a>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-sm-offset-2">
-                            <a href="#barcode-modal" data-toggle="modal" data-dismiss="modal">
-                                <div class="imagetext">
+                        <div class="row eleven-cols">
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'1')">
                                     <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
-                                    <span><i class="fa fa-keyboard-o fa-3x"></i><br />Use Keypad</span>
-                                </div>   
-                            </a>
+                                    <span class="smalltext">1</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'2')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">2</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'3')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">3</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'4')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">4</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'5')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">5</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'6')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">6</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'7')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">7</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'8')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">8</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'9')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">9</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'0')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">0</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'BACK')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext" style="margin-top:-10px;"><i class="fa fa-arrow-left fa-2x"></i></span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="container footer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
+                        <div class="row eleven-cols">
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'Q')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">Q</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'W')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">W</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'E')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">E</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'R')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">R</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'T')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">T</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'Y')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">Y</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'U')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">U</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'I')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">I</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'O')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">O</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'P')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">P</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'@')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">@</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>    
-        </div>
-        <!-- End Scan Body Section --> 
-
-        <!-- Start Barcode Body Section -->
-        <div class="barcode-section text-center section-modal modal" id="barcode-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">             
-                <div class="container header">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h1>LOGO HERE</h1>
+                        <div class="row eleven-cols">
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'A')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">A</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'S')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">S</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'D')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">D</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'F')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">F</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'G')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">G</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'H')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">H</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'J')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">J</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'K')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">K</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'L')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">L</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'.')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">.</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'-')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">-</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xs-9">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl">
+                        <div class="row eleven-cols">
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'#')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">#</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'Z')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">Z</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'X')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">X</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'C')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">C</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'V')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">V</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'B')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">B</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'N')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">N</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'M')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext">M</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="imagetext key" data-bind="click:OnScreenPress.bind($data,'BLANK')">
+                                    <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
+                                    <span class="smalltext"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <a data-toggle="modal" data-dismiss="modal" data-bind="click:ParcelNumberEntered.bind($data)">
+                                    <div class="imagetext key">
+                                        <img src="images/background_grey_half_small.png" class="normal-img img-rounded img-responsive">
+                                        <span class="smalltext" style="margin-top:-5px;">Enter</span>
                                     </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ko-->
+    <!-- ko if: currentWorkFlow()==WorkFlow.SelectResident-->
+    <div class="barcode-section text-center section-modal noselect" id="SelectResidents" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="container header">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <h1>LOGO HERE</h1>
+                    </div>
+                    <div class="col-xs-9">
+                        <div class="close-modal" data-dismiss="modal" data-bind="click:ResetWorkFlow.bind($data)">
+                            <div class="lr">
+                                <div class="rl">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="container title">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h2>Please Enter The Package Barcode</h2>
-                        </div>
-                        <div class="col-xs-12">
-                            <h3>Enter the package barcode and select ENTER to continue.</h3>
-                        </div>
+            </div>
+            <div class="container title">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Please Select the Recipient of the Package</h2>
                     </div>
                 </div>
-                <div class="container content">
-                    <div class="row">
-                        <div class="col-xs-12 keypad-panel">
-                            <div class="row">
-                                <div class="col-xs-12 faked-input-field">
-                                    <input type="text" id="barcode" placeholder="XXXXXXXXXXX" value="" max-length="100" readonly>
-                                </div>
-                            </div>  
-                            <div class="row eleven-cols">
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="1" >
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
-                                        <span class="smalltext">1</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="2">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">2</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="3">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">3</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="4">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">4</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="5">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">5</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="6">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">6</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="7">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">7</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="8">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">8</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="9">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">9</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="0">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">0</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="BACK">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext" style="margin-top:-10px;"><i class="fa fa-arrow-left fa-2x"></i></span>
-                                    </div> 
-                                </div>
-                            </div> 
-                            <div class="row eleven-cols">
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="Q">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">Q</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="W">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">W</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="E">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">E</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="R">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">R</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="T">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">T</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="Y">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">Y</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="U">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">U</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="I" >
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive">
-                                        <span class="smalltext">I</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="O">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">O</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="P">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">P</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="@">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">@</span>
-                                    </div> 
-                                </div>
-                            </div>  
-                            <div class="row eleven-cols">
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="A">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">A</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="S">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">S</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="D">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">D</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="F">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">F</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="G">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">G</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="H">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">H</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="J">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">J</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="K">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">K</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="L">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">L</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value=".">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">.</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="-">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">-</span>
-                                    </div> 
-                                </div>
-                            </div>  
-                            <div class="row eleven-cols">
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="#">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">#</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="Z">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">Z</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="X">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">X</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="C">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">C</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="V">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">V</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="B">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">B</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="N">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">N</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="M">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext">M</span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-1">
-                                    <div class="imagetext key" data-value="BLANK">
-                                        <img src="images/background_gold_half.png" class="normal-img img-circle img-responsive" >
-                                        <span class="smalltext"></span>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-2">
-                                    <a href="#dropoff-modal" data-toggle="modal" data-dismiss="modal">
-                                        <div class="imagetext key" data-value="ENTER">
-                                            <img src="images/background_grey_half_small.png" class="normal-img img-rounded img-responsive" >
-                                            <span class="smalltext" style="margin-top:-5px;">Enter</span>
-                                        </div> 
-                                    </a>
-                                </div>
-                            </div>   
-                        </div>
-                    </div>
-                </div>
-                <div class="container footer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </div>
-        <!-- End Barcode Body Section -->    
-
-        <!-- Start Drop Off Body Section -->
-        <div class="dropoff-section text-center section-modal modal" id="dropoff-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">             
-                <div class="container header">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h1>LOGO HERE</h1>
-                        </div>
-                        <div class="col-xs-9">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container title">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h2>DROP OFF PACKAGE IN LOCKER XX</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="container content locker-panel">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-9 lockers">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-2">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A1</h4>
-                                            </div> 
-                                        </div> 
-                                        <div class="col-xs-12">
-                                            <a href="#confirm-modal" data-toggle="modal" data-dismiss="modal">
-                                                <div class="imagetext">
-                                                    <img class="img-rounded img-responsive locker-open">
-                                                    <h4>A2</h4>
-                                                </div> 
+            </div>
+            <div class="container content">
+                <div class="row">
+                    <!--ko if: (ErrorText()!='' && ErrorText()!=null)-->
+                    <div class="errorText" id="error" data-bind="text:ErrorText"></div>
+                    <!--/ko-->
+                    <div class="col-xs-12 col-sm-9 parceltable">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th> First Name</th>
+                                    <th>Last Name</th>
+                                    <th style="text-align:right; padding-right:10%;">Click To Select</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--ko foreach: ResidentsForLockerBank-->
+                                <tr >
+                                    <td data-bind="text:$data.FirstName"></td>
+                                    <td data-bind="text:$data.LastName"></td>
+                                    <td>
+                                        <!--<div class="col-xs-2">
+                                            <a data-toggle="modal" data-dismiss="modal" data-bind="click:$parent.SelectedResident.bind($parent,$data)">
+                                                <div class="imagetext key">
+                                                    <img src="images/background_grey_half_small.png" class="normal-img img-rounded img-responsive">
+                                                    <span class="smalltext" style="margin-top:-5px;">Select </span>
+                                                </div>
                                             </a>
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A3</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A4</h4>
-                                            </div> 
-                                        </div>       
+                                        </div>-->
+                                        <label>
+                                            <input type="radio" name="radiogroup" data-bind="click:$parent.SelectedResident.bind($parent,$data)" />
+                                            <img src="images/background_green_middle.png" class="img-rounded img-responsive">
+                                        </label>
+
+                                    </td>
+                                </tr>
+                                <!--/ko-->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <a href="javascript:void(0)" onclick="tableup()">
+                                    <div class="imagetext">
+                                        <img src="images/background_gold_half.png" class="small-img img-circle img-responsive">
+                                        <span class="smalltext"><i class="fa fa-arrow-up fa-2x"></i></span>
                                     </div>
-                                </div>   
-                                <div class="col-xs-12 col-sm-2">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A5</h4>
-                                            </div> 
-                                        </div> 
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A6</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A7</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A8</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A9</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A10</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A11</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A12</h4>
-                                            </div> 
-                                        </div>       
+                                </a>
+                            </div>
+                            <div class="col-xs-12">
+                                <a data-toggle="modal" data-dismiss="modal" data-bind="click:SelectLocker.bind($data)">
+                                    <div class="imagetext">
+                                        <img src="images/background_gold_half.png" class="small-img img-circle img-responsive">
+                                        <span class="smalltext">Select Locker</span>
                                     </div>
-                                </div>    
-                                <div class="col-xs-12 col-sm-2">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A13</h4>
-                                            </div> 
-                                        </div> 
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A14</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A15</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A16</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A17</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A18</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A19</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A20</h4>
-                                            </div> 
-                                        </div>       
+                                </a>
+                            </div>
+                            <div class="col-xs-12">
+                                <a href="javascript:void(0)" onclick="tabledown()">
+                                    <div class="imagetext">
+                                        <img src="images/background_gold_half.png" class="small-img img-circle img-responsive">
+                                        <span class="smalltext"><i class="fa fa-arrow-down fa-2x"></i></span>
                                     </div>
-                                </div>    
-                                <div class="col-xs-12 col-sm-2">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A21</h4>
-                                            </div> 
-                                        </div> 
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A22</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A23</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A24</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A25</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A26</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A27</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A28</h4>
-                                            </div> 
-                                        </div>       
-                                    </div>
-                                </div>    
-                                <div class="col-xs-12 col-sm-2">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A29</h4>
-                                            </div> 
-                                        </div> 
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A30</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A31</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A32</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A33</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A34</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A35</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A36</h4>
-                                            </div> 
-                                        </div>  
-                                    </div>                                       
-                                </div>    
-                                <div class="col-xs-12 col-sm-2">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A37</h4>
-                                            </div> 
-                                        </div> 
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A38</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A39</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A40</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A41</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A42</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A43</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A44</h4>
-                                            </div> 
-                                        </div>  
-                                    </div>                    
-                                </div>     
+                                </a>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-3">
-                            <h2>A2</h2>
-                            <p>Please come back to confirm the drop off after depositing the package and closing the locker door</p>
-                        </div>
                     </div>
                 </div>
-                <div class="container footer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </div>
-        <!-- End Drop Off Body Section --> 
 
-        <!-- Start Confirm Body Section -->
-        <div class="confirm-section text-center section-modal modal" id="confirm-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">             
-                <div class="container header">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h1>LOGO HERE</h1>
-                        </div>
-                        <div class="col-xs-9">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl">
+                <!--<div class="container title">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <a data-toggle="modal" data-dismiss="modal" data-bind="click:PerformDropOff.bind($data)">
+                                    <div class="imagetext key">
+                                        <img src="images/background_grey_half_small.png" class="normal-img img-rounded img-responsive">
+                                        <span class="smalltext" style="margin-top:-5px;">Do Drop Off </span>
                                     </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+
+            </div>
+
+        </div>
+
+        <div class="container footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ko-->
+    <!-- ko if: currentWorkFlow()==WorkFlow.Dropoff-->
+    <div class="dropoff-section text-center section-modal" id="dropoff-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="container header">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <h1>LOGO HERE</h1>
+                    </div>
+                    <div class="col-xs-9">
+                        <div class="close-modal" data-dismiss="modal" data-bind="click:ResetWorkFlow.bind($data)">
+                            <div class="lr">
+                                <div class="rl">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="container title">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h2>DROP OFF PACKAGE IN LOCKER XX</h2>
-                        </div>
+            </div>
+            <div class="container title">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>DROP OFF PACKAGE IN LOCKER XX</h2>
                     </div>
                 </div>
-                <div class="container content locker-panel">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-9 lockers">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-2">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A1</h4>
-                                            </div> 
-                                        </div> 
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-open">
-                                                <h4>A2</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A3</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A4</h4>
-                                            </div> 
-                                        </div>       
-                                    </div>
-                                </div>   
-                                <div class="col-xs-12 col-sm-2">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A5</h4>
-                                            </div> 
-                                        </div> 
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A6</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A7</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A8</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A9</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A10</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A11</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A12</h4>
-                                            </div> 
-                                        </div>       
-                                    </div>
-                                </div>    
-                                <div class="col-xs-12 col-sm-2">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A13</h4>
-                                            </div> 
-                                        </div> 
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A14</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A15</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A16</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A17</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A18</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A19</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A20</h4>
-                                            </div> 
-                                        </div>       
-                                    </div>
-                                </div>    
-                                <div class="col-xs-12 col-sm-2">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A21</h4>
-                                            </div> 
-                                        </div> 
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A22</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A23</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A24</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A25</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A26</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A27</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-close">
-                                                <h4>A28</h4>
-                                            </div> 
-                                        </div>       
-                                    </div>
-                                </div>    
-                                <div class="col-xs-12 col-sm-2">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A29</h4>
-                                            </div> 
-                                        </div> 
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A30</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A31</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A32</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A33</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A34</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A35</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A36</h4>
-                                            </div> 
-                                        </div>  
-                                    </div>                                       
-                                </div>    
-                                <div class="col-xs-12 col-sm-2">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A37</h4>
-                                            </div> 
-                                        </div> 
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A38</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A39</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A40</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A41</h4>
-                                            </div> 
-                                        </div>    
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-small-close">
-                                                <h4>A42</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A43</h4>
-                                            </div> 
-                                        </div>  
-                                        <div class="col-xs-12">
-                                            <div class="imagetext">
-                                                <img class="img-rounded img-responsive locker-middle-close">
-                                                <h4>A44</h4>
-                                            </div> 
-                                        </div>  
-                                    </div>                    
-                                </div>     
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-3">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <a href="#more-modal" data-toggle="modal" data-dismiss="modal">
-                                        <div class="imagetext">
-                                            <img src="images/background_gold_half.png" class="small-img img-circle img-responsive"> 
-                                            <span class="smalltext">YES</span>
-                                        </div> 
-                                    </a>
-                                </div> 
-                                <div class="col-xs-12">
-                                    <a href="#menu-modal" data-toggle="modal" data-dismiss="modal">
-                                        <div class="imagetext">
-                                            <img src="images/background_gold_half.png" class="small-img img-circle img-responsive"> 
-                                            <span class="smalltext">NO</span>
-                                        </div> 
-                                    </a>
-                                </div>    
-                                <div class="col-xs-12">
-                                    <a href="#dropoff-modal" data-toggle="modal" data-dismiss="modal">
-                                        <div class="imagetext">
-                                            <img src="images/background_gold_half.png" class="small-img img-circle img-responsive"> 
-                                            <span class="smalltext">REOPEN THE<br />LOCKER DOOR</span>
-                                        </div> 
-                                    </a>
-                                </div>  
-                            </div>             
-                        </div>
-                    </div>
-                </div>
-                <div class="container footer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </div>
-        <!-- End Confirm Body Section --> 
+            </div>
+            <div class="container content locker-panel">
+                <div class="row">
+                    <!--ko if: (ErrorText()!='' && ErrorText()!=null)-->
+                    <div class="errorText" id="error" data-bind="text:ErrorText"></div>
+                    <!--/ko-->
+                    <div class="col-xs-12 col-sm-9 lockers">
+                        <div class="row" data-bind="foreach: LockerBankLayout()">
 
-        <!-- Start More Body Section -->
-        <div class="more-section text-center section-modal modal" id="more-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">             
-                <div class="container header">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h1>LOGO HERE</h1>
-                        </div>
-                        <div class="col-xs-9">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl">
+                            <!--CreateColumns-->
+                            <div class="col-xs-12 col-sm-2" data-bind="foreach:$data.Value">
+                                <div class="row">
+                                    <!--create lockers in the column-->
+                                    <div class="col-xs-12">
+                                        <div class="imagetext">
+                                            <img data-bind="attr:{'id':$data.LockerNumber},css: $root.IsLockerOpen($data)">
+                                            <span data-bind="text:$data.LockerNumber"></span>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container title">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h2>DO YOU HAVE ANOTHER PACKAGE TO DROP OFF?</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="container content" style="padding-top:40px;">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-sm-offset-1">
-                            <a href="#scan-modal" data-toggle="modal" data-dismiss="modal">
-                                <div class="imagetext">
-                                    <img src="images/background_gold_half.png" class="logo-img img-circle img-responsive"> 
-                                    <span>YES</span>
-                                </div> 
-                            </a>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-sm-offset-2">
-                            <a href="#menu-modal" data-toggle="modal" data-dismiss="modal">
-                                <div class="imagetext">
-                                    <img src="images/background_gold_half.png" class="logo-img img-circle img-responsive">
-                                    <span>NO</span>
-                                </div>   
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="container footer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </div>
-        <!-- End More Off Body Section -->    
 
-        <!-- Start Expire Body Section -->
-        <div class="expire-section text-center section-modal modal" id="expire-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">             
-                <div class="container header">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h1>LOGO HERE</h1>
                         </div>
-                        <div class="col-xs-9">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl">
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <a data-toggle="modal" data-dismiss="modal" data-bind="click:PerformDropOff.bind($data)">
+                                    <div class="imagetext">
+                                        <img src="images/background_gold_half.png" class="small-img img-circle img-responsive">
+                                        <span class="smalltext">YES</span>
                                     </div>
-                                </div>
+                                </a>
+                            </div>
+                            <div class="col-xs-12">
+                                <a data-toggle="modal" data-dismiss="modal" data-bind="click:ReturnToAgentMenu.bind($data)">
+                                    <div class="imagetext">
+                                        <img src="images/background_gold_half.png" class="small-img img-circle img-responsive">
+                                        <span class="smalltext">NO</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-xs-12">
+                                <a data-toggle="modal" data-dismiss="modal" data-bind="click:ReopenLocker.bind($data)">
+                                    <div class="imagetext">
+                                        <img src="images/background_gold_half.png" class="small-img img-circle img-responsive">
+                                        <span class="smalltext">REOPEN THE<br />LOCKER DOOR</span>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="container title">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h2>x EXPIRED PACKAGE(S) TO BE COLLECGTED</h2>
-                            <h3>Select a highlighted locker to collect the expired package</h3>
-                        </div>
+            </div>
+            <div class="container footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
                     </div>
                 </div>
-                <div class="container content locker-panel2">
-                    <div class="row lockers">
-                        <div class="col-xs-12 col-sm-2">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A1</h4>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A2</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <a href="#pickup-modal" data-toggle="modal" data-dismiss="modal">
-                                        <div class="imagetext">
-                                            <img class="img-rounded img-responsive locker-open">
-                                            <h4>A3</h4>
-                                        </div> 
-                                    </a>
-                                </div>    
-                                <div class="col-xs-12">
-                                    <a href="#pickup-modal" data-toggle="modal" data-dismiss="modal">
-                                        <div class="imagetext">
-                                            <img class="img-rounded img-responsive locker-open">
-                                            <h4>A4</h4>
-                                        </div> 
-                                    </a>
-                                </div>       
-                            </div>
-                        </div>   
-                        <div class="col-xs-12 col-sm-2">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A5</h4>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A6</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A7</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A8</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A9</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A10</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A11</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A12</h4>
-                                    </div> 
-                                </div>       
-                            </div>
-                        </div>    
-                        <div class="col-xs-12 col-sm-2">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A13</h4>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A14</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A15</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A16</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A17</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A18</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A19</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A20</h4>
-                                    </div> 
-                                </div>       
-                            </div>
-                        </div>    
-                        <div class="col-xs-12 col-sm-2">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A21</h4>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A22</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A23</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A24</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A25</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A26</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A27</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A28</h4>
-                                    </div> 
-                                </div>       
-                            </div>
-                        </div>    
-                        <div class="col-xs-12 col-sm-2">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A29</h4>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A30</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A31</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A32</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A33</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A34</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A35</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A36</h4>
-                                    </div> 
-                                </div>  
-                            </div>                                       
-                        </div>    
-                        <div class="col-xs-12 col-sm-2">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A37</h4>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A38</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A39</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A40</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A41</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A42</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A43</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A44</h4>
-                                    </div> 
-                                </div>  
-                            </div> 
-                        </div>     
-                    </div>
-                </div>
-                <div class="container footer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>    
+            </div>
         </div>
-        <!-- End Expire Off Body Section -->    
+    </div>
+    <!--/ko-->
+    <!--/ko-->
+    <!--ko if: !DomReady.IsReady() || isLoading()-->
 
-        <!-- Start Pick Up Body Section -->
-        <div class="pickup-section text-center section-modal modal" id="pickup-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">             
-                <div class="container header">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h1>LOGO HERE</h1>
-                        </div>
-                        <div class="col-xs-9">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container title">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h2>PICK UP EXPIRED PACKAGE FROM THE LOCKER</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="container content locker-panel2">
-                    <div class="row lockers">
-                        <div class="col-xs-12 col-sm-2">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A1</h4>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A2</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <a href="#confirmpickup-modal" data-toggle="modal" data-dismiss="modal">
-                                        <div class="imagetext">
-                                            <img class="img-rounded img-responsive locker-unlock">
-                                            <h4>A3</h4>
-                                        </div> 
-                                    </a>
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A4</h4>
-                                    </div> 
-                                </div>       
-                            </div>
-                        </div>   
-                        <div class="col-xs-12 col-sm-2">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A5</h4>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A6</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A7</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A8</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A9</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A10</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A11</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A12</h4>
-                                    </div> 
-                                </div>       
-                            </div>
-                        </div>    
-                        <div class="col-xs-12 col-sm-2">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A13</h4>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A14</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A15</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A16</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A17</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A18</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A19</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A20</h4>
-                                    </div> 
-                                </div>       
-                            </div>
-                        </div>    
-                        <div class="col-xs-12 col-sm-2">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A21</h4>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A22</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A23</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A24</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A25</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A26</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A27</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-close">
-                                        <h4>A28</h4>
-                                    </div> 
-                                </div>       
-                            </div>
-                        </div>    
-                        <div class="col-xs-12 col-sm-2">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A29</h4>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A30</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A31</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A32</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A33</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A34</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A35</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A36</h4>
-                                    </div> 
-                                </div>  
-                            </div>                                       
-                        </div>    
-                        <div class="col-xs-12 col-sm-2">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A37</h4>
-                                    </div> 
-                                </div> 
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A38</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A39</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A40</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A41</h4>
-                                    </div> 
-                                </div>    
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-small-close">
-                                        <h4>A42</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A43</h4>
-                                    </div> 
-                                </div>  
-                                <div class="col-xs-12">
-                                    <div class="imagetext">
-                                        <img class="img-rounded img-responsive locker-middle-close">
-                                        <h4>A44</h4>
-                                    </div> 
-                                </div>  
-                            </div> 
-                        </div>     
-                    </div>
-                </div>
-                <div class="container footer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </div>
-        <!-- End Pick up Body Section -->   
+    <div class="spinningModalDialog">
+        <div>
+            <i class="fa fa-spinner fa-2x spinning">
+            </i>
+            <div class="" data-bind="text:loadingText">
 
-        <!-- Start Confirm Pickup Body Section -->
-        <div class="confirmpickup-section text-center section-modal modal" id="confirmpickup-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">             
-                <div class="container header">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <h1>LOGO HERE</h1>
-                        </div>
-                        <div class="col-xs-9">
-                            <div class="close-modal" data-dismiss="modal">
-                                <div class="lr">
-                                    <div class="rl">
-                                    </div>
-s                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container title">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h2>CONFIRM THE EXPIRED PACKAGE HAS BEEN COLLECTED</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="container content" style="padding-top:40px;">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4">
-                            <a href="#menu-modal" data-toggle="modal" data-dismiss="modal">
-                                <div class="imagetext">
-                                    <img src="images/background_gold_half.png" class="logo-img img-circle img-responsive"> 
-                                    <span>YES<br />CONFIRMED</span>
-                                </div> 
-                            </a>
-                        </div>
-                        <div class="col-xs-12 col-sm-4">
-                            <a href="#pickup-modal" data-toggle="modal" data-dismiss="modal">
-                                <div class="imagetext">
-                                    <img src="images/background_gold_half.png" class="logo-img img-circle img-responsive">
-                                    <span>REOPEN<br />LOCKER</span>
-                                </div>   
-                            </a>
-                        </div>
-                        <div class="col-xs-12 col-sm-4">
-                            <a href="#" data-toggle="modal" data-dismiss="modal">
-                                <div class="imagetext">
-                                    <img src="images/background_gold_half.png" class="logo-img img-circle img-responsive">
-                                    <span>PACKAGE IS<br />MISSING</span>
-                                </div>
-                            </a> 
-                        </div>
-                    </div>
-                </div>
-                <div class="container footer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p>Need help collecting your parcel? Please come to the package window during semester<br />Monday-Friday 8:00 to 4:00 and Saturday 8 - Noon.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>    
+            </div>
         </div>
-        <!-- End Confirm Pickup  Body Section --> 
-    </body>
-    
+    </div>
+    <!--/ko-->
+</body>
 </html>
 
-<script type="text/javascript">
-    $(document).ready(function() {  
-        $(".barcode-section .key").click(function() {  
-            var clicked = $(this).attr("data-value");
-            var current = $("#barcode").val();
-            if(clicked == "BACK")
-            {
-                if(current.length > 0)
-                {
-                    current = current.substring(0, current.length-1);
-                }
-            }
-            else if(clicked == "BLANK")
-            {
-                current = current.concat(" ");
-            }
-            else if(clicked == "ENTER")
-            {
 
-            }
-            else
-            {
-                current = current.concat(clicked);
-            }
-
-            $("#barcode").val(current);
-        });  
-
-        $(".login-section input").click(function() { 
-            $(this).focus();
-        });
-
-        $(".login-section .key").click(function() {  
-            var clicked = $(this).attr("data-value");
-            var current = $(".login-section input:focus").val();
-            if(clicked == "BACK")
-            {
-                if(current.length > 0)
-                {
-                    current = current.substring(0, current.length-1);
-                }
-            }
-            else if(clicked == "BLANK")
-            {
-                current = current.concat(" ");
-            }
-            else if(clicked == "ENTER")
-            {
-
-            }
-            else
-            {
-                current = current.concat(clicked);
-            }
-
-            $(".login-section input:focus").val(current);
-        });  
-        $('#login-modal').on('shown.bs.modal', function() {
-            $("#name").focus();
-        })
-        $('#barcode-modal').on('hidden.bs.modal', function (e) {
-            $("#barcode").val('');
-        });
-
-        $(window).mousedown(function(){ return false; })
-    });  
-</script>
