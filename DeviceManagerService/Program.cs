@@ -12,12 +12,30 @@ using Tz.LockerBank.Common.Interface;
 using Autofac.Integration.Wcf;
 using Autofac;
 using System.ServiceModel.Description;
+using Topshelf;
 
 namespace Tz.DeviceManagerService
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            var hostTopSelf = HostFactory.New(x =>
+            {
+                x.Service<MyService>();
+
+                x.SetDisplayName("DeviceManagerService");
+            });
+
+            hostTopSelf.Run();
+        }
+
+
+    }
+
+    public class MyService : ServiceControl
+    {
+        public bool Start(HostControl hostControl)
         {
             var cont = Bootstrapper.Container;
 
@@ -41,7 +59,13 @@ namespace Tz.DeviceManagerService
 
             host2.Open();
 
-            Console.ReadKey();
+            return true;
+                
+        }
+
+        public bool Stop(HostControl hostControl)
+        {
+            return true;
         }
     }
 }

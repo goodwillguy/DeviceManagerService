@@ -78,6 +78,7 @@
     <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.ServiceModel.Channels" />
     <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -87,6 +88,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="TextTemplate, Version=3.2.1508.2601, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TZ.Pad.Common.3.2.1508.2601\lib\net45\TextTemplate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Topshelf, Version=3.2.150.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Topshelf.3.2.0\lib\net40-full\Topshelf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="TZ.Base, Version=3.2.1508.2601, Culture=neutral, processorArchitecture=MSIL">
